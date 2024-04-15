@@ -1,0 +1,8 @@
+export const ROUTE_ADMIN_MODULE = '/admin'
+export const ROUTE_ISSUES_LIST_GET = '/issues/issuesList'
+export const ROUTE_ISSUES_MANAGER_LIST_GET = '/manager/issues/issuesManagerList'
+export const ROUTE_ISSUES_HISTORICAL_DATA_GET = '/issuesHistorical/issuesHistoricalList'
+export const ROUTE_ISSUES_MOVEMENTS_LIST_GET = '/manager/issues/issuesMovementsList'
+export const ROUTE_PORTFOLIO_LIST_GET = '/portfolio/portfolioList'
+export const ROUTE_TRANSACTION_ISSUES_TRACK_LIST_GET = '/transactions/transactionIssuesTrackList'
+export const ROUTE_LOAD_TRANSACTION_ISSUES_FILE_GET = '/transactions/loadTransactionIssuesFile'
