@@ -3,7 +3,7 @@ const configAppDev = require("lib-components-frontend-ts/lib/webpack/webpack.con
 module.exports = (arg: any, env: any) => {
 
   const mode = "development";
-  const htmlTitle = "Finantial Track Dev";
+  const htmlTitle = "Stock Track Dev";
   const dirname = __dirname;
 
   let mainWebpack = configAppDev.executeConfigDev(mode, { htmlTitle: htmlTitle, dirname: dirname });
