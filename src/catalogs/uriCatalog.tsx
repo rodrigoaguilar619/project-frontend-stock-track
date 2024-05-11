@@ -23,5 +23,5 @@ export const URL_PORTFOLIO_DATA_GET = _URL_API_MAIN_ + "api/portfolio/getPortfol
 export const URL_TRANSACTION_ISSUES_TRACK_LIST_GET = _URL_API_MAIN_ + "api/transactions/getTransactionIssuesTrack";
 export const URL_LOAD_TRANSACTION_ISSUES_FILE_GET = _URL_API_MAIN_ + "api/transactions/loadtransactionIssuesFile";
 
-export const PATH_API_DOCUMENTATION = _URL_API_MAIN_ + "swagger-ui/";
+export const PATH_API_DOCUMENTATION = _URL_API_MAIN_ + "swagger-ui/index.html";
 export const URL_EXTERNAL_YAHOO = "https://finance.yahoo.com/quote/#ISSUE#/chart?p=#ISSUE#";
