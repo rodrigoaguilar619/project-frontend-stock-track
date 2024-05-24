@@ -132,6 +132,13 @@ export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
         field: 'totalShares', header: 'T. Shares', tableConfig: {
             aligns: { alignCell: "center" },
             styleCss: { width: "5%" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeEnum.CURRENCY,
+            maskDataProps: {
+                decimalPlaces: 4,
+                addSeparateComma: true
+            }
         }
     },
     {
