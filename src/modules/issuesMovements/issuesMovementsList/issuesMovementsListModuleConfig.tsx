@@ -1,9 +1,10 @@
 import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
+import { DataTableCustomPropsI } from "@app/utils/maskDataCustomUtil";
 import { DataTablePropsI } from "lib-components-frontend-ts/lib/@types/components/dataTable/dataTable";
 import { FormInputContainerPropsI } from "lib-components-frontend-ts/lib/@types/components/formInputs/formInputs";
 import { InputElementEnum, MaskDataTypeEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
 
-export const columnsIssuesMovementsList: DataTablePropsI[] = [
+export const columnsIssuesMovementsList: DataTableCustomPropsI[] = [
     {
         field: 'alert', header: 'Alert', tableConfig: {
             aligns: { alignCell: "left" },
@@ -81,14 +82,16 @@ export const columnsIssuesMovementsList: DataTablePropsI[] = [
     },
     {
         field: 'issuePerformance', header: 'Yield', tableConfig: {
-            aligns: { alignCell: "left" },
-            styleCss: { width: "5%" }
+            aligns: { alignCell: "center" },
+            styleCss: { width: "6%" }
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
-            maskDataProps: {
+            maskDataCustomProps: {
                 addSeparateComma: true,
-                decimalPlaces: 2
+                addSymbolPercent: true,
+                decimalPlaces: 2,
+                addSymbolDownUp: true
             }
         }
     },
@@ -189,7 +192,7 @@ export const columnsFilterIssuesList: FormInputContainerPropsI = {
             }
         },
         {
-            id: inputFitlerIssuesMovementsIds.broker, label: "Type Stock:",
+            id: inputFitlerIssuesMovementsIds.broker, label: "Broker:",
             inputProps: {
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
             }
