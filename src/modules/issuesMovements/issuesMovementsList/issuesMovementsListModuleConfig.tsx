@@ -1,12 +1,28 @@
 import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
 import { DataTableCustomPropsI } from "@app/utils/maskDataCustomUtil";
-import { DataTablePropsI } from "lib-components-frontend-ts/lib/@types/components/dataTable/dataTable";
 import { FormInputContainerPropsI } from "lib-components-frontend-ts/lib/@types/components/formInputs/formInputs";
 import { InputElementEnum, MaskDataTypeEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
 
+export const columnFieldsIssuesMovementsNames = {
+    alert: {field: 'alert', header: 'Alert'},
+    issue: {field: 'issue', header: 'Issue'},
+    status: {field: 'descriptionStatus', header: 'Status'},
+    broker: {field: 'descriptionBroker', header: 'Broker'},
+    currency : {field: 'descriptionCurrency', header: 'Currency'},
+    totalSharesNotSold: {field: 'totalSharesNotSold', header: 'Total Shares'},
+    performanceTotalNotSold: {field: 'performanceTotalNotSold', header: 'Performance Total'},
+    performancePercentageNotSold: {field: 'performancePercentageNotSold', header: 'Performance Percentage'},
+    totalSharesSold: {field: 'totalSharesSold', header: 'Total Shares'},
+    performanceTotalSold: {field: 'performanceTotalSold', header: 'Performance Total'},
+    performancePercentageSold: {field: 'performancePercentageSold', header: 'Performance Percentage'},
+    performanceTotal: {field: 'performanceTotal', header: 'Performance Total'},
+    sector: {field: 'descriptionSector', header: 'Sector'},
+}
+
+
 export const columnsIssuesMovementsList: DataTableCustomPropsI[] = [
     {
-        field: 'alert', header: 'Alert', tableConfig: {
+        field: columnFieldsIssuesMovementsNames.alert.field, header: columnFieldsIssuesMovementsNames.alert.header, tableConfig: {
             aligns: { alignCell: "left" },
             styleCss: { width: "4%" },
         },
@@ -15,31 +31,100 @@ export const columnsIssuesMovementsList: DataTableCustomPropsI[] = [
         }
     },
     {
-        field: 'issue', header: 'Issue', tableConfig: {
+        field: columnFieldsIssuesMovementsNames.issue.field, header: columnFieldsIssuesMovementsNames.issue.header, tableConfig: {
             aligns: { alignCell: "center" },
             styleCss: { width: "5%" },
         }
     },
     {
-        field: 'descriptionStatus', header: 'Status', tableConfig: {
+        field: columnFieldsIssuesMovementsNames.status.field, header: columnFieldsIssuesMovementsNames.status.header, tableConfig: {
             aligns: { alignCell: "center" },
             styleCss: { width: "5%" },
         }
     },
     {
-        field: 'priceMovement', header: 'Price Mov.', tableConfig: {
-            aligns: { alignCell: "left" },
-            styleCss: { width: "7%" }
+        field: columnFieldsIssuesMovementsNames.broker.field, header: columnFieldsIssuesMovementsNames.broker.header, tableConfig: {
+            aligns: { alignCell: "center" },
+            styleCss: { width: "5%" },
+        }
+    },
+    {
+        field: columnFieldsIssuesMovementsNames.currency.field, header: columnFieldsIssuesMovementsNames.currency.header, tableConfig: {
+            aligns: { alignCell: "center" },
+            styleCss: { width: "5%" },
+        }
+    },
+    {
+        field: columnFieldsIssuesMovementsNames.totalSharesNotSold.field, header: columnFieldsIssuesMovementsNames.totalSharesNotSold.header, tableConfig: {
+            aligns: { alignCell: "center" },
+            styleCss: { width: "5%" },
+        }
+    },
+    {
+        field: columnFieldsIssuesMovementsNames.performanceTotalNotSold.field, header: columnFieldsIssuesMovementsNames.performanceTotalNotSold.header, tableConfig: {
+            aligns: { alignCell: "center" },
+            styleCss: { width: "5%" },
         },
         maskProps: {
-            maskType: MaskDataTypeEnum.CURRENCY,
-            maskDataProps: {
+            maskType: MaskDataTypeCustomEnum.DOWN_UP,
+            maskDataCustomProps: {
+                decimalPlaces: 2,
                 addSeparateComma: true,
-                addSymbolCurrency: true,
-                decimalPlaces: 2
+                addSymbolCurrency: true
             }
         }
     },
+    {
+        field: columnFieldsIssuesMovementsNames.performancePercentageNotSold.field, header: columnFieldsIssuesMovementsNames.performancePercentageNotSold.header, tableConfig: {
+            aligns: { alignCell: "center" },
+            styleCss: { width: "5%" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeCustomEnum.DOWN_UP,
+            maskDataCustomProps: {
+                addSeparateComma: true,
+                addSymbolPercent: true,
+                decimalPlaces: 2,
+                addSymbolDownUp: true
+            }
+        }
+    },
+    {
+        field: columnFieldsIssuesMovementsNames.totalSharesSold.field, header: columnFieldsIssuesMovementsNames.totalSharesSold.header, tableConfig: {
+            aligns: { alignCell: "center" },
+            styleCss: { width: "5%" },
+        }
+    },
+    {
+        field: columnFieldsIssuesMovementsNames.performanceTotalSold.field, header: columnFieldsIssuesMovementsNames.performanceTotalSold.header, tableConfig: {
+            aligns: { alignCell: "center" },
+            styleCss: { width: "5%" },
+        }
+    },
+    {
+        field: columnFieldsIssuesMovementsNames.performancePercentageSold.field, header: columnFieldsIssuesMovementsNames.performancePercentageSold.header, tableConfig: {
+            aligns: { alignCell: "center" },
+            styleCss: { width: "5%" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeCustomEnum.DOWN_UP,
+            maskDataCustomProps: {
+                addSeparateComma: true,
+                addSymbolPercent: true,
+                decimalPlaces: 2,
+                addSymbolDownUp: true
+            }
+        }
+    },
+    {
+        field: columnFieldsIssuesMovementsNames.sector.field, header: columnFieldsIssuesMovementsNames.sector.header, tableConfig: {
+            aligns: { alignCell: "center" },
+            styleCss: { width: "10%" },
+        }
+    },
+];
+
+export const columnsIssuesMovementsExpandedList: DataTableCustomPropsI[] = [
     {
         field: 'currentPriceDate', header: 'C. Price date', tableConfig: {
             aligns: { alignCell: "center" },
@@ -54,7 +139,7 @@ export const columnsIssuesMovementsList: DataTableCustomPropsI[] = [
     },
     {
         field: 'currentPrice', header: 'C. Price', tableConfig: {
-            aligns: { alignCell: "left" },
+            aligns: { alignCell: "center" },
             styleCss: { width: "7%" }
         },
         maskProps: {
@@ -68,7 +153,7 @@ export const columnsIssuesMovementsList: DataTableCustomPropsI[] = [
     },
     {
         field: 'fairValue', header: 'Fair Value', tableConfig: {
-            aligns: { alignCell: "left" },
+            aligns: { alignCell: "center" },
             styleCss: { width: "7%" }
         },
         maskProps: {
@@ -96,20 +181,8 @@ export const columnsIssuesMovementsList: DataTableCustomPropsI[] = [
         }
     },
     {
-        field: 'descriptionBroker', header: 'Broker', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
-        }
-    },
-    {
-        field: 'descriptionCurrency', header: 'Currency', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
-        }
-    },
-    {
         field: 'priceBuy1', header: 'P. Buy 1', tableConfig: {
-            aligns: { alignCell: "left" },
+            aligns: { alignCell: "center" },
             styleCss: { width: "7%" }
         },
         maskProps: {
@@ -123,7 +196,7 @@ export const columnsIssuesMovementsList: DataTableCustomPropsI[] = [
     },
     {
         field: 'priceBuy2', header: 'P. Buy 2', tableConfig: {
-            aligns: { alignCell: "left" },
+            aligns: { alignCell: "center" },
             styleCss: { width: "7%" }
         },
         maskProps: {
@@ -137,7 +210,7 @@ export const columnsIssuesMovementsList: DataTableCustomPropsI[] = [
     },
     {
         field: 'priceBuy3', header: 'P. Buy 3', tableConfig: {
-            aligns: { alignCell: "left" },
+            aligns: { alignCell: "center" },
             styleCss: { width: "7%" }
         },
         maskProps: {
@@ -151,7 +224,7 @@ export const columnsIssuesMovementsList: DataTableCustomPropsI[] = [
     },
     {
         field: 'priceBuy4', header: 'P. Buy 4', tableConfig: {
-            aligns: { alignCell: "left" },
+            aligns: { alignCell: "center" },
             styleCss: { width: "7%" }
         },
         maskProps: {
@@ -162,13 +235,7 @@ export const columnsIssuesMovementsList: DataTableCustomPropsI[] = [
                 decimalPlaces: 2
             }
         }
-    },
-    {
-        field: 'descriptionSector', header: 'Sector', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
-        }
-    },
+    }
 ];
 
 export const inputFitlerIssuesMovementsIds = {
