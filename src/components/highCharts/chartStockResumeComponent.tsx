@@ -57,12 +57,28 @@ const ChartStockResumeComponent: React.FC<ChartStockResumeComponentPropsI> = (pr
 
     if (props.stockData.currentPriceDate !== undefined && props.stockData.currentPriceDate !== null) {
         priceDayDownUp = calculateGainLossPercentage(props.stockData.previousClosePrice ?? 0, props.stockData.currentPrice ?? 0);
-        priceDayDownUp = Number.isNaN(priceDayDownUp) ? 0 : formatDecimalsLimit(dataWithValue(priceDayDownUp) ? priceDayDownUp : 0, 2);
+        
+        if (Number.isNaN(priceDayDownUp))
+            priceDayDownUp = 0;
+        else {
+            if (!dataWithValue(priceDayDownUp)) {
+                priceDayDownUp = 0;
+            }
+            priceDayDownUp = formatDecimalsLimit(priceDayDownUp, 2);
+        }
     }
 
     if (props.stockData.fairValue !== undefined && priceToShow !== undefined) {
         fairValueDownUp = calculateGainLossPercentage(props.stockData.fairValue, priceToShow);
-        fairValueDownUp = !Number.isNaN(fairValueDownUp) ? formatDecimalsLimit(dataWithValue(priceDayDownUp) ? priceDayDownUp : 0, 1) : undefined;
+        
+        if (!Number.isNaN(fairValueDownUp)) {
+            if (dataWithValue(priceDayDownUp)) {
+                fairValueDownUp = formatDecimalsLimit(priceDayDownUp, 1);
+            } else {
+                fairValueDownUp = formatDecimalsLimit(0, 1);
+            }
+        } else
+            fairValueDownUp = undefined;
     }
     
     return (<div>
