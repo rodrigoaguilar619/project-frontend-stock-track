@@ -1,5 +1,5 @@
+import { DataTableCustomPropsI } from "@app/_types/utils/maskDataCustomUtil";
 import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
-import { DataTableCustomPropsI } from "@app/utils/maskDataCustomUtil";
 import { FormInputContainerPropsI } from "lib-components-frontend-ts/lib/@types/components/formInputs/formInputs";
 import { InputElementEnum, MaskDataTypeEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
 
@@ -19,6 +19,37 @@ export const columnFieldsIssuesMovementsNames = {
     sector: {field: 'descriptionSector', header: 'Sector'},
 }
 
+export const columnsIssuesMovementsTotalList: DataTableCustomPropsI[] = [
+    {
+        field: "performanceTotal", header: "Performance Total", tableConfig: {
+            aligns: { alignCell: "center" },
+            styleCss: { width: "5%" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeCustomEnum.DOWN_UP,
+            maskDataCustomProps: {
+                decimalPlaces: 2,
+                addSeparateComma: true,
+                addSymbolCurrency: true
+            }
+        }
+    },
+    {
+        field: "performancePercentage", header: "Performance Percentage", tableConfig: {
+            aligns: { alignCell: "center" },
+            styleCss: { width: "5%" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeCustomEnum.DOWN_UP,
+            maskDataCustomProps: {
+                addSeparateComma: true,
+                addSymbolPercent: true,
+                decimalPlaces: 2,
+                addSymbolDownUp: true
+            }
+        }
+    },
+]
 
 export const columnsIssuesMovementsList: DataTableCustomPropsI[] = [
     {

@@ -7,7 +7,7 @@ import { CatalogModuleEnum, MaskDataTypeCustomEnum } from "@app/catalogs/enumCat
 import { getCatalogDataService } from "@app/controller/services/catalogService";
 import { getIssuesMovementsListService } from "@app/controller/services/issuesMovementsService";
 import { maskDataCustom } from "@app/utils/maskDataCustomUtil";
-import { faAdd, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faDashboard, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { DataTableColumnOptionsPropsI } from "lib-components-frontend-ts/lib/@types/components/dataTable/dataTable";
 import { ComponentTypeEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
 import DataTableComponent from 'lib-components-frontend-ts/lib/components/dataTable/dataTableComponent';
@@ -22,7 +22,7 @@ import useHookModal from 'lib-components-frontend-ts/lib/hookStates/modalHookSta
 import { buildFormDataContainers, setOptionsToColumnsDefList } from "lib-components-frontend-ts/lib/utils/componentUtils/formUtil";
 import { debug, generateDebugClassModule } from "lib-components-frontend-ts/lib/utils/webUtils/debugUtil";
 import { manageAlertModuleError } from "lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil";
-import { columnFieldsIssuesMovementsNames, columnsFilterIssuesList, columnsIssuesMovementsExpandedList, columnsIssuesMovementsList, inputFitlerIssuesMovementsIds } from "./issuesMovementsListModuleConfig";
+import { columnFieldsIssuesMovementsNames, columnsFilterIssuesList, columnsIssuesMovementsExpandedList, columnsIssuesMovementsList, columnsIssuesMovementsTotalList, inputFitlerIssuesMovementsIds } from "./issuesMovementsListModuleConfig";
 import { Row } from "primereact/row";
 import { Column } from "primereact/column";
 
@@ -37,8 +37,6 @@ const buildMovementBuysExpandedData = (element: any) => {
     element.issueMovementBuysList.forEach((buy: any) => {
         priceBuys["priceBuy" + buy.buyTransactionNumber] = buy.buyPrice;
     });
-
-    console.log("test buildMovementBuys", priceBuys);
 
     return [priceBuys];
 }
@@ -68,8 +66,6 @@ const buildMovementComplements = (data: any) => {
         result.push({ ...element, ...buildMovementShareTotalResume(element), expandedData: buildMovementBuysExpandedData(element) });
     });
 
-    console.log("test buildMovementComplements", result);
-
     return result;
 }
 
@@ -77,13 +73,16 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
 
     const dispatch = useDispatch();
     const [issuesMovementsList, setIssuesMovementsList] = useState<[]>([]);
+    const [issuesMovementsTotal, setIssuesMovementsTotal] = useState<any[]>([]);
     const [issueMovementTransactionTotalNotSold, setIssueMovementTransactionTotalNotSold] = useState<any>({});
     const [issueMovementTransactionTotalSold, setIssueMovementTransactionTotalSold] = useState<any>({});
     const [formFilterData, setFormFilterData] = useState<Record<string, any>>({});
-    const [modalState, setOpenModal, setCloseModal, setBodyModal, setTitleModal] = useHookModal();
+    const [modalState, setOpenModal, setCloseModal, setBodyModal, setTitleModal, setSizeModal] = useHookModal();
     const optionsTemplate: DataTableColumnOptionsPropsI = tableOptionsTemplateDefault;
+    
     const IssueMovementAddEditModuleComponent = React.lazy(() => import('@app/modules/issuesMovements/issueMovementAddEdit/issueMovementAddEditModuleComponent'))
-
+    const IssuesHistoricalDataModuleComponent = React.lazy(() => import('@app/modules/issuesHistorical/issueHistoricalData/issueHistoricalDataModuleComponent'))
+    
     let buttonIssueMovementAdd = <ButtonDataTableOptionComponent
         icon={faAdd}
         label="Add issue movement"
@@ -111,7 +110,31 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
         let buttonOptions: any = [];
         let buttonNestedOptions = [];
 
-        buttonNestedOptions.push(<ButtonDataTableOptionNestedComponent icon={faEdit} onClick={() => { setTitleModal("EDIT ISSUE MOVEMENT - ISSUE: " + rowData.issue); setBodyModal(<IssueMovementAddEditModuleComponent componentType={ComponentTypeEnum.POPUP} idIssueMovement={rowData.idIssueMovement} executeParentFunction={() => { executeGetIssuesMovementsList(); setCloseModal(); }} />); setOpenModal() }} tooltip={"Edit issue movement id: " + rowData.idIssueMovement} />);
+        buttonNestedOptions.push(
+        <ButtonDataTableOptionNestedComponent
+            icon={faEdit}
+            onClick={() => {
+                setTitleModal("EDIT ISSUE MOVEMENT - ISSUE: " + rowData.issue);
+                setSizeModal("md");
+                setBodyModal(
+            <IssueMovementAddEditModuleComponent
+                componentType={ComponentTypeEnum.POPUP}
+                idIssueMovement={rowData.idIssueMovement}
+                executeParentFunction={() => { executeGetIssuesMovementsList(); setCloseModal(); }} />);
+                setOpenModal() }}
+                tooltip={"Edit issue movement id: " + rowData.idIssueMovement}
+        />);
+        buttonNestedOptions.push(
+            <ButtonDataTableOptionNestedComponent
+                icon={faDashboard}
+                onClick={() => {
+                    setSizeModal("lg");
+                    setTitleModal("ISSUE DETAIL: " + rowData.issue);
+                    setBodyModal((<IssuesHistoricalDataModuleComponent idIssue={rowData.idIssue} initialsIssue={rowData.issue} componentType={ComponentTypeEnum.POPUP} executeParentFunction={() => { setCloseModal(); }} />));
+                    setOpenModal()
+                }}
+                tooltip={"show issue historical: " + rowData.issue}
+            />);
 
         buttonOptions.push(<ButtonWithNestedOptionsComponent idTooltip={rowData.idIssueMovement} buttonOptions={buttonNestedOptions} />);
         return (<ButtonsOrganizerComponent buttonOptions={buttonOptions} />);
@@ -172,7 +195,7 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
     );
 
     const rowExpansionTemplate = (data: any) => {
-        console.log("test row expansion", data);
+
         return (
             <div style={{ width: '87%' }}>
                 <DataTableComponent
@@ -190,6 +213,13 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
         );
     };
 
+    const setIssueMovementData = (data: any) => {
+        setIssuesMovementsList(buildMovementComplements(data.issuesMovementsList));
+        setIssueMovementTransactionTotalSold(data.issueMovementTransactionTotalSold);
+        setIssueMovementTransactionTotalNotSold(data.issueMovementTransactionTotalNotSold);
+        setIssuesMovementsTotal([data.issueMovementTransactionTotal]);
+    }
+
     const initModule = () => {
 
         let debugClass = generateDebugClassModule("init issues movements list module");
@@ -201,9 +231,7 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
             .then(axios.spread((issuesMovementsListData, sectorsListData, typeStockListData, statusIssueMovementListData) => {
 
                 debug(debugClass, "result", issuesMovementsListData, sectorsListData, typeStockListData, statusIssueMovementListData);
-                setIssuesMovementsList(buildMovementComplements(issuesMovementsListData.data.issuesMovementsList));
-                setIssueMovementTransactionTotalSold(issuesMovementsListData.data.issueMovementTransactionTotalSold);
-                setIssueMovementTransactionTotalNotSold(issuesMovementsListData.data.issueMovementTransactionTotalNotSold);
+                setIssueMovementData(issuesMovementsListData.data);
                 setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, sectorsListData.data.catalogs, inputFitlerIssuesMovementsIds.sector);
                 setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, typeStockListData.data.catalogs, inputFitlerIssuesMovementsIds.broker);
                 setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, statusIssueMovementListData.data.catalogs, inputFitlerIssuesMovementsIds.statusIssueMovement);
@@ -226,9 +254,7 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
             .then(axios.spread((issuesMovementsListData) => {
 
                 debug(debugClass, "result", issuesMovementsListData);
-                setIssuesMovementsList(buildMovementComplements(issuesMovementsListData.data.issuesMovementsList));
-                setIssueMovementTransactionTotalSold(issuesMovementsListData.data.issueMovementTransactionTotalSold);
-                setIssueMovementTransactionTotalNotSold(issuesMovementsListData.data.issueMovementTransactionTotalNotSold);
+                setIssueMovementData(issuesMovementsListData.data);
                 dispatch(setTemplateLoadingIsActiveAction(false));
 
             }))
@@ -243,7 +269,7 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
 
     return (<div>
         <ModalComponent title={modalState.titleModal} visible={modalState.showModal} selectorCloseModal={setCloseModal}
-            body={modalState.bodyModal} size='sm' />
+            body={modalState.bodyModal} size={modalState.size} />
         <br></br>
         <FilterAccoridionComponent
             formContainer={columnsFilterIssuesList}
@@ -255,6 +281,17 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
         <div style={{ textAlign: "right", paddingBottom: "5px", paddingTop: "5px" }}>
             {buttonIssueMovementAdd}
         </div>
+        <br></br>
+        <DataTableComponent
+            title=""
+            columnDefList={columnsIssuesMovementsTotalList}
+            columnDataList={issuesMovementsTotal}
+            isShowFooter={false}
+            isShowHeader={false}
+            totalRows={0}
+            customMaskData={maskDataCustom}
+        />
+        <br></br>
         <DataTableComponent
             title="Issues Movements"
             columnDefList={columnsIssuesMovementsList}
