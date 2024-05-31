@@ -28,6 +28,7 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
     const [issuesManagerList, setIssuesManagerList] = useState<[]>([]);
     const [formFilterData, setFormFilterData] = useState<Record<string, any>>({});
     const [modalState, setOpenModal, setCloseModal, setBodyModal, setTitleModal] = useHookModal();
+    const [modalSize, setModalSize] = useState<"sm" | "md" | "lg">("md");
     const optionsTemplate: DataTableColumnOptionsPropsI = tableOptionsTemplateDefault;
     
     const IssueManagerUpdateModuleComponent = React.lazy(() => import('@app/modules/issuesManager/issueManagerUpdate/issueManagerUpdateModuleComponent'))
@@ -51,6 +52,7 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
         buttonOptions.push(<ButtonDataTableOptionComponent
             icon={faEdit}
             onClick={() => {
+                setModalSize("md");
                 setTitleModal("EDIT MANAGER ISSUE: " + rowData.initials);
                 setBodyModal((<IssueManagerUpdateModuleComponent idIssueManager={rowData.idIssue} componentType={ComponentTypeEnum.POPUP} executeParentFunction={() => { executeGetIssuesManagerList(); setCloseModal(); }} />));
                 setOpenModal()
@@ -60,8 +62,9 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
         buttonOptions.push(<ButtonDataTableOptionComponent
             icon={faDashboard}
             onClick={() => {
+                setModalSize("lg");
                 setTitleModal("ISSUE DETAIL: " + rowData.initials);
-                setBodyModal((<IssuesHistoricalDataModuleComponent idIssue={rowData.idIssue} initialsIssue={rowData.initials} componentType={ComponentTypeEnum.POPUP} executeParentFunction={() => { executeGetIssuesManagerList(); setCloseModal(); }} />));
+                setBodyModal((<IssuesHistoricalDataModuleComponent idIssue={rowData.idIssue} initialsIssue={rowData.initials} componentType={ComponentTypeEnum.POPUP} executeParentFunction={() => { setCloseModal(); }} />));
                 setOpenModal()
             }}
             tooltip={"show issue historical: " + rowData.initials}
@@ -115,10 +118,10 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
                 dispatch(setTemplateLoadingIsActiveAction(false));
             });
     }
-
+    console.log("test render");
     return (<div>
         <ModalComponent title={modalState.titleModal} visible={modalState.showModal} selectorCloseModal={setCloseModal}
-            body={modalState.bodyModal} size='lg' />
+            body={modalState.bodyModal} size={modalSize} />
         <br></br>
         <FilterAccoridionComponent
             formContainer={columnsFilterIssuesManagerList}

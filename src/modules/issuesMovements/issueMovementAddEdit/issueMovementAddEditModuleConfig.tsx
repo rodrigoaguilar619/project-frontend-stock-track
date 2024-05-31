@@ -7,6 +7,7 @@ export const inputIssueMovementIds = {
     idBroker: "idBroker",
     idStatus: "idStatus",
     priceMovement: "priceMovement",
+
 }
 
 export const inputIssueMovementBuyIds = {
@@ -15,6 +16,7 @@ export const inputIssueMovementBuyIds = {
     buyDate: "buyDate",
     sellPrice: "sellPrice",
     sellDate: "sellDate",
+    totalShares: "totalShares",
 }
 
 const inputsIssueMovement: FormInputContainerPropsI = {
@@ -45,19 +47,9 @@ const inputsIssueMovement: FormInputContainerPropsI = {
             validations: {
                 idValidation: inputIssueMovementIds.idStatus, validatorRules: ["required"]
             }
-        },
-        {
-            id: inputIssueMovementIds.priceMovement, label: "Price Movement:",
-            inputProps: {
-                inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
-                maskType: InputMaskEnum.NUMBER, maskProps: { }
-            },
-            validations: {
-                idValidation: inputIssueMovementIds.priceMovement, validatorRules: ["required"]
-            }
         }
     ],
-    columnstotal: 4,
+    columnstotal: 3,
     containerWidth: "100%"
 }
 
@@ -96,18 +88,22 @@ export const inputsIssueMovementBuysAddMultiple: FormInputColumnPropsI[] = [
         inputProps: {
             inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
             maskType: InputMaskEnum.NUMBER, maskProps: { totalDecimals: 2 }
-        },
-        validations: {
-            idValidation: inputIssueMovementBuyIds.sellPrice, validatorRules: ["required"]
         }
     },
     {
         id: inputIssueMovementBuyIds.sellDate, label: "Sell Date:",
         inputProps: {
             inputType: InputElementEnum.CALENDAR, value: null, updateValue: () => { }
+        }
+    },
+    {
+        id: inputIssueMovementBuyIds.totalShares, label: "Total Shares:",
+        inputProps: {
+            inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
+            maskType: InputMaskEnum.NUMBER, maskProps: { totalDecimals: 2 }
         },
         validations: {
-            idValidation: inputIssueMovementBuyIds.sellDate, validatorRules: ["required"]
+            idValidation: inputIssueMovementBuyIds.totalShares, validatorRules: ["required"]
         }
     }
 ]
