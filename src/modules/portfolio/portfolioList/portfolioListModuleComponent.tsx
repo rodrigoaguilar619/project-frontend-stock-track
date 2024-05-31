@@ -15,12 +15,15 @@ import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction
 import { debug, generateDebugClassModule } from "lib-components-frontend-ts/lib/utils/webUtils/debugUtil";
 import { manageAlertModuleError } from "lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil";
 import { columnsPortfolioData, columnsPortfolioList } from "./portfolioListModuleConfig";
+import LoadingModuleComponent from 'lib-components-frontend-ts/lib/components/loadings/loadingModuleComponent';
+import useHookLoading from 'lib-components-frontend-ts/lib/hookStates/loadingHookState';
 
 const PortfolioListModuleComponent: React.FC<PortfolioListModulePropsI> = (props) => {
 
     const dispatch = useDispatch();
     const [portfolioList, setPortfolioList] = useState<[]>([]);
     const [portfolioResumeData, setPortfolioResumeData] = useState<Record<string, any> | null>(null);
+    const [loadingState, setLoading] = useHookLoading();
     const [portfolioSharesList, setPortfolioSharesList] = useState<any[]>([]);
     const optionsTemplate: DataTableColumnOptionsPropsI = tableOptionsTemplateDefault;
     
@@ -66,6 +69,9 @@ const PortfolioListModuleComponent: React.FC<PortfolioListModulePropsI> = (props
             .catch((error) => {
                 manageAlertModuleError(dispatch, props.componentType, debugClass, error);
                 dispatch(setTemplateLoadingIsActiveAction(false));
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }
 
@@ -121,6 +127,9 @@ const PortfolioListModuleComponent: React.FC<PortfolioListModulePropsI> = (props
             customMaskData={maskDataCustom}
             />)
     }
+
+    if(loadingState.isLoading)
+        return <LoadingModuleComponent />
 
     return (<div>
         <DataTableComponent

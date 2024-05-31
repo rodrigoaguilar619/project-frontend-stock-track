@@ -11,11 +11,14 @@ import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction
 import { debug, generateDebugClassModule } from "lib-components-frontend-ts/lib/utils/webUtils/debugUtil";
 import { manageAlertModuleError } from "lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil";
 import { columnsTransactionIssuesList } from "./transactionIssuesTrackModuleConfig";
+import LoadingModuleComponent from 'lib-components-frontend-ts/lib/components/loadings/loadingModuleComponent';
+import useHookLoading from 'lib-components-frontend-ts/lib/hookStates/loadingHookState';
 
 const IssuesManagerListComponent: React.FC<TransactionIssuesTrackModulePropsI> = (props) => {
 
     const dispatch = useDispatch();
     const [transactionIssuesList, setTransactionIssuesList] = useState<[]>([]);
+    const [loadingState, setLoading] = useHookLoading();
     
     useEffect(() => {
 
@@ -38,13 +41,18 @@ const IssuesManagerListComponent: React.FC<TransactionIssuesTrackModulePropsI> =
                 debug(debugClass, "result", transactionIssuesListData);
                 setTransactionIssuesList(transactionIssuesListData.data.transactionIssuesTrackList);
                 dispatch(setTemplateLoadingIsActiveAction(false));
-
             }))
             .catch((error) => {
                 manageAlertModuleError(dispatch, props.componentType, debugClass, error);
                 dispatch(setTemplateLoadingIsActiveAction(false));
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }
+
+    if(loadingState.isLoading)
+        return <LoadingModuleComponent />
 
     return (<div>
         <DataTableComponent

@@ -23,12 +23,15 @@ import { buildFormDataContainers, setOptionsToColumnsDefList } from 'lib-compone
 import { debug, generateDebugClassModule } from 'lib-components-frontend-ts/lib/utils/webUtils/debugUtil';
 import { manageAlertModuleError } from 'lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil';
 import { columnsFilterIssuesHistoricalList, inputFilterIssuesHistoricalIds } from './issuesHistoricalListModuleConfig';
+import LoadingModuleComponent from 'lib-components-frontend-ts/lib/components/loadings/loadingModuleComponent';
+import useHookLoading from 'lib-components-frontend-ts/lib/hookStates/loadingHookState';
 
 const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePropsI> = (props) => {
 
   const rowsPerPage = 8;
   const dispatch = useDispatch();
   const [modalState, setOpenModal, setCloseModal, setBodyModal, setTitleModal] = useHookModal();
+  const [loadingState, setLoading] = useHookLoading();
   const [issuesHistoricalList, setIssuesHistoricalList] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalGlobalIssuesRows, setTotalGlobalIssuesRows] = useState(0);
@@ -68,7 +71,10 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
       .catch((error) => {
         manageAlertModuleError(dispatch, props.componentType, debugClass, error);
         dispatch(setTemplateLoadingIsActiveAction(false));
-      });
+      })
+      .finally(() => {
+        setLoading(false);
+    });
   }
 
   const executeGetissuesHistoricalList = (issuesHistoricalList: any[], formFilterData: any, currentPage: number, rowsPerPage: number) => {
@@ -147,6 +153,9 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
 
     return chartList;
   }
+
+  if(loadingState.isLoading)
+    return <LoadingModuleComponent />
 
   return (<div style={{ height: "fit-content" }}>
     <ModalComponent title={modalState.titleModal} visible={modalState.showModal} selectorCloseModal={setCloseModal}

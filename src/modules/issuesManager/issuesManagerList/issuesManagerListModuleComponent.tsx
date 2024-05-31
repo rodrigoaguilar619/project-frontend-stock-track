@@ -21,6 +21,8 @@ import { buildFormDataContainers, setOptionsToColumnsDefList } from "lib-compone
 import { debug, generateDebugClassModule } from "lib-components-frontend-ts/lib/utils/webUtils/debugUtil";
 import { manageAlertModuleError } from "lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil";
 import { columnsFilterIssuesManagerList, columnsIssuesManagerList, inputFilterIssuesManagerIds } from "./issuesManagerListModuleConfig";
+import LoadingModuleComponent from 'lib-components-frontend-ts/lib/components/loadings/loadingModuleComponent';
+import useHookLoading from 'lib-components-frontend-ts/lib/hookStates/loadingHookState';
 
 const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (props) => {
 
@@ -28,6 +30,7 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
     const [issuesManagerList, setIssuesManagerList] = useState<[]>([]);
     const [formFilterData, setFormFilterData] = useState<Record<string, any>>({});
     const [modalState, setOpenModal, setCloseModal, setBodyModal, setTitleModal] = useHookModal();
+    const [loadingState, setLoading] = useHookLoading();
     const [modalSize, setModalSize] = useState<"sm" | "md" | "lg">("md");
     const optionsTemplate: DataTableColumnOptionsPropsI = tableOptionsTemplateDefault;
     
@@ -96,6 +99,9 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
             .catch((error) => {
                 manageAlertModuleError(dispatch, props.componentType, debugClass, error);
                 dispatch(setTemplateLoadingIsActiveAction(false));
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }
 
@@ -118,7 +124,10 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
                 dispatch(setTemplateLoadingIsActiveAction(false));
             });
     }
-    console.log("test render");
+    
+    if(loadingState.isLoading)
+        return <LoadingModuleComponent />
+
     return (<div>
         <ModalComponent title={modalState.titleModal} visible={modalState.showModal} selectorCloseModal={setCloseModal}
             body={modalState.bodyModal} size={modalSize} />

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { ColumnGroup } from 'primereact/columngroup';
+import { Row } from "primereact/row";
+import { Column } from "primereact/column";
 import { IssuesListModulePropsI } from "@app/_types/modules/issues/issuesList";
 import { CatalogModuleEnum, MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
 import { getCatalogDataService } from "@app/controller/services/catalogService";
@@ -23,8 +25,8 @@ import { buildFormDataContainers, setOptionsToColumnsDefList } from "lib-compone
 import { debug, generateDebugClassModule } from "lib-components-frontend-ts/lib/utils/webUtils/debugUtil";
 import { manageAlertModuleError } from "lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil";
 import { columnFieldsIssuesMovementsNames, columnsFilterIssuesList, columnsIssuesMovementsExpandedList, columnsIssuesMovementsList, columnsIssuesMovementsTotalList, inputFitlerIssuesMovementsIds } from "./issuesMovementsListModuleConfig";
-import { Row } from "primereact/row";
-import { Column } from "primereact/column";
+import LoadingModuleComponent from 'lib-components-frontend-ts/lib/components/loadings/loadingModuleComponent';
+import useHookLoading from 'lib-components-frontend-ts/lib/hookStates/loadingHookState';
 
 const buildMovementBuysExpandedData = (element: any) => {
 
@@ -78,6 +80,7 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
     const [issueMovementTransactionTotalSold, setIssueMovementTransactionTotalSold] = useState<any>({});
     const [formFilterData, setFormFilterData] = useState<Record<string, any>>({});
     const [modalState, setOpenModal, setCloseModal, setBodyModal, setTitleModal, setSizeModal] = useHookModal();
+    const [loadingState, setLoading] = useHookLoading();
     const optionsTemplate: DataTableColumnOptionsPropsI = tableOptionsTemplateDefault;
     
     const IssueMovementAddEditModuleComponent = React.lazy(() => import('@app/modules/issuesMovements/issueMovementAddEdit/issueMovementAddEditModuleComponent'))
@@ -236,6 +239,7 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
                 setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, typeStockListData.data.catalogs, inputFitlerIssuesMovementsIds.broker);
                 setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, statusIssueMovementListData.data.catalogs, inputFitlerIssuesMovementsIds.statusIssueMovement);
                 dispatch(setTemplateLoadingIsActiveAction(false));
+                setLoading(false);
 
             }))
             .catch((error) => {
@@ -261,8 +265,14 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
             .catch((error) => {
                 manageAlertModuleError(dispatch, props.componentType, debugClass, error);
                 dispatch(setTemplateLoadingIsActiveAction(false));
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }
+
+    if(loadingState.isLoading)
+        return <LoadingModuleComponent />
 
     let footerButtons: any[] = [];
     footerButtons.push(buttonIssueMovementAdd);
