@@ -1,23 +1,9 @@
+import { MaskDataCustomPropsI, MaskDataDownUpPropsI, MaskDataTableCellFillBooleanPropsI } from "@app/_types/utils/maskDataCustomUtil";
+
 import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
-import { DataTablePropsI, MaskDataCurrencyPropsI, MaskDataPropsI } from "lib-components-frontend-ts/lib/@types/components/dataTable/dataTable";
 import { MaskDataTypeEnum, TooltipIdCustomEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
 import { maskData } from "lib-components-frontend-ts/lib/utils/dataUtils/maskDataUtil";
 
-export interface MaskDataDownUpPropsI extends MaskDataCurrencyPropsI {
-    addSymbolDownUp?: boolean
-}
-
-export interface MaskDataTableCellFillBooleanPropsI {
-    color?: string
-}
-export interface MaskDataCustomPropsI extends MaskDataPropsI {
-    maskType: MaskDataTypeCustomEnum,
-    maskDataCustomProps?: MaskDataDownUpPropsI | MaskDataTableCellFillBooleanPropsI
-}
-
-export interface DataTableCustomPropsI extends DataTablePropsI {
-    maskProps?: MaskDataPropsI | MaskDataCustomPropsI,
-}
 
 export function formatUpDownColorNumber(value: number, maskDataProps?: MaskDataDownUpPropsI) {
     
@@ -70,6 +56,7 @@ export function formatCellFillColorBoolean(value: string, maskDataProps?: MaskDa
     return <div style={{ ...propertieBackGroundColor, position: "absolute", top: "0", left: "0", width: "100%", height: "100%",
         padding: "inherit"}}>{valueFormated}</div>
 }
+
 
 export function maskDataCustom(value: any, maskDataProps?: MaskDataCustomPropsI) {
 
