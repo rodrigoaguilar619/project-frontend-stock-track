@@ -121,11 +121,11 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
           <ButtonDataTableOptionComponent
             icon={faAddressBook}
             onClick={() => {
-              setTitleModal("ISSUE DETAIL: " + issueData.issueData.initials);
+              setTitleModal("ISSUE HISTORICAL DETAIL: " + issueData.issueData.initials);
               setBodyModal((<IssuesHistoricalDataModuleComponent idIssue={issueData.issueData.idIssue} initialsIssue={issueData.issueData.initials} componentType={ComponentTypeEnum.POPUP} executeParentFunction={() => { setCloseModal(); }} />));
               setOpenModal()
             }}
-            tooltip={"Edit issue: " + issueData.issueData.initials}
+            tooltip={"Issue historical detail: " + issueData.issueData.initials}
           />
           <br></br>
           <div title="Yahoo chart" className="btn btn-sm btn-primary" style={{ width: "23px", paddingLeft: "4px", height: "19px", marginTop: "1px" }}
