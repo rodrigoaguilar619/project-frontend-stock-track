@@ -1,7 +1,7 @@
-import { HttpMethodEnum, OptionAddEditEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
-import { generateDebugClassService } from "lib-components-frontend-ts/lib/utils/webUtils/debugUtil";
-import { manageCallApiAuthPromise } from "lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil";
-import { buildDataTableConfig } from "lib-components-frontend-ts/lib/utils/dataUtils/jsonUtil";
+import { HttpMethodEnum, OptionAddEditEnum } from "lib-components-react/lib/catalogs/enumCatalog";
+import { generateDebugClassService } from "lib-components-react/lib/utils/webUtils/debugUtil";
+import { manageCallApiAuthPromise } from "lib-components-react/lib/utils/webUtils/httpManagerUtil";
+import { buildDataTableConfig } from "lib-components-react/lib/utils/dataUtils/jsonUtil";
 import { URL_ISSUES_MOVEMENTS_INDIVIDUAL_ADD, URL_ISSUES_MOVEMENTS_INDIVIDUAL_GET, URL_ISSUES_MOVEMENTS_INDIVIDUAL_UPDATE, URL_ISSUES_MOVEMENTS_LIST_GET } from "@app/catalogs/uriCatalog";
 
 export function getIssuesMovementsListService(filters: Record<string, any>) {

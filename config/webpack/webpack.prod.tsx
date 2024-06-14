@@ -1,4 +1,4 @@
-const configAppProd = require("lib-components-frontend-ts/lib/webpack/webpack.config.prod");
+const configAppProd = require("lib-components-react/lib/webpack/webpack.config.prod");
 
 module.exports = (arg: any, env: any) => {
 

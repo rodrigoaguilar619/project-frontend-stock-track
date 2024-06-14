@@ -3,10 +3,10 @@ import { Col, Container, Row } from "react-bootstrap";
 import { MaskDataTypeCustomEnum } from '@app/catalogs/enumCatalog';
 import { calculateGainLossPercentage } from '@app/utils/calculatorUtil';
 import { maskDataCustom } from '@app/utils/maskDataCustomUtil';
-import { MaskDataTypeEnum } from 'lib-components-frontend-ts/lib/catalogs/enumCatalog';
-import { compareDatesWithoutTime, dataWithValue } from 'lib-components-frontend-ts/lib/utils/dataUtils/dataUtil';
-import { maskData } from 'lib-components-frontend-ts/lib/utils/dataUtils/maskDataUtil';
-import { formatDecimalsLimit, formatNumberDecimal } from 'lib-components-frontend-ts/lib/utils/formatUtils/formatNumericUtil';
+import { MaskDataTypeEnum } from 'lib-components-react/lib/catalogs/enumCatalog';
+import { compareDatesWithoutTime, dataWithValue } from 'lib-components-react/lib/utils/dataUtils/dataUtil';
+import { maskData } from 'lib-components-react/lib/utils/dataUtils/maskDataUtil';
+import { formatDecimalsLimit, formatNumberDecimal } from 'lib-components-react/lib/utils/formatUtils/formatNumericUtil';
 import ChartStockComponent from './chartStockComponent';
 
 let styleColumn = {

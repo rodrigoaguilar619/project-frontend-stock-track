@@ -5,16 +5,16 @@ import { LoadTransactionIssuesFileModulePropsI } from '@app/_types/modules/trans
 import { CatalogModuleEnum } from '@app/catalogs/enumCatalog';
 import { getCatalogDataService } from '@app/controller/services/catalogService';
 import { loadTransactionIssuesFileService } from '@app/controller/services/transactionIssuesService';
-import { ComponentTypeEnum } from 'lib-components-frontend-ts/lib/catalogs/enumCatalog';
-import { ButtonSubmitComponent, ButtonsOrganizerComponent } from 'lib-components-frontend-ts/lib/components/elements/buttonComponents';
-import FormInputContainersComponent from 'lib-components-frontend-ts/lib/components/forms/formInputsElements/formInputContainersComponent';
-import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-frontend-ts/lib/controller/actions/templateLoadingAction';
-import { buildAlertSuccessRedux } from 'lib-components-frontend-ts/lib/utils/componentUtils/alertUtil';
-import { buildFormDataContainers, setOptionsToColumnsContainerDefList } from 'lib-components-frontend-ts/lib/utils/componentUtils/formUtil';
-import { dispatchTemplateHeaderSubTitleAction } from 'lib-components-frontend-ts/lib/utils/componentUtils/templateUtil';
-import { buildSimpleReactValidator } from 'lib-components-frontend-ts/lib/utils/pluginUtils/simpleReactValidatorUtil';
-import { debug, generateDebugClassModule, showDataDevelopment } from 'lib-components-frontend-ts/lib/utils/webUtils/debugUtil';
-import { manageAlertModuleError } from 'lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil';
+import { ComponentTypeEnum } from 'lib-components-react/lib/catalogs/enumCatalog';
+import { ButtonSubmitComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
+import FormInputContainersComponent from 'lib-components-react/lib/components/forms/formInputsElements/formInputContainersComponent';
+import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-react/lib/controller/actions/templateLoadingAction';
+import { buildAlertSuccessRedux } from 'lib-components-react/lib/utils/componentUtils/alertUtil';
+import { buildFormDataContainers, setOptionsToColumnsContainerDefList } from 'lib-components-react/lib/utils/componentUtils/formUtil';
+import { dispatchTemplateHeaderSubTitleAction } from 'lib-components-react/lib/utils/componentUtils/templateUtil';
+import { buildSimpleReactValidator } from 'lib-components-react/lib/utils/pluginUtils/simpleReactValidatorUtil';
+import { debug, generateDebugClassModule, showDataDevelopment } from 'lib-components-react/lib/utils/webUtils/debugUtil';
+import { manageAlertModuleError } from 'lib-components-react/lib/utils/webUtils/httpManagerUtil';
 import { formContainersTransactionIssuesFile, inputTransactionIssuesFileIds } from './loadTransactionIssuesFileModuleConfig';
 
 const LoadTransactionIssuesFileModuleComponent: React.FC<LoadTransactionIssuesFileModulePropsI> = (props) => {

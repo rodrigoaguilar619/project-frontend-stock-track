@@ -1,5 +1,5 @@
-import { FormInputContainerPropsI } from "lib-components-frontend-ts/lib/@types/components/formInputs/formInputs";
-import { InputElementEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
+import { FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
+import { InputElementEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
 export const inputTransactionIssuesFileIds = {
     idBroker: "idBroker",

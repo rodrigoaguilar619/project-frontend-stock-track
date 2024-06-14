@@ -1,7 +1,7 @@
-import { DataTablePropsI } from "lib-components-frontend-ts/lib/@types/components/dataTable/dataTable";
-import { FormInputContainerPropsI } from "lib-components-frontend-ts/lib/@types/components/formInputs/formInputs";
-import { CATALOG_DEFAULT_TRUE_FALSE } from "lib-components-frontend-ts/lib/catalogs/defaultCatalog";
-import { InputElementEnum, MaskDataTypeEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
+import { DataTablePropsI } from "lib-components-react/lib/@types/components/dataTable/dataTable";
+import { FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
+import { CATALOG_DEFAULT_TRUE_FALSE } from "lib-components-react/lib/catalogs/defaultCatalog";
+import { InputElementEnum, MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
 export const columnsIssuesManagerList: DataTablePropsI[] = [
     {

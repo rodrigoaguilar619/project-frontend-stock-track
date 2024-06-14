@@ -1,6 +1,6 @@
 import { FlagDataI } from "@app/_types/utils/highChartsUtil";
-import { MaskDataTypeEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
-import { maskData } from "lib-components-frontend-ts/lib/utils/dataUtils/maskDataUtil";
+import { MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
+import { maskData } from "lib-components-react/lib/utils/dataUtils/maskDataUtil";
 
 const buildPlotData = (value: number, color: string, text: string) => {
     return {

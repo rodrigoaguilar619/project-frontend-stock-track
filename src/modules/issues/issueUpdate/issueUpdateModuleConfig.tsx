@@ -1,6 +1,6 @@
-import { FormInputContainerPropsI } from "lib-components-frontend-ts/lib/@types/components/formInputs/formInputs";
-import { InputElementEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
-import { CATALOG_DEFAULT_TRUE_FALSE } from "lib-components-frontend-ts/lib/catalogs/defaultCatalog";
+import { FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
+import { InputElementEnum } from "lib-components-react/lib/catalogs/enumCatalog";
+import { CATALOG_DEFAULT_TRUE_FALSE } from "lib-components-react/lib/catalogs/defaultCatalog";
 
 export const inputIssueIds = {
     idIssue: "idIssue",

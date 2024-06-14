@@ -1,6 +1,6 @@
 {
-  "name": "project-stock-track-frontend-ts",
-  "version": "2.0.0",
+  "name": "project-frontend-stock-track",
+  "version": "3.0.0",
   "dependencies": {
     "@coreui/chartjs": "^4.0.0",
     "@coreui/coreui": "^5.0.1",
@@ -74,7 +74,7 @@
     "html-webpack-plugin": "^5.6.0",
     "jest": "^29.7.0",
     "jsdom": "^24.0.0",
-    "lib-components-frontend-ts": "file:../../libraries/lib-components-frontend-ts",
+    "lib-components-react": "file:../../libraries/lib-components-react",
     "mini-css-extract-plugin": "^2.9.0",
     "npm-run-all": "^4.1.5",
     "react-hot-loader": "^4.13.1",

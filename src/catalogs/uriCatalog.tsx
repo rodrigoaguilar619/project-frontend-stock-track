@@ -1,4 +1,4 @@
-import { _APP_URL_CONTEXT_PATH_ } from "lib-components-frontend-ts/lib/catalogs/constantCatalog";
+import { _APP_URL_CONTEXT_PATH_ } from "lib-components-react/lib/catalogs/constantCatalog";
 
 const _URL_API_MAIN_ = _APP_URL_CONTEXT_PATH_;
 export const URL_ADMIN_DOLLAR_PRICE_UPDATE = _URL_API_MAIN_ + "api/service/dollar/updateDollarPrice";

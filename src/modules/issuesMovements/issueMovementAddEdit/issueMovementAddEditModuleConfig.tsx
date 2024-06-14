@@ -1,5 +1,5 @@
-import { FormInputColumnPropsI, FormInputContainerPropsI } from "lib-components-frontend-ts/lib/@types/components/formInputs/formInputs";
-import { InputElementEnum, InputMaskEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
+import { FormInputColumnPropsI, FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
+import { InputElementEnum, InputMaskEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
 export const inputIssueMovementIds = {
     idIssueMovement: "idIssueMovement",

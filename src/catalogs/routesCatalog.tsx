@@ -1,4 +1,4 @@
-import { _APP_CONTEXT_PATH_ } from "lib-components-frontend-ts/lib/catalogs/constantCatalog"
+import { _APP_CONTEXT_PATH_ } from "lib-components-react/lib/catalogs/constantCatalog"
 
 export const ROUTE_ADMIN_MODULE = _APP_CONTEXT_PATH_ + 'admin'
 export const ROUTE_ISSUES_LIST_GET = _APP_CONTEXT_PATH_ + 'issues/issuesList'

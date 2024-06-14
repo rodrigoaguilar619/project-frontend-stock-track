@@ -1,8 +1,8 @@
 import { MaskDataCustomPropsI, MaskDataDownUpPropsI, MaskDataTableCellFillBooleanPropsI } from "@app/_types/utils/maskDataCustomUtil";
 
 import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
-import { MaskDataTypeEnum, TooltipIdCustomEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
-import { maskData } from "lib-components-frontend-ts/lib/utils/dataUtils/maskDataUtil";
+import { MaskDataTypeEnum, TooltipIdCustomEnum } from "lib-components-react/lib/catalogs/enumCatalog";
+import { maskData } from "lib-components-react/lib/utils/dataUtils/maskDataUtil";
 
 
 export function formatUpDownColorNumber(value: number, maskDataProps?: MaskDataDownUpPropsI) {

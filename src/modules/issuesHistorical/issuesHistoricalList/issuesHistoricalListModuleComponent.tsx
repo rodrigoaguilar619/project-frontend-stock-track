@@ -11,20 +11,20 @@ import { getCatalogDataService } from '@app/controller/services/catalogService';
 import { getIssuesHistoricalListService } from '@app/controller/services/issuesHistoricalService';
 import { buildChartSeries } from '@app/utils/componentUtils/highChartsUtil';
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
-import { ComponentTypeEnum } from 'lib-components-frontend-ts/lib/catalogs/enumCatalog';
-import { ButtonDataTableOptionComponent } from 'lib-components-frontend-ts/lib/components/elements/buttonComponents';
-import FilterAccoridionComponent from 'lib-components-frontend-ts/lib/components/filterAccordion/filterAccordionComponent';
-import ModalComponent from 'lib-components-frontend-ts/lib/components/modals/modalComponent';
-import { TooltipConfigButtonNestedOptions, TooltipConfigCustom, TooltipConfigInputHelp } from 'lib-components-frontend-ts/lib/components/tooltip/tooltipConfigComponents';
-import { setTemplateHeaderSubTitleAction } from 'lib-components-frontend-ts/lib/controller/actions/templateHeaderAction';
-import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-frontend-ts/lib/controller/actions/templateLoadingAction';
-import useHookModal from 'lib-components-frontend-ts/lib/hookStates/modalHookState';
-import { buildFormDataContainers, setOptionsToColumnsDefList } from 'lib-components-frontend-ts/lib/utils/componentUtils/formUtil';
-import { debug, generateDebugClassModule } from 'lib-components-frontend-ts/lib/utils/webUtils/debugUtil';
-import { manageAlertModuleError } from 'lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil';
+import { ComponentTypeEnum } from 'lib-components-react/lib/catalogs/enumCatalog';
+import { ButtonDataTableOptionComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
+import FilterAccoridionComponent from 'lib-components-react/lib/components/filterAccordion/filterAccordionComponent';
+import ModalComponent from 'lib-components-react/lib/components/modals/modalComponent';
+import { TooltipConfigButtonNestedOptions, TooltipConfigCustom, TooltipConfigInputHelp } from 'lib-components-react/lib/components/tooltip/tooltipConfigComponents';
+import { setTemplateHeaderSubTitleAction } from 'lib-components-react/lib/controller/actions/templateHeaderAction';
+import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-react/lib/controller/actions/templateLoadingAction';
+import useHookModal from 'lib-components-react/lib/hookStates/modalHookState';
+import { buildFormDataContainers, setOptionsToColumnsDefList } from 'lib-components-react/lib/utils/componentUtils/formUtil';
+import { debug, generateDebugClassModule } from 'lib-components-react/lib/utils/webUtils/debugUtil';
+import { manageAlertModuleError } from 'lib-components-react/lib/utils/webUtils/httpManagerUtil';
 import { columnsFilterIssuesHistoricalList, inputFilterIssuesHistoricalIds } from './issuesHistoricalListModuleConfig';
-import LoadingModuleComponent from 'lib-components-frontend-ts/lib/components/loadings/loadingModuleComponent';
-import useHookLoading from 'lib-components-frontend-ts/lib/hookStates/loadingHookState';
+import LoadingModuleComponent from 'lib-components-react/lib/components/loadings/loadingModuleComponent';
+import useHookLoading from 'lib-components-react/lib/hookStates/loadingHookState';
 
 const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePropsI> = (props) => {
 

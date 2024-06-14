@@ -7,14 +7,14 @@ import ChartStockResumeComponent from '@app/components/highCharts/chartStockResu
 import { getIssueHistoricalDataService } from '@app/controller/services/issuesHistoricalService';
 import { buildChartSeries } from '@app/utils/componentUtils/highChartsUtil';
 import { maskDataCustom } from '@app/utils/maskDataCustomUtil';
-import DataTableComponent from 'lib-components-frontend-ts/lib/components/dataTable/dataTableComponent';
-import { setTemplateHeaderSubTitleAction } from 'lib-components-frontend-ts/lib/controller/actions/templateHeaderAction';
-import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-frontend-ts/lib/controller/actions/templateLoadingAction';
-import { getParameterCall } from 'lib-components-frontend-ts/lib/utils/componentUtils/formUtil';
-import { debug, generateDebugClassModule } from 'lib-components-frontend-ts/lib/utils/webUtils/debugUtil';
-import { manageAlertModuleError } from 'lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil';
-import LoadingModuleComponent from 'lib-components-frontend-ts/lib/components/loadings/loadingModuleComponent';
-import useHookLoading from 'lib-components-frontend-ts/lib/hookStates/loadingHookState';
+import DataTableComponent from 'lib-components-react/lib/components/dataTable/dataTableComponent';
+import { setTemplateHeaderSubTitleAction } from 'lib-components-react/lib/controller/actions/templateHeaderAction';
+import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-react/lib/controller/actions/templateLoadingAction';
+import { getParameterCall } from 'lib-components-react/lib/utils/componentUtils/formUtil';
+import { debug, generateDebugClassModule } from 'lib-components-react/lib/utils/webUtils/debugUtil';
+import { manageAlertModuleError } from 'lib-components-react/lib/utils/webUtils/httpManagerUtil';
+import LoadingModuleComponent from 'lib-components-react/lib/components/loadings/loadingModuleComponent';
+import useHookLoading from 'lib-components-react/lib/hookStates/loadingHookState';
 import { columnsIssueTransactionList, columnsIssueTransactionResumenList } from './issueHistoricalDataModuleConfig';
 
 const IssuesHistoricalDataModuleComponent: React.FC<IssueHistoricalDataModulePropsI> = (props) => {

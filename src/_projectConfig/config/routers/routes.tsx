@@ -1,7 +1,7 @@
 import React from 'react'
 import { ROUTE_ADMIN_MODULE, ROUTE_ISSUES_HISTORICAL_DATA_GET, ROUTE_ISSUES_LIST_GET, ROUTE_ISSUES_MANAGER_LIST_GET, ROUTE_ISSUES_MOVEMENTS_LIST_GET, ROUTE_LOAD_TRANSACTION_ISSUES_FILE_GET, ROUTE_PORTFOLIO_LIST_GET, ROUTE_TRANSACTION_ISSUES_TRACK_LIST_GET } from '@app/catalogs/routesCatalog';
-import { _APP_ENVIRONMENT_ } from 'lib-components-frontend-ts/lib/catalogs/constantCatalog';
-import { ComponentTypeEnum, EnvironmentEnum } from 'lib-components-frontend-ts/lib/catalogs/enumCatalog';
+import { _APP_ENVIRONMENT_ } from 'lib-components-react/lib/catalogs/constantCatalog';
+import { ComponentTypeEnum, EnvironmentEnum } from 'lib-components-react/lib/catalogs/enumCatalog';
 
 const IssuesListComponent = React.lazy(() => import('@app/modules/issues/issuesList/issuesListModuleComponent'));
 const IssuesManagerListComponent = React.lazy(() => import('@app/modules/issuesManager/issuesManagerList/issuesManagerListModuleComponent'));
