@@ -1,4 +1,4 @@
-const configAppDev = require("lib-components-react/lib/webpack/webpack.config.dev");
+const configAppDev = require("lib-components-react/lib/webpack/webpack.config.build");
 
 module.exports = (arg: any, env: any) => {
 
@@ -7,7 +7,7 @@ module.exports = (arg: any, env: any) => {
   const dotEnvFile = ".env.demo.development";
   const dirname = __dirname;
 
-  let mainWebpack = configAppDev.executeConfigDev(mode, { htmlTitle: htmlTitle, dirname: dirname, dotEnvFile: dotEnvFile });
+  let mainWebpack = configAppDev.executeConfigBuild(mode, { htmlTitle: htmlTitle, dirname: dirname, dotEnvFile: dotEnvFile });
 
   console.log("Webpack config dev", JSON.stringify(mainWebpack, null, 2));
   return mainWebpack;
