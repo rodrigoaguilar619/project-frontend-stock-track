@@ -6,20 +6,17 @@ import { InputElementEnum, MaskDataTypeEnum } from "lib-components-react/lib/cat
 export const columnsIssuesList: DataTablePropsI[] = [
     {
         field: 'initials', header: 'Issue', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
         }
     },
     {
         field: 'description', header: 'Description', tableConfig: {
-            aligns: { alignCell: "left" },
-            styleCss: { width: "20%" },
+            styleCss: { width: "20%", textAlign: "left" },
         }
     },
     {
         field: 'isSp500', header: 'Is S&P 500', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.ANSWER
@@ -27,20 +24,17 @@ export const columnsIssuesList: DataTablePropsI[] = [
     },
     {
         field: 'descriptionTypeStock', header: 'Type stock', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "left" },
         }
     },
     {
         field: 'descriptionSector', header: 'Sector', tableConfig: {
-            aligns: { alignCell: "left" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "left" },
         }
     },
     {
         field: 'descriptionStatusIssue', header: 'Status', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "center" },
         }
     },
 ];
@@ -55,26 +49,30 @@ export const inputFitlerIssuesIds = {
 export const columnsFilterIssuesList: FormInputContainerPropsI = {
     inputColumns: [
         {
-            id: inputFitlerIssuesIds.statusIssue, label: "Status Issue:",
+            label: "Status Issue:",
             inputProps: {
+                id: inputFitlerIssuesIds.statusIssue,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
             }
         },
         {
-            id: inputFitlerIssuesIds.sector, label: "Sector:",
+            label: "Sector:",
             inputProps: {
+                id: inputFitlerIssuesIds.sector,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
             }
         },
         {
-            id: inputFitlerIssuesIds.typeStock, label: "Type Stock:",
+            label: "Type Stock:",
             inputProps: {
+                id: inputFitlerIssuesIds.typeStock,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
             }
         },
         {
-            id: inputFitlerIssuesIds.isSp500, label: "Is S&P 500:",
+            label: "Is S&P 500:",
             inputProps: {
+                id: inputFitlerIssuesIds.isSp500,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: CATALOG_DEFAULT_TRUE_FALSE, isOptionAll: true
             }
         },

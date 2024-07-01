@@ -15,44 +15,51 @@ export const inputFilterIssuesHistoricalIds = {
 export const columnsFilterIssuesHistoricalList: FormInputContainerPropsI = {
     inputColumns: [
         {
-            id: inputFilterIssuesHistoricalIds.sector, label: "Sector:",
+            label: "Sector:",
             inputProps: {
+                id: inputFilterIssuesHistoricalIds.sector,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
             }
         },
         {
-            id: inputFilterIssuesHistoricalIds.typeStock, label: "Type Stock:",
+            label: "Type Stock:",
             inputProps: {
+                id: inputFilterIssuesHistoricalIds.typeStock,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
             }
         },
         {
-            id: inputFilterIssuesHistoricalIds.isSp500, label: "Is S&P 500:",
+            label: "Is S&P 500:",
             inputProps: {
+                id: inputFilterIssuesHistoricalIds.isSp500,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: CATALOG_DEFAULT_TRUE_FALSE, isOptionAll: true
             }
         },
         {
-            id: inputFilterIssuesHistoricalIds.isInvest, label: "Is Invest:",
+            label: "Is Invest:",
             inputProps: {
+                id: inputFilterIssuesHistoricalIds.isInvest,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: CATALOG_DEFAULT_TRUE_FALSE, isOptionAll: true
             }
         },
         {
-            id: inputFilterIssuesHistoricalIds.statusIssueQuick, label: "Status Quick:",
+            label: "Status Quick:",
             inputProps: {
+                id: inputFilterIssuesHistoricalIds.statusIssueQuick,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
             }
         },
         {
-            id: inputFilterIssuesHistoricalIds.statusIssueTrading, label: "Status Trading:",
+            label: "Status Trading:",
             inputProps: {
+                id: inputFilterIssuesHistoricalIds.statusIssueTrading,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
             }
         },
         {
-            id: inputFilterIssuesHistoricalIds.fairValuePriceOverPercentage, label: "Fair value price over %:",
+            label: "Fair value price over %:",
             inputProps: {
+                id: inputFilterIssuesHistoricalIds.fairValuePriceOverPercentage,
                 inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
                 maskType: InputMaskEnum.NUMBER, maskProps: { }
             }
