@@ -1,6 +1,6 @@
-import { HttpMethodEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
-import { generateDebugClassService } from "lib-components-frontend-ts/lib/utils/webUtils/debugUtil";
-import { manageCallApiAuthPromise } from "lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil";
+import { HttpMethodEnum } from "lib-components-react/lib/catalogs/enumCatalog";
+import { generateDebugClassService } from "lib-components-react/lib/utils/webUtils/debugUtil";
+import { manageCallApiAuthPromise } from "lib-components-react/lib/utils/webUtils/httpManagerUtil";
 import { URL_CATALOG_DATA_LIST_GET } from "@app/catalogs/uriCatalog";
 
 export function getCatalogDataService(catalogName: string) {

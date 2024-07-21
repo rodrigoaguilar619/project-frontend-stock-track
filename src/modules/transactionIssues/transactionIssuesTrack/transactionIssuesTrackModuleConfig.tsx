@@ -1,30 +1,26 @@
+import { DataTableCustomPropsI } from "@app/_types/utils/maskDataCustomUtil";
 import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
-import { DataTableCustomPropsI } from "@app/utils/maskDataCustomUtil";
-import { MaskDataTypeEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
+import { MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
 export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     {
         field: 'issue', header: 'Issue', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "4%" },
+            styleCss: { width: "4%", textAlign: "center" },
         }
     },
     {
         field: 'totalTitles', header: 'Total titles', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "3%" },
+            styleCss: { width: "3%", textAlign: "center" },
         }
     },
     {
         field: 'descriptionTypeCurrency', header: 'Type currency', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "4%" },
+            styleCss: { width: "4%", textAlign: "center" },
         }
     },
     {
         field: 'priceBuy', header: 'Price buy', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "6%" },
+            styleCss: { width: "6%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -37,8 +33,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     },
     {
         field: 'issueSellEstimate', header: 'Issue sell estimate', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "6%" },
+            styleCss: { width: "6%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -51,8 +46,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     },
     {
         field: 'gainLossPercentage', header: 'Gain/loss estimate %', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -66,8 +60,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     },
     {
         field: 'gainLossTotal', header: 'Gain/loss estimate total', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "7%" },
+            styleCss: { width: "7%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -81,8 +74,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     },
     {
         field: 'open', header: 'Price open', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "6%" },
+            styleCss: { width: "6%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -95,8 +87,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     },
     {
         field: 'currentPrice', header: 'Price current', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -109,8 +100,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     },
     {
         field: 'trackBuyPriceUsd', header: 'Price buy track (USD)', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -123,8 +113,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     },
     {
         field: 'trackBuyPriceMxn', header: 'Price buy track (MXN)', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -137,8 +126,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     },
     {
         field: 'date', header: 'Date transaction', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
@@ -149,8 +137,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     },
     {
         field: 'lastSaleTimestamp', header: 'Date price updated', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
@@ -161,8 +148,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     },
     {
         field: 'isUpPercentageFromBuyPrice', header: 'Is able to sell', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
             isSortable: true
         },
         maskProps: {
@@ -174,8 +160,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     },
     {
         field: 'isDownPercentageFromCurrentPrice', header: 'Down from open', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
             isSortable: true
         },
         maskProps: {
@@ -187,8 +172,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
     },
     {
         field: 'isNearPriceBuy', header: 'Is able to buy', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
             isSortable: true
         },
         maskProps: {

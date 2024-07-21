@@ -1,6 +1,6 @@
-import { FormInputColumnPropsI, FormInputContainerPropsI } from "lib-components-frontend-ts/lib/@types/components/formInputs/formInputs";
-import { InputElementEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
-import { CATALOG_DEFAULT_TRUE_FALSE } from "lib-components-frontend-ts/lib/catalogs/defaultCatalog";
+import { FormInputColumnPropsI, FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
+import { InputElementEnum } from "lib-components-react/lib/catalogs/enumCatalog";
+import { CATALOG_DEFAULT_TRUE_FALSE } from "lib-components-react/lib/catalogs/defaultCatalog";
 
 export const inputIssuesAddMainIds = {
     idTypeStock: "idTypeStock",
@@ -18,8 +18,9 @@ export const inputIssuesAddMultipleIds = {
 const inputsIssuesAddMain: FormInputContainerPropsI = {
     inputColumns: [
         {
-            id: inputIssuesAddMainIds.idTypeStock, label: "Type Stock:",
+            label: "Type Stock:",
             inputProps: {
+                id: inputIssuesAddMainIds.idTypeStock,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: []
             },
             validations: {
@@ -27,8 +28,9 @@ const inputsIssuesAddMain: FormInputContainerPropsI = {
             }
         },
         {
-            id: inputIssuesAddMainIds.idStatusIssue, label: "Status Issue:",
+            label: "Status Issue:",
             inputProps: {
+                id: inputIssuesAddMainIds.idStatusIssue,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: []
             },
             validations: {
@@ -36,8 +38,9 @@ const inputsIssuesAddMain: FormInputContainerPropsI = {
             }
         },
         {
-            id: inputIssuesAddMainIds.historicalStartDate, label: "Historical Start Date:",
+            label: "Historical Start Date:",
             inputProps: {
+                id: inputIssuesAddMainIds.historicalStartDate,
                 inputType: InputElementEnum.CALENDAR, value: null, updateValue: () => { }
             },
             validations: {
@@ -51,8 +54,9 @@ const inputsIssuesAddMain: FormInputContainerPropsI = {
 
 export const inputsIssuesAddMultiple: FormInputColumnPropsI[] = [
     {
-        id: inputIssuesAddMultipleIds.initials, label: "Initials:",
+        label: "Initials:",
         inputProps: {
+            id: inputIssuesAddMultipleIds.initials,
             inputType: InputElementEnum.TEXT, value: '', updateValue: () => { }
         },
         validations: {
@@ -60,8 +64,9 @@ export const inputsIssuesAddMultiple: FormInputColumnPropsI[] = [
         }
     },
     {
-        id: inputIssuesAddMultipleIds.description, label: "Description:",
+        label: "Description:",
         inputProps: {
+            id: inputIssuesAddMultipleIds.description,
             inputType: InputElementEnum.TEXT, value: '', updateValue: () => { }
         },
         validations: {
@@ -69,8 +74,9 @@ export const inputsIssuesAddMultiple: FormInputColumnPropsI[] = [
         }
     },
     {
-        id: inputIssuesAddMultipleIds.isSp500, label: "Is S&P 500:",
+        label: "Is S&P 500:",
         inputProps: {
+            id: inputIssuesAddMultipleIds.isSp500,
             inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: CATALOG_DEFAULT_TRUE_FALSE
         },
         validations: {
@@ -78,8 +84,9 @@ export const inputsIssuesAddMultiple: FormInputColumnPropsI[] = [
         }
     },
     {
-        id: inputIssuesAddMultipleIds.idSector, label: "Sector:",
+        label: "Sector:",
         inputProps: {
+            id: inputIssuesAddMultipleIds.idSector,
             inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: []
         },
         validations: {

@@ -1,5 +1,5 @@
-import { FormInputColumnPropsI, FormInputContainerPropsI } from "lib-components-frontend-ts/lib/@types/components/formInputs/formInputs";
-import { InputElementEnum, InputMaskEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
+import { FormInputColumnPropsI, FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
+import { InputElementEnum, InputMaskEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
 export const inputIssueMovementIds = {
     idIssueMovement: "idIssueMovement",
@@ -7,6 +7,7 @@ export const inputIssueMovementIds = {
     idBroker: "idBroker",
     idStatus: "idStatus",
     priceMovement: "priceMovement",
+
 }
 
 export const inputIssueMovementBuyIds = {
@@ -15,13 +16,15 @@ export const inputIssueMovementBuyIds = {
     buyDate: "buyDate",
     sellPrice: "sellPrice",
     sellDate: "sellDate",
+    totalShares: "totalShares",
 }
 
 const inputsIssueMovement: FormInputContainerPropsI = {
     inputColumns: [
         {
-            id: inputIssueMovementIds.issue, label: "Initials:",
+            label: "Initials:",
             inputProps: {
+                id: inputIssueMovementIds.issue,
                 inputType: InputElementEnum.TEXT, value: '', updateValue: () => { },
             },
             validations: {
@@ -29,8 +32,9 @@ const inputsIssueMovement: FormInputContainerPropsI = {
             }
         },
         {
-            id: inputIssueMovementIds.idBroker, label: "Broker:",
+            label: "Broker:",
             inputProps: {
+                id: inputIssueMovementIds.idBroker,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: []
             },
             validations: {
@@ -38,33 +42,25 @@ const inputsIssueMovement: FormInputContainerPropsI = {
             }
         },
         {
-            id: inputIssueMovementIds.idStatus, label: "Status:",
+            label: "Status:",
             inputProps: {
+                id: inputIssueMovementIds.idStatus,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: []
             },
             validations: {
                 idValidation: inputIssueMovementIds.idStatus, validatorRules: ["required"]
             }
-        },
-        {
-            id: inputIssueMovementIds.priceMovement, label: "Price Movement:",
-            inputProps: {
-                inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
-                maskType: InputMaskEnum.NUMBER, maskProps: { }
-            },
-            validations: {
-                idValidation: inputIssueMovementIds.priceMovement, validatorRules: ["required"]
-            }
         }
     ],
-    columnstotal: 4,
+    columnstotal: 3,
     containerWidth: "100%"
 }
 
 export const inputsIssueMovementBuysAddMultiple: FormInputColumnPropsI[] = [
     {
-        id: inputIssueMovementBuyIds.buyTransactionNumber, label: "Transaction number:",
+        label: "Transaction number:",
         inputProps: {
+            id: inputIssueMovementBuyIds.buyTransactionNumber,
             inputType: InputElementEnum.MASK, value: '', updateValue: () => { }, isReadOnly: true,
             maskType: InputMaskEnum.NUMBER, maskProps: { totalDecimals: 0 },
         },
@@ -73,8 +69,9 @@ export const inputsIssueMovementBuysAddMultiple: FormInputColumnPropsI[] = [
         }
     },
     {
-        id: inputIssueMovementBuyIds.buyPrice, label: "Buy Price:",
+        label: "Buy Price:",
         inputProps: {
+            id: inputIssueMovementBuyIds.buyPrice,
             inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
             maskType: InputMaskEnum.NUMBER, maskProps: { totalDecimals: 2 }
         },
@@ -83,8 +80,9 @@ export const inputsIssueMovementBuysAddMultiple: FormInputColumnPropsI[] = [
         }
     },
     {
-        id: inputIssueMovementBuyIds.buyDate, label: "Buy Date:",
+        label: "Buy Date:",
         inputProps: {
+            id: inputIssueMovementBuyIds.buyDate,
             inputType: InputElementEnum.CALENDAR, value: null, updateValue: () => { }
         },
         validations: {
@@ -92,22 +90,29 @@ export const inputsIssueMovementBuysAddMultiple: FormInputColumnPropsI[] = [
         }
     },
     {
-        id: inputIssueMovementBuyIds.sellPrice, label: "Sell Price:",
+        label: "Sell Price:",
         inputProps: {
+            id: inputIssueMovementBuyIds.sellPrice,
+            inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
+            maskType: InputMaskEnum.NUMBER, maskProps: { totalDecimals: 2 }
+        }
+    },
+    {
+        label: "Sell Date:",
+        inputProps: {
+            id: inputIssueMovementBuyIds.sellDate,
+            inputType: InputElementEnum.CALENDAR, value: null, updateValue: () => { }
+        }
+    },
+    {
+        label: "Total Shares:",
+        inputProps: {
+            id: inputIssueMovementBuyIds.totalShares,
             inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
             maskType: InputMaskEnum.NUMBER, maskProps: { totalDecimals: 2 }
         },
         validations: {
-            idValidation: inputIssueMovementBuyIds.sellPrice, validatorRules: ["required"]
-        }
-    },
-    {
-        id: inputIssueMovementBuyIds.sellDate, label: "Sell Date:",
-        inputProps: {
-            inputType: InputElementEnum.CALENDAR, value: null, updateValue: () => { }
-        },
-        validations: {
-            idValidation: inputIssueMovementBuyIds.sellDate, validatorRules: ["required"]
+            idValidation: inputIssueMovementBuyIds.totalShares, validatorRules: ["required"]
         }
     }
 ]

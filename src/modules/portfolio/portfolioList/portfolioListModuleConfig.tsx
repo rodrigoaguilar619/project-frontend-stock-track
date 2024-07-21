@@ -1,26 +1,23 @@
+import { DataTableCustomPropsI } from "@app/_types/utils/maskDataCustomUtil";
 import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
-import { DataTableCustomPropsI } from "@app/utils/maskDataCustomUtil";
-import { FormInputContainerPropsI } from "lib-components-frontend-ts/lib/@types/components/formInputs/formInputs";
-import { CATALOG_DEFAULT_TRUE_FALSE } from "lib-components-frontend-ts/lib/catalogs/defaultCatalog";
-import { InputElementEnum, MaskDataTypeEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
+import { FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
+import { CATALOG_DEFAULT_TRUE_FALSE } from "lib-components-react/lib/catalogs/defaultCatalog";
+import { InputElementEnum, MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
 export const columnsPortfolioList: DataTableCustomPropsI[] = [
     {
         field: 'broker', header: 'Broker', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "15%" },
+            styleCss: { width: "15%", textAlign: "center" },
         }
     },
     {
         field: 'typeCurrency', header: 'Currency', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "center" },
         }
     },
     {
         field: 'totalDeposits', header: 'Total Deposits', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "15%" },
+            styleCss: { width: "15%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -33,8 +30,7 @@ export const columnsPortfolioList: DataTableCustomPropsI[] = [
     },
     {
         field: 'totalSecuritiesValue', header: 'Total Securities Value', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "15%" },
+            styleCss: { width: "15%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -47,8 +43,7 @@ export const columnsPortfolioList: DataTableCustomPropsI[] = [
     },
     {
         field: 'totalSecuritiesValueMxn', header: 'Total Securities Value (MXN)', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "15%" },
+            styleCss: { width: "15%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -61,8 +56,7 @@ export const columnsPortfolioList: DataTableCustomPropsI[] = [
     },
     {
         field: 'yield', header: 'Yield', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "15%" },
+            styleCss: { width: "15%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -79,20 +73,17 @@ export const columnsPortfolioList: DataTableCustomPropsI[] = [
 export const columnsPortfolioData: DataTableCustomPropsI[] = [
     {
         field: 'initials', header: 'Issue', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
         }
     },
     {
         field: 'titles', header: 'Titles', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
         }
     },
     {
         field: 'lastUpdate', header: 'Last Update', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
@@ -103,8 +94,7 @@ export const columnsPortfolioData: DataTableCustomPropsI[] = [
     },
     {
         field: 'costAvgBuyPerTitle', header: 'Cost Avg Buy Per Title (USD)', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "15%" },
+            styleCss: { width: "15%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -117,8 +107,7 @@ export const columnsPortfolioData: DataTableCustomPropsI[] = [
     },
     {
         field: 'costAvgSellPerTitleMxn', header: 'Cost Avg Sell Per Title (MXN)', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "15%" },
+            styleCss: { width: "15%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -131,8 +120,7 @@ export const columnsPortfolioData: DataTableCustomPropsI[] = [
     },
     {
         field: 'costTotalSell', header: 'Cost Total Sell (USD)', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "15%" },
+            styleCss: { width: "15%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -144,8 +132,7 @@ export const columnsPortfolioData: DataTableCustomPropsI[] = [
         }
     },{
         field: 'costTotalSellMxn', header: 'Cost Total Sell (MXN)', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "15%" },
+            styleCss: { width: "15%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -158,8 +145,7 @@ export const columnsPortfolioData: DataTableCustomPropsI[] = [
     },
     {
         field: 'yield', header: 'Yield', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "15%" },
+            styleCss: { width: "15%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -183,26 +169,30 @@ export const inputFitlerIssuesIds = {
 export const columnsFilterIssuesList: FormInputContainerPropsI = {
     inputColumns: [
         {
-            id: inputFitlerIssuesIds.statusIssue, label: "Status Issue:",
+            label: "Status Issue:",
             inputProps: {
+                id: inputFitlerIssuesIds.statusIssue,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
             }
         },
         {
-            id: inputFitlerIssuesIds.sector, label: "Sector:",
+            label: "Sector:",
             inputProps: {
+                id: inputFitlerIssuesIds.sector,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
             }
         },
         {
-            id: inputFitlerIssuesIds.typeStock, label: "Type Stock:",
+            label: "Type Stock:",
             inputProps: {
+                id: inputFitlerIssuesIds.typeStock,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
             }
         },
         {
-            id: inputFitlerIssuesIds.isSp500, label: "Is S&P 500:",
+            label: "Is S&P 500:",
             inputProps: {
+                id: inputFitlerIssuesIds.isSp500,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: CATALOG_DEFAULT_TRUE_FALSE, isOptionAll: true
             }
         },

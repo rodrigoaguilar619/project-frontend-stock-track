@@ -1,13 +1,12 @@
+import { DataTableCustomPropsI } from "@app/_types/utils/maskDataCustomUtil";
 import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
-import { DataTableCustomPropsI } from "@app/utils/maskDataCustomUtil";
-import { DataTablePropsI } from "lib-components-frontend-ts/lib/@types/components/dataTable/dataTable";
-import { MaskDataTypeEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
+import { DataTablePropsI } from "lib-components-react/lib/@types/components/dataTable/dataTable";
+import { MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
 export const columnsIssueTransactionResumenList: DataTablePropsI[] = [
     {
         field: 'currentIssuePrice', header: 'Issue Current Price', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "center" },
             
         },
         maskProps: {
@@ -19,8 +18,7 @@ export const columnsIssueTransactionResumenList: DataTablePropsI[] = [
     },
     {
         field: 'currentIssueDate', header: 'Issue Current Price Date', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "7%" }
+            styleCss: { width: "7%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
@@ -31,8 +29,7 @@ export const columnsIssueTransactionResumenList: DataTablePropsI[] = [
     },
     {
         field: 'currentDollarPrice', header: 'Dollar Current Price', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -43,8 +40,7 @@ export const columnsIssueTransactionResumenList: DataTablePropsI[] = [
     },
     {
         field: 'currentDollarDate', header: 'Dollar Current Price Date', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "7%" }
+            styleCss: { width: "7%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
@@ -55,8 +51,7 @@ export const columnsIssueTransactionResumenList: DataTablePropsI[] = [
     },
     {
         field: 'dollarPriceDeprecatePercentage', header: 'Dollar Deprecation', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -67,8 +62,7 @@ export const columnsIssueTransactionResumenList: DataTablePropsI[] = [
     },
     {
         field: 'currentDollarPriceAfterDeprecate', header: 'Dollar Current Price After Deprecate', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -79,8 +73,7 @@ export const columnsIssueTransactionResumenList: DataTablePropsI[] = [
     },
     {
         field: 'commisionSell', header: 'Commision Sell', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -91,8 +84,7 @@ export const columnsIssueTransactionResumenList: DataTablePropsI[] = [
     },
     {
         field: 'taxesPercentage', header: 'Taxes %', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -103,8 +95,7 @@ export const columnsIssueTransactionResumenList: DataTablePropsI[] = [
     },
     {
         field: 'issueSellEstimate', header: 'Issue Sell Estimate (MXN)', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "10%" },
+            styleCss: { width: "10%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -118,26 +109,29 @@ export const columnsIssueTransactionResumenList: DataTablePropsI[] = [
 export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
     {
         field: 'descriptionBroker', header: 'Broker', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
         }
     },
     {
         field: 'descriptionTypeCurrency', header: 'Currency', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
         }
     },
     {
         field: 'totalShares', header: 'T. Shares', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "5%" },
+            styleCss: { width: "5%", textAlign: "center" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeEnum.CURRENCY,
+            maskDataProps: {
+                decimalPlaces: 4,
+                addSeparateComma: true
+            }
         }
     },
     {
         field: 'priceBuy', header: 'Price Buy', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "7%" },
+            styleCss: { width: "7%", textAlign: "center" },
             
         },
         maskProps: {
@@ -151,8 +145,7 @@ export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
     },
     {
         field: 'sumPriceBuy', header: 'Sum P. Buy', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "7%" },
+            styleCss: { width: "7%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -165,8 +158,7 @@ export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
     },
     {
         field: 'buyDate', header: 'Buy Date', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "7%" }
+            styleCss: { width: "7%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
@@ -177,8 +169,7 @@ export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
     },
     {
         field: 'priceSell', header: 'Price Sell', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "7%" },
+            styleCss: { width: "7%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -191,8 +182,7 @@ export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
     },
     {
         field: 'sumPriceSell', header: 'Sum P. Sell', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "7%" },
+            styleCss: { width: "7%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -205,8 +195,7 @@ export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
     },
     {
         field: 'sellDate', header: 'Sell Date', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "7%" }
+            styleCss: { width: "7%", textAlign: "center" }
         },
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
@@ -217,8 +206,7 @@ export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
     },
     {
         field: 'sellGainLossPercentage', header: 'Gain/Loss %', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "7%" }
+            styleCss: { width: "7%", textAlign: "center" }
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -231,8 +219,7 @@ export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
     },
     {
         field: 'sellGainLossTotal', header: 'Gain/Loss Total', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "8%" }
+            styleCss: { width: "8%", textAlign: "center" }
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -245,8 +232,7 @@ export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
     },
     {
         field: 'gainLossPercentageEstimate', header: 'Estimated Gain/Loss %', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "8%" }
+            styleCss: { width: "8%", textAlign: "center" }
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -259,8 +245,7 @@ export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
     },
     {
         field: 'gainLossTotalEstimate', header: 'Estimated Gain/Loss Total', tableConfig: {
-            aligns: { alignCell: "center" },
-            styleCss: { width: "8%" }
+            styleCss: { width: "8%", textAlign: "center" }
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,

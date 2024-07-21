@@ -6,21 +6,23 @@ import { CatalogModuleEnum } from "@app/catalogs/enumCatalog";
 import { getCatalogDataService } from "@app/controller/services/catalogService";
 import { getIssuesManagerListService } from "@app/controller/services/issuesManagerService";
 import { faDashboard, faEdit } from '@fortawesome/free-solid-svg-icons';
-import { DataTableColumnOptionsPropsI } from "lib-components-frontend-ts/lib/@types/components/dataTable/dataTable";
-import { ComponentTypeEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
-import DataTableComponent from 'lib-components-frontend-ts/lib/components/dataTable/dataTableComponent';
-import { tableOptionsTemplateDefault } from "lib-components-frontend-ts/lib/components/dataTable/tableConfigDefault";
-import { ButtonDataTableOptionComponent, ButtonsOrganizerComponent } from 'lib-components-frontend-ts/lib/components/elements/buttonComponents';
-import FilterAccoridionComponent from 'lib-components-frontend-ts/lib/components/filterAccordion/filterAccordionComponent';
-import ModalComponent from "lib-components-frontend-ts/lib/components/modals/modalComponent";
-import { TooltipConfigButtonNestedOptions, TooltipConfigCustom, TooltipConfigInputHelp } from 'lib-components-frontend-ts/lib/components/tooltip/tooltipConfigComponents';
-import { setTemplateHeaderSubTitleAction } from "lib-components-frontend-ts/lib/controller/actions/templateHeaderAction";
-import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from "lib-components-frontend-ts/lib/controller/actions/templateLoadingAction";
-import useHookModal from 'lib-components-frontend-ts/lib/hookStates/modalHookState';
-import { buildFormDataContainers, setOptionsToColumnsDefList } from "lib-components-frontend-ts/lib/utils/componentUtils/formUtil";
-import { debug, generateDebugClassModule } from "lib-components-frontend-ts/lib/utils/webUtils/debugUtil";
-import { manageAlertModuleError } from "lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil";
+import { DataTableColumnOptionsPropsI } from "lib-components-react/lib/@types/components/dataTable/dataTable";
+import { ComponentTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
+import DataTableComponent from 'lib-components-react/lib/components/dataTable/dataTableComponent';
+import { tableOptionsTemplateDefault } from "lib-components-react/lib/components/dataTable/tableConfigDefault";
+import { ButtonDataTableOptionComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
+import FilterAccoridionComponent from 'lib-components-react/lib/components/filterAccordion/filterAccordionComponent';
+import ModalComponent from "lib-components-react/lib/components/modals/modalComponent";
+import { TooltipConfigButtonNestedOptions, TooltipConfigCustom, TooltipConfigInputHelp } from 'lib-components-react/lib/components/tooltip/tooltipConfigComponents';
+import { setTemplateHeaderSubTitleAction } from "lib-components-react/lib/controller/actions/templateHeaderAction";
+import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from "lib-components-react/lib/controller/actions/templateLoadingAction";
+import useHookModal from 'lib-components-react/lib/hookStates/modalHookState';
+import { buildFormDataContainers, setOptionsToColumnsDefList } from "lib-components-react/lib/utils/componentUtils/formUtil";
+import { debug, generateDebugClassModule } from "lib-components-react/lib/utils/webUtils/debugUtil";
+import { manageAlertModuleError } from "lib-components-react/lib/utils/webUtils/httpManagerUtil";
 import { columnsFilterIssuesManagerList, columnsIssuesManagerList, inputFilterIssuesManagerIds } from "./issuesManagerListModuleConfig";
+import LoadingModuleComponent from 'lib-components-react/lib/components/loadings/loadingModuleComponent';
+import useHookLoading from 'lib-components-react/lib/hookStates/loadingHookState';
 
 const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (props) => {
 
@@ -28,6 +30,8 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
     const [issuesManagerList, setIssuesManagerList] = useState<[]>([]);
     const [formFilterData, setFormFilterData] = useState<Record<string, any>>({});
     const [modalState, setOpenModal, setCloseModal, setBodyModal, setTitleModal] = useHookModal();
+    const [loadingState, setLoading] = useHookLoading();
+    const [modalSize, setModalSize] = useState<"sm" | "md" | "lg">("md");
     const optionsTemplate: DataTableColumnOptionsPropsI = tableOptionsTemplateDefault;
     
     const IssueManagerUpdateModuleComponent = React.lazy(() => import('@app/modules/issuesManager/issueManagerUpdate/issueManagerUpdateModuleComponent'))
@@ -51,6 +55,7 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
         buttonOptions.push(<ButtonDataTableOptionComponent
             icon={faEdit}
             onClick={() => {
+                setModalSize("md");
                 setTitleModal("EDIT MANAGER ISSUE: " + rowData.initials);
                 setBodyModal((<IssueManagerUpdateModuleComponent idIssueManager={rowData.idIssue} componentType={ComponentTypeEnum.POPUP} executeParentFunction={() => { executeGetIssuesManagerList(); setCloseModal(); }} />));
                 setOpenModal()
@@ -60,8 +65,9 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
         buttonOptions.push(<ButtonDataTableOptionComponent
             icon={faDashboard}
             onClick={() => {
+                setModalSize("lg");
                 setTitleModal("ISSUE DETAIL: " + rowData.initials);
-                setBodyModal((<IssuesHistoricalDataModuleComponent idIssue={rowData.idIssue} initialsIssue={rowData.initials} componentType={ComponentTypeEnum.POPUP} executeParentFunction={() => { executeGetIssuesManagerList(); setCloseModal(); }} />));
+                setBodyModal((<IssuesHistoricalDataModuleComponent idIssue={rowData.idIssue} initialsIssue={rowData.initials} componentType={ComponentTypeEnum.POPUP} executeParentFunction={() => { setCloseModal(); }} />));
                 setOpenModal()
             }}
             tooltip={"show issue historical: " + rowData.initials}
@@ -93,6 +99,9 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
             .catch((error) => {
                 manageAlertModuleError(dispatch, props.componentType, debugClass, error);
                 dispatch(setTemplateLoadingIsActiveAction(false));
+            })
+            .finally(() => {
+                setLoading(false);
             });
     }
 
@@ -115,10 +124,13 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
                 dispatch(setTemplateLoadingIsActiveAction(false));
             });
     }
+    
+    if(loadingState.isLoading)
+        return <LoadingModuleComponent />
 
     return (<div>
         <ModalComponent title={modalState.titleModal} visible={modalState.showModal} selectorCloseModal={setCloseModal}
-            body={modalState.bodyModal} size='lg' />
+            body={modalState.bodyModal} size={modalSize} />
         <br></br>
         <FilterAccoridionComponent
             formContainer={columnsFilterIssuesManagerList}

@@ -1,11 +1,6 @@
-import { MaskDataTypeEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
-import { maskData } from "lib-components-frontend-ts/lib/utils/dataUtils/maskDataUtil";
-
-export interface FlagDataI {
-    date: number;
-    totalShares: number;
-    price: number;
-}
+import { FlagDataI } from "@app/_types/utils/highChartsUtil";
+import { MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
+import { maskData } from "lib-components-react/lib/utils/dataUtils/maskDataUtil";
 
 const buildPlotData = (value: number, color: string, text: string) => {
     return {
@@ -29,6 +24,7 @@ export const buildFlagsChartFromTransaction = (transactionsList: FlagDataI[]) =>
         let textFlag = [];
 
         textFlag.push("<b>------ TRANSACTION BUYS ------</b> ");
+        textFlag.push("<b>Broker:</b> " + transaction.brokerDescription);
         textFlag.push("<b>Total shares:</b> " + transaction.totalShares);
         textFlag.push("<b>Buy price:</b>&nbsp;" + maskData(transaction.price, { maskType: MaskDataTypeEnum.CURRENCY, maskDataProps: { decimalPlaces: 2, addSymbolCurrency: true, addSeparateComma: true } }));
         textFlag.push("<b>Total buy:</b>&nbsp;&nbsp;" + maskData((transaction.price * transaction.totalShares), { maskType: MaskDataTypeEnum.CURRENCY, maskDataProps: { decimalPlaces: 2, addSymbolCurrency: true, addSeparateComma: true } }));

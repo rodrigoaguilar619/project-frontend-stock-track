@@ -7,19 +7,19 @@ import { IssueMovementAddEditModulePropsI } from '@app/_types/modules/issuesMove
 import { CatalogModuleEnum } from '@app/catalogs/enumCatalog';
 import { getCatalogDataService } from '@app/controller/services/catalogService';
 import { addEditIssueMovementService, getIssueMovementService } from '@app/controller/services/issuesMovementsService';
-import { ComponentTypeEnum, OptionAddEditEnum } from 'lib-components-frontend-ts/lib/catalogs/enumCatalog';
-import { ButtonSubmitComponent, ButtonsOrganizerComponent } from 'lib-components-frontend-ts/lib/components/elements/buttonComponents';
-import FormInputContainersComponent from 'lib-components-frontend-ts/lib/components/forms/formInputsElements/formInputContainersComponent';
-import FormInputsMultipleComponent from 'lib-components-frontend-ts/lib/components/forms/formInputsMultiple/formInputsMultipleComponent';
-import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-frontend-ts/lib/controller/actions/templateLoadingAction';
-import { buildAlertSuccessRedux } from 'lib-components-frontend-ts/lib/utils/componentUtils/alertUtil';
-import { buildFormDataContainers, buildFormDataMultiple, getParameterCall, setOptionsToColumnsContainerDefList } from 'lib-components-frontend-ts/lib/utils/componentUtils/formUtil';
-import { dispatchTemplateHeaderSubTitleAction } from 'lib-components-frontend-ts/lib/utils/componentUtils/templateUtil';
-import { deepClone } from 'lib-components-frontend-ts/lib/utils/dataUtils/dataUtil';
-import { setDevButtonDefaultData } from 'lib-components-frontend-ts/lib/utils/devUtil';
-import { buildSimpleReactValidator } from 'lib-components-frontend-ts/lib/utils/pluginUtils/simpleReactValidatorUtil';
-import { debug, generateDebugClassModule, showDataDevelopment } from 'lib-components-frontend-ts/lib/utils/webUtils/debugUtil';
-import { manageAlertModuleError } from 'lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil';
+import { ComponentTypeEnum, OptionAddEditEnum } from 'lib-components-react/lib/catalogs/enumCatalog';
+import { ButtonSubmitComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
+import FormInputContainersComponent from 'lib-components-react/lib/components/forms/formInputsElements/formInputContainersComponent';
+import FormInputsMultipleComponent from 'lib-components-react/lib/components/forms/formInputsMultiple/formInputsMultipleComponent';
+import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-react/lib/controller/actions/templateLoadingAction';
+import { buildAlertSuccessRedux } from 'lib-components-react/lib/utils/componentUtils/alertUtil';
+import { buildFormDataContainers, buildFormDataMultiple, getParameterCall, setOptionsToColumnsContainerDefList } from 'lib-components-react/lib/utils/componentUtils/formUtil';
+import { dispatchTemplateHeaderSubTitleAction } from 'lib-components-react/lib/utils/componentUtils/templateUtil';
+import { deepClone } from 'lib-components-react/lib/utils/dataUtils/dataUtil';
+import { setDevButtonDefaultData } from 'lib-components-react/lib/utils/devUtil';
+import { buildSimpleReactValidator } from 'lib-components-react/lib/utils/pluginUtils/simpleReactValidatorUtil';
+import { debug, generateDebugClassModule, showDataDevelopment } from 'lib-components-react/lib/utils/webUtils/debugUtil';
+import { manageAlertModuleError } from 'lib-components-react/lib/utils/webUtils/httpManagerUtil';
 import { formContainersIssueMovement, inputIssueMovementBuyIds, inputIssueMovementIds, inputsIssueMovementBuysAddMultiple } from './issueMovementAddEditModuleConfig';
 
 const IssueMovementAddEditModuleComponent: React.FC<IssueMovementAddEditModulePropsI> = (props) => {

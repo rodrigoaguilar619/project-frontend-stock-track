@@ -1,5 +1,5 @@
-import { FormInputContainerPropsI } from "lib-components-frontend-ts/lib/@types/components/formInputs/formInputs";
-import { InputElementEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
+import { FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
+import { InputElementEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
 export const inputTransactionIssuesFileIds = {
     idBroker: "idBroker",
@@ -9,8 +9,9 @@ export const inputTransactionIssuesFileIds = {
 const inputsTransactionIssuesFile: FormInputContainerPropsI = {
     inputColumns: [
         {
-            id: inputTransactionIssuesFileIds.idBroker, label: "Broker:",
+            label: "Broker:",
             inputProps: {
+                id: inputTransactionIssuesFileIds.idBroker,
                 inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: []
             },
             validations: {
@@ -18,8 +19,9 @@ const inputsTransactionIssuesFile: FormInputContainerPropsI = {
             }
         },
         {
-            id: inputTransactionIssuesFileIds.file, label: "File transactions:",
+            label: "File transactions:",
             inputProps: {
+                id: inputTransactionIssuesFileIds.file,
                 inputType: InputElementEnum.FILE, value: null, updateValue: () => { }, options: []
             },
             validations: {

@@ -3,13 +3,13 @@ import { useDispatch } from "react-redux";
 import { PATH_API_DOCUMENTATION } from "@app/catalogs/uriCatalog";
 import { updateDollarPriceService, updateIssuesHistoricalService, updateIssuesLastPriceService } from "@app/controller/services/adminService";
 import { faDollar } from '@fortawesome/free-solid-svg-icons';
-import { ComponentTypeEnum, MaskDataTypeEnum } from "lib-components-frontend-ts/lib/catalogs/enumCatalog";
-import { ButtonDataTableOptionComponent, ButtonsOrganizerComponent } from 'lib-components-frontend-ts/lib/components/elements/buttonComponents';
-import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from "lib-components-frontend-ts/lib/controller/actions/templateLoadingAction";
-import { buildAlertSuccessRedux } from "lib-components-frontend-ts/lib/utils/componentUtils/alertUtil";
-import { maskData } from "lib-components-frontend-ts/lib/utils/dataUtils/maskDataUtil";
-import { debug, generateDebugClassModule } from "lib-components-frontend-ts/lib/utils/webUtils/debugUtil";
-import { manageAlertModuleError } from "lib-components-frontend-ts/lib/utils/webUtils/httpManagerUtil";
+import { ComponentTypeEnum, MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
+import { ButtonDataTableOptionComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
+import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from "lib-components-react/lib/controller/actions/templateLoadingAction";
+import { buildAlertSuccessRedux } from "lib-components-react/lib/utils/componentUtils/alertUtil";
+import { maskData } from "lib-components-react/lib/utils/dataUtils/maskDataUtil";
+import { debug, generateDebugClassModule } from "lib-components-react/lib/utils/webUtils/debugUtil";
+import { manageAlertModuleError } from "lib-components-react/lib/utils/webUtils/httpManagerUtil";
 
 const enum enumOptions {
     UPDATE_DOLLAR_PRICE = "update_dollar_price",
