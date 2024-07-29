@@ -4,7 +4,7 @@ import { PATH_API_DOCUMENTATION } from "@app/catalogs/uriCatalog";
 import { updateDollarPriceService, updateIssuesHistoricalService, updateIssuesLastPriceService } from "@app/controller/services/adminService";
 import { faDollar } from '@fortawesome/free-solid-svg-icons';
 import { ComponentTypeEnum, MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
-import { ButtonDataTableOptionComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
+import { ButtonCustomComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
 import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from "lib-components-react/lib/controller/actions/templateLoadingAction";
 import { buildAlertSuccessRedux } from "lib-components-react/lib/utils/componentUtils/alertUtil";
 import { maskData } from "lib-components-react/lib/utils/dataUtils/maskDataUtil";
@@ -78,21 +78,21 @@ const AdminModuleComponent = () => {
 
     let buttonOptions = [];
 
-        buttonOptions.push(<ButtonDataTableOptionComponent
+        buttonOptions.push(<ButtonCustomComponent
             icon={faDollar}
             label="Update dollar price"
             onClick={() => {
                 executeButtonAction(enumOptions.UPDATE_DOLLAR_PRICE);
             }}
         />);
-        buttonOptions.push(<ButtonDataTableOptionComponent
+        buttonOptions.push(<ButtonCustomComponent
             icon={faDollar}
             label="Update issues last price"
             onClick={() => {
                 executeButtonAction(enumOptions.UPDATE_ISSUES_LAST_PRICE);
             }}
         />);
-        buttonOptions.push(<ButtonDataTableOptionComponent
+        buttonOptions.push(<ButtonCustomComponent
             icon={faDollar}
             label="Update issues historical"
             onClick={() => {

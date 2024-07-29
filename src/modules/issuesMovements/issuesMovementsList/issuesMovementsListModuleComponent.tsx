@@ -14,7 +14,7 @@ import { DataTableColumnOptionsPropsI } from "lib-components-react/lib/@types/co
 import { ComponentTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 import DataTableComponent from 'lib-components-react/lib/components/dataTable/dataTableComponent';
 import { tableOptionsTemplateDefault } from "lib-components-react/lib/components/dataTable/tableConfigDefault";
-import { ButtonDataTableOptionComponent, ButtonDataTableOptionNestedComponent, ButtonWithNestedOptionsComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
+import { ButtonCustomComponent, ButtonDataTableOptionNestedComponent, ButtonWithNestedOptionsComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
 import FilterAccoridionComponent from 'lib-components-react/lib/components/filterAccordion/filterAccordionComponent';
 import ModalComponent from "lib-components-react/lib/components/modals/modalComponent";
 import { TooltipConfigButtonNestedOptions, TooltipConfigCustom, TooltipConfigInputHelp } from 'lib-components-react/lib/components/tooltip/tooltipConfigComponents';
@@ -86,7 +86,7 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
     const IssueMovementAddEditModuleComponent = React.lazy(() => import('@app/modules/issuesMovements/issueMovementAddEdit/issueMovementAddEditModuleComponent'))
     const IssuesHistoricalDataModuleComponent = React.lazy(() => import('@app/modules/issuesHistorical/issueHistoricalData/issueHistoricalDataModuleComponent'))
     
-    let buttonIssueMovementAdd = <ButtonDataTableOptionComponent
+    let buttonIssueMovementAdd = <ButtonCustomComponent
         icon={faAdd}
         label="Add issue movement"
         onClick={() => {
