@@ -16,6 +16,7 @@ import { manageAlertModuleError } from 'lib-components-react/lib/utils/webUtils/
 import LoadingModuleComponent from 'lib-components-react/lib/components/loadings/loadingModuleComponent';
 import useHookLoading from 'lib-components-react/lib/hookStates/loadingHookState';
 import { columnsIssueTransactionList, columnsIssueTransactionResumenList } from './issueHistoricalDataModuleConfig';
+import { dispatchTemplateHeaderSubTitleAction } from 'lib-components-react/lib/utils/componentUtils/templateUtil';
 
 const IssuesHistoricalDataModuleComponent: React.FC<IssueHistoricalDataModulePropsI> = (props) => {
 
@@ -27,7 +28,7 @@ const IssuesHistoricalDataModuleComponent: React.FC<IssueHistoricalDataModulePro
 
   useEffect(() => {
 
-    dispatch(setTemplateHeaderSubTitleAction("Issue Historical Data: " + initialsIssue));
+    dispatchTemplateHeaderSubTitleAction(dispatch, props.componentType, "Issue Historical Data: " + initialsIssue);
     initModule();
     return () => {
     };
