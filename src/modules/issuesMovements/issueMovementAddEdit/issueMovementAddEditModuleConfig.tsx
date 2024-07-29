@@ -109,7 +109,7 @@ export const inputsIssueMovementBuysAddMultiple: FormInputColumnPropsI[] = [
         inputProps: {
             id: inputIssueMovementBuyIds.totalShares,
             inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
-            maskType: InputMaskEnum.NUMBER, maskProps: { totalDecimals: 2 }
+            maskType: InputMaskEnum.NUMBER, maskProps: { totalDecimals: 4 }
         },
         validations: {
             idValidation: inputIssueMovementBuyIds.totalShares, validatorRules: ["required"]

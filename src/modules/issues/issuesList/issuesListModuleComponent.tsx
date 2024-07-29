@@ -10,7 +10,7 @@ import { DataTableColumnOptionsPropsI } from "lib-components-react/lib/@types/co
 import { ComponentTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 import DataTableComponent from 'lib-components-react/lib/components/dataTable/dataTableComponent';
 import { tableOptionsTemplateDefault } from "lib-components-react/lib/components/dataTable/tableConfigDefault";
-import { ButtonDataTableOptionComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
+import { ButtonCustomComponent, ButtonDataTableOptionComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
 import FilterAccoridionComponent from 'lib-components-react/lib/components/filterAccordion/filterAccordionComponent';
 import ModalComponent from "lib-components-react/lib/components/modals/modalComponent";
 import { TooltipConfigButtonNestedOptions, TooltipConfigCustom, TooltipConfigInputHelp } from 'lib-components-react/lib/components/tooltip/tooltipConfigComponents';
@@ -105,7 +105,7 @@ const IssuesListModuleComponent: React.FC<IssuesListModulePropsI> = (props) => {
     }
 
     let footerButtons: any[] = [];
-    footerButtons.push(<ButtonDataTableOptionComponent
+    footerButtons.push(<ButtonCustomComponent
         icon={faAdd}
         label="Add issues"
         onClick={() => {
