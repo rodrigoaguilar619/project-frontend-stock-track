@@ -93,7 +93,7 @@ export const inputsIssueMovementBuysAddMultiple: FormInputColumnPropsI[] = [
         label: "Sell Price:",
         inputProps: {
             id: inputIssueMovementBuyIds.sellPrice,
-            inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
+            inputType: InputElementEnum.MASK, value: null, updateValue: () => { },
             maskType: InputMaskEnum.NUMBER, maskProps: { totalDecimals: 2 }
         }
     },
