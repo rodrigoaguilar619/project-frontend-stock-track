@@ -7,7 +7,7 @@ import { getCatalogDataService } from '@app/controller/services/catalogService';
 import { loadTransactionIssuesFileService } from '@app/controller/services/transactionIssuesService';
 import { ComponentTypeEnum } from 'lib-components-react/lib/catalogs/enumCatalog';
 import { ButtonSubmitComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
-import FormInputContainersComponent from 'lib-components-react/lib/components/forms/formInputsElements/formInputContainersComponent';
+import FormInputContainersComponent from 'lib-components-react/lib/components/forms/formInputContainersComponent';
 import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-react/lib/controller/actions/templateLoadingAction';
 import { buildAlertSuccessRedux } from 'lib-components-react/lib/utils/componentUtils/alertUtil';
 import { buildFormDataContainers, setOptionsToColumnsContainerDefList } from 'lib-components-react/lib/utils/componentUtils/formUtil';
