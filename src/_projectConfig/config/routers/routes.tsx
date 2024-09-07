@@ -26,7 +26,7 @@ const routesDev = [
   { path: "/issuesHistorical/issueHistoricalData", name: 'Issue Historical Data', element: () => <IssueHistoricalDataComponent componentType={ComponentTypeEnum.MODULE} idIssue={111} initialsIssue='EON' /> },
 ]
 
-let routes = [
+const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: ROUTE_ADMIN_MODULE, name: 'Admin', element: () => <AdminComponent /> },
   { path: ROUTE_ISSUES_LIST_GET, name: 'Issues List', element: () => <IssuesListComponent componentType={ComponentTypeEnum.MODULE} /> },
@@ -38,7 +38,6 @@ let routes = [
   { path: ROUTE_LOAD_TRANSACTION_ISSUES_FILE_GET, name: 'Load Transaction Issues File', element: () => <LoadTransactionIssuesFileComponent componentType={ComponentTypeEnum.MODULE} /> },
 ]
 
-if(_APP_ENVIRONMENT_ === EnvironmentEnum.DEVELOPMENT)
-  routes = routes.concat(routesDev);
+const finalRoutes = _APP_ENVIRONMENT_ === EnvironmentEnum.DEVELOPMENT ? [...routes, ...routesDev] : routes;
 
-export default routes
+export default finalRoutes

@@ -172,28 +172,28 @@ export const columnsFilterIssuesList: FormInputContainerPropsI = {
             label: "Status Issue:",
             inputProps: {
                 id: inputFitlerIssuesIds.statusIssue,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
+                inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
             }
         },
         {
             label: "Sector:",
             inputProps: {
                 id: inputFitlerIssuesIds.sector,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
+                inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
             }
         },
         {
             label: "Type Stock:",
             inputProps: {
                 id: inputFitlerIssuesIds.typeStock,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
+                inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
             }
         },
         {
             label: "Is S&P 500:",
             inputProps: {
                 id: inputFitlerIssuesIds.isSp500,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: CATALOG_DEFAULT_TRUE_FALSE, isOptionAll: true
+                inputType: InputElementEnum.SELECT, value: '', options: CATALOG_DEFAULT_TRUE_FALSE, isOptionAll: true
             }
         },
     ],

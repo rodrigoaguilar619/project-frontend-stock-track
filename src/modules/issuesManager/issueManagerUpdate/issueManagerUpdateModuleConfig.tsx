@@ -25,14 +25,14 @@ const inputsIssue: FormInputContainerPropsI = {
             label: "Id issue:",
             inputProps: {
                 id: inputIssueManagerIds.idIssue,
-                inputType: InputElementEnum.TEXT, value: '', updateValue: () => { }, isReadOnly: true,
+                inputType: InputElementEnum.TEXT, value: '', isReadOnly: true,
             }
         },
         {
             label: "Initials:",
             inputProps: {
                 id: inputIssueManagerIds.initials,
-                inputType: InputElementEnum.TEXT, value: '', updateValue: () => { }, isReadOnly: true,
+                inputType: InputElementEnum.TEXT, value: '', isReadOnly: true,
             },
             validations: {
                 idValidation: inputIssueManagerIds.initials, validatorRules: ["required"]
@@ -42,7 +42,7 @@ const inputsIssue: FormInputContainerPropsI = {
             label: "Description:",
             inputProps: {
                 id: inputIssueManagerIds.description,
-                inputType: InputElementEnum.TEXT, value: '', updateValue: () => { }, isReadOnly: true,
+                inputType: InputElementEnum.TEXT, value: '', isReadOnly: true,
             },
             validations: {
                 idValidation: inputIssueManagerIds.description, validatorRules: ["required"]
@@ -52,7 +52,7 @@ const inputsIssue: FormInputContainerPropsI = {
             label: "Is S&P 500:",
             inputProps: {
                 id: inputIssueManagerIds.isSp500,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: CATALOG_DEFAULT_TRUE_FALSE, isReadOnly: true,
+                inputType: InputElementEnum.SELECT, value: '', options: CATALOG_DEFAULT_TRUE_FALSE, isReadOnly: true,
             },
             validations: {
                 idValidation: inputIssueManagerIds.isSp500, validatorRules: ["required"]
@@ -62,7 +62,7 @@ const inputsIssue: FormInputContainerPropsI = {
             label: "Sector:",
             inputProps: {
                 id: inputIssueManagerIds.idSector,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isReadOnly: true,
+                inputType: InputElementEnum.SELECT, value: '', options: [], isReadOnly: true,
             },
             validations: {
                 idValidation: inputIssueManagerIds.idSector, validatorRules: ["required"]
@@ -72,7 +72,7 @@ const inputsIssue: FormInputContainerPropsI = {
             label: "Type Stock:",
             inputProps: {
                 id: inputIssueManagerIds.idTypeStock,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isReadOnly: true,
+                inputType: InputElementEnum.SELECT, value: '', options: [], isReadOnly: true,
             },
             validations: {
                 idValidation: inputIssueManagerIds.idTypeStock, validatorRules: ["required"]
@@ -82,7 +82,7 @@ const inputsIssue: FormInputContainerPropsI = {
             label: "Status Issue:",
             inputProps: {
                 id: inputIssueManagerIds.idStatusIssue,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isReadOnly: true,
+                inputType: InputElementEnum.SELECT, value: '', options: [], isReadOnly: true,
             },
             validations: {
                 idValidation: inputIssueManagerIds.idStatusIssue, validatorRules: ["required"]
@@ -92,7 +92,7 @@ const inputsIssue: FormInputContainerPropsI = {
             label: "Historical Start Date:",
             inputProps: {
                 id: inputIssueManagerIds.historicalStartDate,
-                inputType: InputElementEnum.CALENDAR, value: null, updateValue: () => { }, isReadOnly: true,
+                inputType: InputElementEnum.CALENDAR, value: null, isReadOnly: true,
             },
             validations: {
                 idValidation: inputIssueManagerIds.historicalStartDate, validatorRules: ["required"]
@@ -109,7 +109,7 @@ const inputsIssueManager: FormInputContainerPropsI = {
             label: "Status Issue quick:",
             inputProps: {
                 id: inputIssueManagerIds.idStatusIssueQuick, 
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: []
+                inputType: InputElementEnum.SELECT, value: '', options: []
             },
             validations: {
                 idValidation: inputIssueManagerIds.idStatusIssueQuick, validatorRules: ["required"]
@@ -119,7 +119,7 @@ const inputsIssueManager: FormInputContainerPropsI = {
             label: "Status Issue trading:",
             inputProps: {
                 id: inputIssueManagerIds.idStatusIssueTrading, 
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: []
+                inputType: InputElementEnum.SELECT, value: '', options: []
             },
             validations: {
                 idValidation: inputIssueManagerIds.idStatusIssueTrading, validatorRules: ["required"]
@@ -129,7 +129,7 @@ const inputsIssueManager: FormInputContainerPropsI = {
             label: "Is Invest:",
             inputProps: {
                 id: inputIssueManagerIds.isInvest,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: CATALOG_DEFAULT_TRUE_FALSE
+                inputType: InputElementEnum.SELECT, value: '', options: CATALOG_DEFAULT_TRUE_FALSE
             },
             validations: {
                 idValidation: inputIssueManagerIds.isInvest, validatorRules: ["required"]
@@ -139,7 +139,7 @@ const inputsIssueManager: FormInputContainerPropsI = {
             label: "Fair Value:",
             inputProps: {
                 id: inputIssueManagerIds.fairValue,
-                inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
+                inputType: InputElementEnum.MASK, value: '',
                 maskType: InputMaskEnum.NUMBER, maskProps: { totalDecimals: 2 }
             },
             validations: {
@@ -150,7 +150,7 @@ const inputsIssueManager: FormInputContainerPropsI = {
             label: "Track Buy Value:",
             inputProps: {
                 id: inputIssueManagerIds.trackBuyPrice,
-                inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
+                inputType: InputElementEnum.MASK, value: '',
                 maskType: InputMaskEnum.NUMBER, maskProps: { totalDecimals: 2 }
             },
             validations: {
@@ -161,7 +161,7 @@ const inputsIssueManager: FormInputContainerPropsI = {
             label: "Track Sell Value:",
             inputProps: {
                 id: inputIssueManagerIds.trackSellPrice,
-                inputType: InputElementEnum.MASK, value: '', updateValue: () => { },
+                inputType: InputElementEnum.MASK, value: '',
                 maskType: InputMaskEnum.NUMBER, maskProps: { totalDecimals: 2 }
             },
             validations: {

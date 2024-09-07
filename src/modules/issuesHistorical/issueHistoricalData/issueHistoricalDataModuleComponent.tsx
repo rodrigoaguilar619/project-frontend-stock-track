@@ -8,7 +8,6 @@ import { getIssueHistoricalDataService } from '@app/controller/services/issuesHi
 import { buildChartSeries } from '@app/utils/componentUtils/highChartsUtil';
 import { maskDataCustom } from '@app/utils/maskDataCustomUtil';
 import DataTableComponent from 'lib-components-react/lib/components/dataTable/dataTableComponent';
-import { setTemplateHeaderSubTitleAction } from 'lib-components-react/lib/controller/actions/templateHeaderAction';
 import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-react/lib/controller/actions/templateLoadingAction';
 import { getParameterCall } from 'lib-components-react/lib/utils/componentUtils/formUtil';
 import { debug, generateDebugClassModule } from 'lib-components-react/lib/utils/webUtils/debugUtil';

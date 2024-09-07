@@ -259,21 +259,21 @@ export const columnsFilterIssuesList: FormInputContainerPropsI = {
             label: "Status Issue:",
             inputProps: {
                 id: inputFitlerIssuesMovementsIds.statusIssueMovement,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
+                inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
             }
         },
         {
             label: "Sector:",
             inputProps: {
                 id: inputFitlerIssuesMovementsIds.sector,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
+                inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
             }
         },
         {
             label: "Broker:",
             inputProps: {
                 id: inputFitlerIssuesMovementsIds.broker,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: [], isOptionAll: true
+                inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
             }
         },
     ],
