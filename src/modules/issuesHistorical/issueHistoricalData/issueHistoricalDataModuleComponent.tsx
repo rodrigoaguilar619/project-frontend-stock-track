@@ -17,10 +17,12 @@ import LoadingModuleComponent from 'lib-components-react/lib/components/loadings
 import useHookLoading from 'lib-components-react/lib/hookStates/loadingHookState';
 import { columnsIssueTransactionList, columnsIssueTransactionResumenList } from './issueHistoricalDataModuleConfig';
 import { dispatchTemplateHeaderSubTitleAction } from 'lib-components-react/lib/utils/componentUtils/templateUtil';
+import { useLocation } from 'react-router-dom';
 
 const IssuesHistoricalDataModuleComponent: React.FC<IssueHistoricalDataModulePropsI> = (props) => {
 
   const dispatch = useDispatch();
+  const location = useLocation(); 
   const idIssue = getParameterCall(location, props, "idIssue");
   const initialsIssue = getParameterCall(location, props, "initialsIssue");
   const [loadingState, setLoading] = useHookLoading();
