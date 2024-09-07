@@ -24,9 +24,56 @@ let styleRow = {
 
 const ChartStockResumeComponent: React.FC<ChartStockResumeComponentPropsI> = (props) => {
 
-    const stockData = props.stockChartData;
+    const getPriceDayDownUp = () => {
+
+        let priceDayDownUp = 0;
+
+        if (props.stockData.currentPriceDate !== undefined && props.stockData.currentPriceDate !== null) {
+            priceDayDownUp = calculateGainLossPercentage(props.stockData.previousClosePrice ?? 0, props.stockData.currentPrice ?? 0);
+        
+            if (!isFinite(priceDayDownUp) || Number.isNaN(priceDayDownUp) || !dataWithValue(priceDayDownUp)) {
+                priceDayDownUp = 0;
+            } else {
+                priceDayDownUp = formatDecimalsLimit(priceDayDownUp, 2);
+            }
+        }
+
+        return priceDayDownUp;
+    }
+    
+    const getFairValueDayDownUp = () => {
+
+        let fairValueDownUp = null;
+
+        if (props.stockData.fairValue !== undefined && priceToShow !== undefined) {
+            fairValueDownUp = calculateGainLossPercentage(props.stockData.fairValue, priceToShow);
+        
+            if (Number.isNaN(fairValueDownUp) || !isFinite(fairValueDownUp)) {
+                fairValueDownUp = formatDecimalsLimit(dataWithValue(priceDayDownUp) ? priceDayDownUp : 0, 1);
+            }
+            else {
+                fairValueDownUp = undefined;
+            }
+        }
+
+        return fairValueDownUp;
+    }
+
+    let priceToShow = props.stockData.previousClosePrice;
+    let priceDayToShow = props.stockData.previousClosePrice;
+    let isCurrentPrice = false;
+    let priceDayDownUp = getPriceDayDownUp();
+    let fairValueDownUp = getFairValueDayDownUp();
+
+    if (props.stockData.currentPriceDate !== undefined && props.stockData.currentPriceDate !== null) {
+        isCurrentPrice = compareDatesWithoutTime(new Date(props.stockData.currentPriceDate), new Date());
+        priceToShow = props.stockData.currentPrice;
+        priceDayToShow = props.stockData.currentPriceDate;
+    }
 
     const renderChartStockComponent = () => {
+
+        const stockData = props.stockChartData;
 
         if (stockData === undefined || stockData === null || stockData.length === 0) {
             return <div style={{ textAlign: "center" }}><h3>No data retreived</h3></div>;
@@ -40,45 +87,6 @@ const ChartStockResumeComponent: React.FC<ChartStockResumeComponentPropsI> = (pr
                 trackSellPrice={props.stockData.trackSellPrice}
                 trackFairValue={props.stockData.fairValue}
             />
-    }
-
-    let priceToShow = props.stockData.previousClosePrice;
-    let priceDayToShow = props.stockData.previousClosePrice;
-    let isCurrentPrice = false;
-
-    if (props.stockData.currentPriceDate !== undefined && props.stockData.currentPriceDate !== null) {
-        isCurrentPrice = compareDatesWithoutTime(new Date(props.stockData.currentPriceDate), new Date());
-        priceToShow = props.stockData.currentPrice;
-        priceDayToShow = props.stockData.currentPriceDate;
-    }
-
-    let priceDayDownUp = 0;
-    let fairValueDownUp = null;
-
-    if (props.stockData.currentPriceDate !== undefined && props.stockData.currentPriceDate !== null) {
-        priceDayDownUp = calculateGainLossPercentage(props.stockData.previousClosePrice ?? 0, props.stockData.currentPrice ?? 0);
-        
-        if (Number.isNaN(priceDayDownUp))
-            priceDayDownUp = 0;
-        else {
-            if (!dataWithValue(priceDayDownUp)) {
-                priceDayDownUp = 0;
-            }
-            priceDayDownUp = formatDecimalsLimit(priceDayDownUp, 2);
-        }
-    }
-
-    if (props.stockData.fairValue !== undefined && priceToShow !== undefined) {
-        fairValueDownUp = calculateGainLossPercentage(props.stockData.fairValue, priceToShow);
-        
-        if (!Number.isNaN(fairValueDownUp)) {
-            if (dataWithValue(priceDayDownUp)) {
-                fairValueDownUp = formatDecimalsLimit(priceDayDownUp, 1);
-            } else {
-                fairValueDownUp = formatDecimalsLimit(0, 1);
-            }
-        } else
-            fairValueDownUp = undefined;
     }
     
     return (<div>
@@ -98,8 +106,8 @@ const ChartStockResumeComponent: React.FC<ChartStockResumeComponentPropsI> = (pr
                 </Col>
             </Row>
             <Row style={styleRow}>
-                <Col title="Date of current price" style={{ textAlign: "center", ...styleColumn }}>
-                    <b style={{ fontSize: "12px" }}>{maskData(priceDayToShow, { maskType: MaskDataTypeEnum.DATE, maskDataProps: { format: "MM-DD hh:mm" } })}</b>
+                <Col title={"Date of current price " + maskData(priceDayToShow, { maskType: MaskDataTypeEnum.DATE, maskDataProps: { format: "DD/MM/yyyy" } })} style={{ textAlign: "center", ...styleColumn }}>
+                    <b style={{ fontSize: "12px" }}>{maskData(priceDayToShow, { maskType: MaskDataTypeEnum.DATE, maskDataProps: { format: "DD-MM hh:mm" } })}</b>
                 </Col>
                 <Col title="Difference of current price over fair value" style={{ textAlign: "center", ...styleColumn }}>
                     <b style={{ fontSize: "12px" }}>≈FV: {fairValueDownUp === undefined ? "---------" : maskDataCustom(fairValueDownUp, { maskType: MaskDataTypeCustomEnum.DOWN_UP, maskDataCustomProps: { addSymbolDownUp: true } })}</b>

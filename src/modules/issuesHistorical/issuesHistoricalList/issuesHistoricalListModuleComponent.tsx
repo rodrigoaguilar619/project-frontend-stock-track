@@ -106,6 +106,16 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
       executeFunction={totalGlobalIssuesRows !== null ? (() => { executeGetissuesHistoricalList(issuesHistoricalList, formFilterData, currentPage, rowsPerPage) }) : null} totalItems={totalGlobalIssuesRows} />
   }
 
+  const handleYahooClick = (issueData: any) => {
+    window.open(URL_EXTERNAL_YAHOO.replace(/#ISSUE#/g, issueData.issueData.initials));
+  };
+
+  const handleButtonHistoricalDetailClick = (issueData: any) => {
+      setTitleModal("ISSUE HISTORICAL DETAIL: " + issueData.issueData.initials);
+      setBodyModal((<IssuesHistoricalDataModuleComponent idIssue={issueData.issueData.idIssue} initialsIssue={issueData.issueData.initials} componentType={ComponentTypeEnum.POPUP} executeParentFunction={() => { setCloseModal(); }} />));
+      setOpenModal()
+  };
+
   const renderChartList = () => {
 
     let chartList: any = [];
@@ -120,20 +130,16 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
         <div style={{ float: "left" }}>
           <ButtonDataTableOptionComponent
             icon={faAddressBook}
-            onClick={() => {
-              setTitleModal("ISSUE HISTORICAL DETAIL: " + issueData.issueData.initials);
-              setBodyModal((<IssuesHistoricalDataModuleComponent idIssue={issueData.issueData.idIssue} initialsIssue={issueData.issueData.initials} componentType={ComponentTypeEnum.POPUP} executeParentFunction={() => { setCloseModal(); }} />));
-              setOpenModal()
-            }}
+            onClick={() => handleButtonHistoricalDetailClick(issueData)}
             tooltip={"Issue historical detail: " + issueData.issueData.initials}
           />
           <br></br>
-          <div title="Yahoo chart" className="btn btn-sm btn-primary" style={{ width: "23px", paddingLeft: "4px", height: "19px", marginTop: "1px" }}
-            onClick={() => { window.open(URL_EXTERNAL_YAHOO.replace(/#ISSUE#/g, issueData.issueData.initials)) }}
-            onKeyDown={() => { }}
-            >
+          <button title="Yahoo chart" className="btn btn-sm btn-primary"
+            style={{ width: "23px", paddingLeft: "4px", height: "19px", marginTop: "1px" }}
+            onClick={() => handleYahooClick(issueData)}
+          >
             <div className="iconYahoo"></div>
-          </div>
+          </button>
         </div>
         <ChartStockResumeComponent
           stockChartData={buildChartSeries(issueData.issueHistorical)}

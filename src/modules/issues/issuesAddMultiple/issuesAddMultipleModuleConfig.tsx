@@ -21,7 +21,7 @@ const inputsIssuesAddMain: FormInputContainerPropsI = {
             label: "Type Stock:",
             inputProps: {
                 id: inputIssuesAddMainIds.idTypeStock,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: []
+                inputType: InputElementEnum.SELECT, value: '', options: []
             },
             validations: {
                 idValidation: inputIssuesAddMainIds.idTypeStock, validatorRules: ["required"]
@@ -31,7 +31,7 @@ const inputsIssuesAddMain: FormInputContainerPropsI = {
             label: "Status Issue:",
             inputProps: {
                 id: inputIssuesAddMainIds.idStatusIssue,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: []
+                inputType: InputElementEnum.SELECT, value: '', options: []
             },
             validations: {
                 idValidation: inputIssuesAddMainIds.idStatusIssue, validatorRules: ["required"]
@@ -41,7 +41,7 @@ const inputsIssuesAddMain: FormInputContainerPropsI = {
             label: "Historical Start Date:",
             inputProps: {
                 id: inputIssuesAddMainIds.historicalStartDate,
-                inputType: InputElementEnum.CALENDAR, value: null, updateValue: () => { }
+                inputType: InputElementEnum.CALENDAR, value: null
             },
             validations: {
                 idValidation: inputIssuesAddMainIds.historicalStartDate, validatorRules: ["required"]
@@ -57,7 +57,7 @@ export const inputsIssuesAddMultiple: FormInputColumnPropsI[] = [
         label: "Initials:",
         inputProps: {
             id: inputIssuesAddMultipleIds.initials,
-            inputType: InputElementEnum.TEXT, value: '', updateValue: () => { }
+            inputType: InputElementEnum.TEXT, value: ''
         },
         validations: {
             idValidation: inputIssuesAddMultipleIds.initials, validatorRules: ["required"]
@@ -67,7 +67,7 @@ export const inputsIssuesAddMultiple: FormInputColumnPropsI[] = [
         label: "Description:",
         inputProps: {
             id: inputIssuesAddMultipleIds.description,
-            inputType: InputElementEnum.TEXT, value: '', updateValue: () => { }
+            inputType: InputElementEnum.TEXT, value: ''
         },
         validations: {
             idValidation: inputIssuesAddMultipleIds.description, validatorRules: ["required"]
@@ -77,7 +77,7 @@ export const inputsIssuesAddMultiple: FormInputColumnPropsI[] = [
         label: "Is S&P 500:",
         inputProps: {
             id: inputIssuesAddMultipleIds.isSp500,
-            inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: CATALOG_DEFAULT_TRUE_FALSE
+            inputType: InputElementEnum.SELECT, value: '', options: CATALOG_DEFAULT_TRUE_FALSE
         },
         validations: {
             idValidation: inputIssuesAddMultipleIds.isSp500, validatorRules: ["required"]
@@ -87,7 +87,7 @@ export const inputsIssuesAddMultiple: FormInputColumnPropsI[] = [
         label: "Sector:",
         inputProps: {
             id: inputIssuesAddMultipleIds.idSector,
-            inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: []
+            inputType: InputElementEnum.SELECT, value: '', options: []
         },
         validations: {
             idValidation: inputIssuesAddMultipleIds.idSector, validatorRules: ["required"]

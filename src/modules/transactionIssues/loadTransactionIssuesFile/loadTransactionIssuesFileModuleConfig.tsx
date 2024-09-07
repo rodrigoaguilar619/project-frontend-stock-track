@@ -12,7 +12,7 @@ const inputsTransactionIssuesFile: FormInputContainerPropsI = {
             label: "Broker:",
             inputProps: {
                 id: inputTransactionIssuesFileIds.idBroker,
-                inputType: InputElementEnum.SELECT, value: '', updateValue: () => { }, options: []
+                inputType: InputElementEnum.SELECT, value: '', options: []
             },
             validations: {
                 idValidation: inputTransactionIssuesFileIds.idBroker, validatorRules: ["required"]
@@ -22,7 +22,7 @@ const inputsTransactionIssuesFile: FormInputContainerPropsI = {
             label: "File transactions:",
             inputProps: {
                 id: inputTransactionIssuesFileIds.file,
-                inputType: InputElementEnum.FILE, value: null, updateValue: () => { }, options: []
+                inputType: InputElementEnum.FILE, value: null, options: []
             },
             validations: {
                 idValidation: inputTransactionIssuesFileIds.file, validatorRules: ["required"]

@@ -25,7 +25,7 @@ export function formatUpDownColorNumber(value: number, maskDataProps?: MaskDataD
     }
 
     return <div style={{ display: "inline-block", alignItems: "center" }}>
-        <img className={ maskDataProps?.addSymbolDownUp ? classColor : ""} style={{ marginRight: "1px", marginTop: "-2px" }} />
+        <img alt="" className={ maskDataProps?.addSymbolDownUp ? classColor : ""} style={{ marginRight: "1px", marginTop: "-2px" }} />
         <span style={{ color: spanColor }}>{valueFormatted}</span>
     </div>;
 }

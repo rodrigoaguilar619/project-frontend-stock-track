@@ -8,7 +8,6 @@ import { getIssueHistoricalDataService } from '@app/controller/services/issuesHi
 import { buildChartSeries } from '@app/utils/componentUtils/highChartsUtil';
 import { maskDataCustom } from '@app/utils/maskDataCustomUtil';
 import DataTableComponent from 'lib-components-react/lib/components/dataTable/dataTableComponent';
-import { setTemplateHeaderSubTitleAction } from 'lib-components-react/lib/controller/actions/templateHeaderAction';
 import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-react/lib/controller/actions/templateLoadingAction';
 import { getParameterCall } from 'lib-components-react/lib/utils/componentUtils/formUtil';
 import { debug, generateDebugClassModule } from 'lib-components-react/lib/utils/webUtils/debugUtil';
@@ -17,10 +16,12 @@ import LoadingModuleComponent from 'lib-components-react/lib/components/loadings
 import useHookLoading from 'lib-components-react/lib/hookStates/loadingHookState';
 import { columnsIssueTransactionList, columnsIssueTransactionResumenList } from './issueHistoricalDataModuleConfig';
 import { dispatchTemplateHeaderSubTitleAction } from 'lib-components-react/lib/utils/componentUtils/templateUtil';
+import { useLocation } from 'react-router-dom';
 
 const IssuesHistoricalDataModuleComponent: React.FC<IssueHistoricalDataModulePropsI> = (props) => {
 
   const dispatch = useDispatch();
+  const location = useLocation(); 
   const idIssue = getParameterCall(location, props, "idIssue");
   const initialsIssue = getParameterCall(location, props, "initialsIssue");
   const [loadingState, setLoading] = useHookLoading();

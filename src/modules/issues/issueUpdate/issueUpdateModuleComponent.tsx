@@ -8,7 +8,7 @@ import { getCatalogDataService } from '@app/controller/services/catalogService';
 import { getIssueByIdService, updateIssueService } from '@app/controller/services/issuesService';
 import { ComponentTypeEnum } from 'lib-components-react/lib/catalogs/enumCatalog';
 import { ButtonSubmitComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
-import FormInputContainersComponent from 'lib-components-react/lib/components/forms/formInputsElements/formInputContainersComponent';
+import FormInputContainersComponent from 'lib-components-react/lib/components/forms/formInputContainersComponent';
 import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-react/lib/controller/actions/templateLoadingAction';
 import { buildAlertSuccessRedux } from 'lib-components-react/lib/utils/componentUtils/alertUtil';
 import { setOptionsToColumnsContainerDefList } from 'lib-components-react/lib/utils/componentUtils/formUtil';
