@@ -46,21 +46,25 @@ const AdminModuleComponent = () => {
 
         let debugClass = generateDebugClassModule("init update action " + option);
         debug(debugClass, "start");
-
-        dispatch(setTemplateLoadingActiveMessageAction(true, "Loading update action " + option));
         
+        let loadingMessage = "";
         let genericService: (() => Promise<void>) | null = null;
         switch (option) {
             case enumOptions.UPDATE_DOLLAR_PRICE:
+                loadingMessage = "Update dollar price";
                 genericService = updateDollarPriceService.bind(null);
                 break;
             case enumOptions.UPDATE_ISSUES_LAST_PRICE:
+                loadingMessage = "Update issues last price";
                 genericService = updateIssuesLastPriceService.bind(null);
                 break;
             case enumOptions.UPDATE_ISSUES_HISTORICAL:
+                loadingMessage = "Update issues historical";
                 genericService = updateIssuesHistoricalService.bind(null);
                 break;
         }
+
+        dispatch(setTemplateLoadingActiveMessageAction(true, "Loading " + loadingMessage + "..."));
 
         axios.all([genericService()])
             .then(axios.spread((genericData: any) => {
