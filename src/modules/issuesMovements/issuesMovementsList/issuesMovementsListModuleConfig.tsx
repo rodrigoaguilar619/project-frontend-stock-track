@@ -180,7 +180,7 @@ export const columnsIssuesMovementsExpandedList: DataTableCustomPropsI[] = [
         }
     },
     {
-        field: 'issuePerformance', header: 'Yield', tableConfig: {
+        field: 'issuePerformance', header: 'Yield CP-FV', tableConfig: {
             styleCss: { width: "6%", textAlign: "center" },
         },
         maskProps: {
