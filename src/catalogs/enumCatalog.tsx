@@ -13,3 +13,8 @@ export enum MaskDataTypeCustomEnum {
     ISSUE_ALERT_MOVEMENT = "issue_alert_movement",
     FILL_TABLE_CELL_BOOLEAN = "fill_table_cell_boolean"
 }
+
+export enum CatalogTypeCurrencyEnum {
+    MXN = 1,
+    USD = 2
+}

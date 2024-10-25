@@ -49,7 +49,7 @@ const IssueMovementAddEditModuleComponent: React.FC<IssueMovementAddEditModulePr
         if (prevFormIssueMovementBuyMultipleDataRef.current.length !== formIssueMovementBuyMultipleData.length) {
 
             let formIssueMovementBuyMultipleDataCopy = [...formIssueMovementBuyMultipleData];
-            //update formIssueMovementBuyMultipleData iterating to set value transactionNumber with a value increment
+            //TODO: update formIssueMovementBuyMultipleData iterating to set value transactionNumber with a value increment
             for (let index = 0; index < formIssueMovementBuyMultipleDataCopy.length; index++) {
                 formIssueMovementBuyMultipleDataCopy[index][inputIssueMovementBuyIds.buyTransactionNumber] = index + 1;
             }
@@ -99,7 +99,7 @@ const IssueMovementAddEditModuleComponent: React.FC<IssueMovementAddEditModulePr
 
         dispatch(setTemplateLoadingActiveMessageAction(true, "Loading issue movement module"));
         initCatalogsPromiseWithSpread()
-            .then(() => axios.all([getIssueMovementService(idIssueMovement)]))
+            .then(() => axios.all([getIssueMovementService(idIssueMovement, props.idTypeCurrency)]))
             .then(axios.spread((issueMovementData) => {
 
                 let issueMovementDataClone = deepClone(issueMovementData.data.issueMovement);
@@ -126,7 +126,7 @@ const IssueMovementAddEditModuleComponent: React.FC<IssueMovementAddEditModulePr
         debug(debugClass, "start");
 
         dispatch(setTemplateLoadingActiveMessageAction(true, optionAddEdit + " issue movement"));
-        axios.all([addEditIssueMovementService(optionAddEdit, formIssueMovementData, formIssueMovementBuyMultipleData)])
+        axios.all([addEditIssueMovementService(optionAddEdit, formIssueMovementData, formIssueMovementBuyMultipleData, props.idTypeCurrency)])
             .then(axios.spread((addEditIssueData) => {
 
                 debug(debugClass, "result", addEditIssueData);

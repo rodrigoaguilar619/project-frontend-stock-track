@@ -21,8 +21,34 @@ export const columnFieldsIssuesMovementsNames = {
 
 export const columnsIssuesMovementsTotalList: DataTableCustomPropsI[] = [
     {
-        field: "performanceTotal", header: "Performance Total", tableConfig: {
-            styleCss: { width: "5%", textAlign: "center" },
+        field: "totalBuyPrice", header: "Total Buy Price", tableConfig: {
+            styleCss: { width: "25%", textAlign: "center" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeEnum.CURRENCY,
+            maskDataProps: {
+                decimalPlaces: 2,
+                addSeparateComma: true,
+                addSymbolCurrency: true
+            }
+        }
+    },
+    {
+        field: "totalCurrentPrice", header: "Total Current Price", tableConfig: {
+            styleCss: { width: "25%", textAlign: "center" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeEnum.CURRENCY,
+            maskDataProps: {
+                decimalPlaces: 2,
+                addSeparateComma: true,
+                addSymbolCurrency: true
+            }
+        }
+    },
+    {
+        field: "performanceTotal", header: "Total Performance", tableConfig: {
+            styleCss: { width: "25%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -35,7 +61,7 @@ export const columnsIssuesMovementsTotalList: DataTableCustomPropsI[] = [
     },
     {
         field: "performancePercentage", header: "Performance Percentage", tableConfig: {
-            styleCss: { width: "5%", textAlign: "center" },
+            styleCss: { width: "25%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,

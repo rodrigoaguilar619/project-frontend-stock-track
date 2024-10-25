@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { ColumnGroup } from 'primereact/columngroup';
 import { Row } from "primereact/row";
 import { Column } from "primereact/column";
+import { SelectButton, SelectButtonChangeEvent } from 'primereact/selectbutton';
 import { IssuesListModulePropsI } from "@app/_types/modules/issues/issuesList";
-import { CatalogModuleEnum, MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
+import { CatalogModuleEnum, CatalogTypeCurrencyEnum, MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
 import { getCatalogDataService } from "@app/controller/services/catalogService";
 import { getIssuesMovementsListService } from "@app/controller/services/issuesMovementsService";
 import { maskDataCustom } from "@app/utils/maskDataCustomUtil";
@@ -17,7 +18,6 @@ import { tableOptionsTemplateDefault } from "lib-components-react/lib/components
 import { ButtonCustomComponent, ButtonDataTableOptionNestedComponent, ButtonWithNestedOptionsComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
 import FilterAccoridionComponent from 'lib-components-react/lib/components/filterAccordion/filterAccordionComponent';
 import ModalComponent from "lib-components-react/lib/components/modals/modalComponent";
-import { TooltipConfigButtonNestedOptions, TooltipConfigCustom, TooltipConfigInputHelp } from 'lib-components-react/lib/components/tooltip/tooltipConfigComponents';
 import { setTemplateHeaderSubTitleAction } from "lib-components-react/lib/controller/actions/templateHeaderAction";
 import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from "lib-components-react/lib/controller/actions/templateLoadingAction";
 import useHookModal from 'lib-components-react/lib/hookStates/modalHookState';
@@ -27,6 +27,11 @@ import { manageAlertModuleError } from "lib-components-react/lib/utils/webUtils/
 import { columnFieldsIssuesMovementsNames, columnsFilterIssuesList, columnsIssuesMovementsExpandedList, columnsIssuesMovementsList, columnsIssuesMovementsTotalList, inputFitlerIssuesMovementsIds } from "./issuesMovementsListModuleConfig";
 import LoadingModuleComponent from 'lib-components-react/lib/components/loadings/loadingModuleComponent';
 import useHookLoading from 'lib-components-react/lib/hookStates/loadingHookState';
+
+const currencyOptionsSelect: { name: string, value: number }[] = [
+    { name: 'MXN', value: CatalogTypeCurrencyEnum.MXN },
+    { name: 'USD', value: CatalogTypeCurrencyEnum.USD }
+];
 
 const buildMovementBuysExpandedData = (element: any) => {
 
@@ -74,6 +79,7 @@ const buildMovementComplements = (data: any) => {
 const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (props) => {
 
     const dispatch = useDispatch();
+    const [idTypeCurrency, setIdTypeCurrency] = useState<number>(CatalogTypeCurrencyEnum.USD);
     const [issuesMovementsList, setIssuesMovementsList] = useState<[]>([]);
     const [issuesMovementsTotal, setIssuesMovementsTotal] = useState<any[]>([]);
     const [issueMovementTransactionTotalNotSold, setIssueMovementTransactionTotalNotSold] = useState<any>({});
@@ -82,6 +88,8 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
     const [modalState, setOpenModal, setCloseModal, setBodyModal, setTitleModal, setSizeModal] = useHookModal();
     const [loadingState, setLoading] = useHookLoading();
     const optionsTemplate: DataTableColumnOptionsPropsI = tableOptionsTemplateDefault;
+
+    const idTypeCurrencyRef = useRef(idTypeCurrency);
     
     const IssueMovementAddEditModuleComponent = React.lazy(() => import('@app/modules/issuesMovements/issueMovementAddEdit/issueMovementAddEditModuleComponent'))
     const IssuesHistoricalDataModuleComponent = React.lazy(() => import('@app/modules/issuesHistorical/issueHistoricalData/issueHistoricalDataModuleComponent'))
@@ -90,8 +98,13 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
         icon={faAdd}
         label="Add issue movement"
         onClick={() => {
-            setTitleModal("ADD ISSUE MOVEMENT");
-            setBodyModal((<IssueMovementAddEditModuleComponent componentType={ComponentTypeEnum.POPUP} executeParentFunction={() => { executeGetIssuesMovementsList(); setCloseModal(); }} />));
+            setTitleModal("ADD ISSUE MOVEMENT - CURRENCY: " + currencyOptionsSelect.find((x) => x.value === idTypeCurrencyRef.current)?.name);
+            setBodyModal((<IssueMovementAddEditModuleComponent
+                componentType={ComponentTypeEnum.POPUP}
+                idTypeCurrency={idTypeCurrencyRef.current}
+                executeParentFunction={() => { executeGetIssuesMovementsList(idTypeCurrencyRef.current); setCloseModal(); }}
+                />
+            ));
             setOpenModal();
         }}
         tooltip={"Add issue movement"}
@@ -116,14 +129,15 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
         buttonNestedOptions.push(
         <ButtonDataTableOptionNestedComponent
             icon={faEdit}
-            onClick={() => {
-                setTitleModal("EDIT ISSUE MOVEMENT - ISSUE: " + rowData.issue);
+            onClick={() => { console.log("test currency: ", idTypeCurrencyRef);
+                setTitleModal("EDIT ISSUE MOVEMENT - ISSUE: " + rowData.issue + " - CURRENCY: " + currencyOptionsSelect.find((x) => x.value === idTypeCurrencyRef.current)?.name);
                 setSizeModal("md");
                 setBodyModal(
             <IssueMovementAddEditModuleComponent
                 componentType={ComponentTypeEnum.POPUP}
                 idIssueMovement={rowData.idIssueMovement}
-                executeParentFunction={() => { executeGetIssuesMovementsList(); setCloseModal(); }} />);
+                idTypeCurrency={idTypeCurrencyRef.current}
+                executeParentFunction={() => { executeGetIssuesMovementsList(idTypeCurrency); setCloseModal(); }} />);
                 setOpenModal() }}
                 tooltip={"Edit issue movement id: " + rowData.idIssueMovement}
         />);
@@ -229,7 +243,7 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
         debug(debugClass, "start");
 
         dispatch(setTemplateLoadingActiveMessageAction(true, "Loading issues movements list module"));
-        axios.all([getIssuesMovementsListService(formFilterData), getCatalogDataService(CatalogModuleEnum.SECTOR),
+        axios.all([getIssuesMovementsListService(formFilterData, idTypeCurrency), getCatalogDataService(CatalogModuleEnum.SECTOR),
         getCatalogDataService(CatalogModuleEnum.BROKER), getCatalogDataService(CatalogModuleEnum.STATUS_ISSUE_MOVEMENT)])
             .then(axios.spread((issuesMovementsListData, sectorsListData, typeStockListData, statusIssueMovementListData) => {
 
@@ -248,13 +262,13 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
             });
     }
 
-    const executeGetIssuesMovementsList = () => {
+    const executeGetIssuesMovementsList = (idTypeCurrency: number) => {
 
         let debugClass = generateDebugClassModule("init get issues movements list");
         debug(debugClass, "start");
 
         dispatch(setTemplateLoadingActiveMessageAction(true, "Loading issues movements list"));
-        axios.all([getIssuesMovementsListService(formFilterData)])
+        axios.all([getIssuesMovementsListService(formFilterData, idTypeCurrency)])
             .then(axios.spread((issuesMovementsListData) => {
 
                 debug(debugClass, "result", issuesMovementsListData);
@@ -271,6 +285,13 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
             });
     }
 
+    const changeTypeCurrency = (idTypeCurrency: number) => {
+        
+        setIdTypeCurrency(idTypeCurrency);
+        idTypeCurrencyRef.current = idTypeCurrency;
+        executeGetIssuesMovementsList(idTypeCurrency);
+    }
+
     if(loadingState.isLoading)
         return <LoadingModuleComponent />
 
@@ -285,11 +306,19 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
             formContainer={columnsFilterIssuesList}
             title="Issues Movement Filter"
             formData={formFilterData}
-            executeFilterSearch={executeGetIssuesMovementsList}
+            executeFilterSearch={executeGetIssuesMovementsList.bind(this, idTypeCurrency)}
             selectorUpdateFormData={setFormFilterData}
         />
         <div style={{ textAlign: "right", paddingBottom: "5px", paddingTop: "5px" }}>
             {buttonIssueMovementAdd}
+        </div>
+        <br></br>
+        <div className="justify-content-center">
+        <SelectButton  value={idTypeCurrency} onChange={(e: SelectButtonChangeEvent) => changeTypeCurrency(e.value)}
+            optionLabel="name" options={currencyOptionsSelect} allowEmpty={false}
+            className="custom-select-button"
+            style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        />
         </div>
         <br></br>
         <DataTableComponent
@@ -309,7 +338,7 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
             footerButtons={footerButtons}
             columnOptionsTemplate={optionsTemplate}
             totalRows={issuesMovementsList.length}
-            isShowRowsPage={false}
+            isShowRowsPage={true}
             customMaskData={maskDataCustom}
             rowExpansionTemplate={rowExpansionTemplate}
             extraProps={{
@@ -318,9 +347,6 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
                 headerColumnGroup: headerGroup, footerColumnGroup: footerGroup
             }}
         />
-        <TooltipConfigInputHelp />
-        <TooltipConfigCustom />
-        <TooltipConfigButtonNestedOptions />
     </div>
     );
 }
