@@ -46,10 +46,10 @@ const ChartStockResumeComponent: React.FC<ChartStockResumeComponentPropsI> = (pr
         let fairValueDownUp = null;
 
         if (props.stockData.fairValue !== undefined && priceToShow !== undefined) {
-            fairValueDownUp = calculateGainLossPercentage(props.stockData.fairValue, priceToShow);
+            fairValueDownUp = calculateGainLossPercentage(priceToShow, props.stockData.fairValue);
         
-            if (Number.isNaN(fairValueDownUp) || !isFinite(fairValueDownUp)) {
-                fairValueDownUp = formatDecimalsLimit(dataWithValue(priceDayDownUp) ? priceDayDownUp : 0, 1);
+            if (!Number.isNaN(fairValueDownUp) && isFinite(fairValueDownUp)) {
+                fairValueDownUp = formatDecimalsLimit(dataWithValue(fairValueDownUp) ? fairValueDownUp : 0, 2);
             }
             else {
                 fairValueDownUp = undefined;
@@ -63,13 +63,14 @@ const ChartStockResumeComponent: React.FC<ChartStockResumeComponentPropsI> = (pr
     let priceDayToShow = props.stockData.previousClosePrice;
     let isCurrentPrice = false;
     let priceDayDownUp = getPriceDayDownUp();
-    let fairValueDownUp = getFairValueDayDownUp();
 
     if (props.stockData.currentPriceDate !== undefined && props.stockData.currentPriceDate !== null) {
         isCurrentPrice = compareDatesWithoutTime(new Date(props.stockData.currentPriceDate), new Date());
         priceToShow = props.stockData.currentPrice;
         priceDayToShow = props.stockData.currentPriceDate;
     }
+
+    let fairValueDownUp = getFairValueDayDownUp();
 
     const renderChartStockComponent = () => {
 
@@ -93,10 +94,10 @@ const ChartStockResumeComponent: React.FC<ChartStockResumeComponentPropsI> = (pr
         <Container className={"customBootstrapRow"} style={{ backgroundColor: "white", borderBottom: "0.01rem solid black", maxWidth: "100%" }}>
             <Row style={styleRow}>
                 <Col title="Fair value" style={{ textAlign: "center", fontSize: "9px", ...styleColumn }}>
-                    <b style={{ fontSize: "12px", color: "orange" }}> FV: {dataWithValue(props.stockData.fairValue) ? formatNumberDecimal(props.stockData.fairValue, 1, false, false) : "---"}</b>
+                    <b style={{ fontSize: "12px", color: "orange" }}> FV: {dataWithValue(props.stockData.fairValue) ? formatNumberDecimal(props.stockData.fairValue, 2, false, false) : "---"}</b>
                 </Col>
                 <Col title={isCurrentPrice ? "Current price" : "Last price historical record"} style={{ textAlign: "center", ...styleColumn }}>
-                    <b style={{ fontSize: "12px" }}> {isCurrentPrice ? "CP:" : "LP:"} {dataWithValue(priceToShow) ? formatNumberDecimal(priceToShow, 1, false, false) : "---"}</b>
+                    <b style={{ fontSize: "12px" }}> {isCurrentPrice ? "CP:" : "LP:"} {dataWithValue(priceToShow) ? formatNumberDecimal(priceToShow, 2, false, false) : "---"}</b>
                 </Col>
                 <Col title="Yield. Difference of current price over price of previous day" style={{ textAlign: "center", ...styleColumn }}>
                     <b style={{ fontSize: "12px" }}> {"Yield:"} {priceDayDownUp == 0 ? "---" : maskDataCustom(priceDayDownUp, { maskType: MaskDataTypeCustomEnum.DOWN_UP, maskDataCustomProps: { addSymbolDownUp: true } })}</b>

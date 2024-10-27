@@ -2,6 +2,7 @@ import React from 'react'
 import { ROUTE_ADMIN_MODULE, ROUTE_ISSUES_HISTORICAL_DATA_GET, ROUTE_ISSUES_LIST_GET, ROUTE_ISSUES_MANAGER_LIST_GET, ROUTE_ISSUES_MOVEMENTS_LIST_GET, ROUTE_LOAD_TRANSACTION_ISSUES_FILE_GET, ROUTE_PORTFOLIO_LIST_GET, ROUTE_TRANSACTION_ISSUES_TRACK_LIST_GET } from '@app/catalogs/routesCatalog';
 import { _APP_ENVIRONMENT_ } from 'lib-components-react/lib/catalogs/constantCatalog';
 import { ComponentTypeEnum, EnvironmentEnum } from 'lib-components-react/lib/catalogs/enumCatalog';
+import { CatalogTypeCurrencyEnum } from '@app/catalogs/enumCatalog';
 
 const IssuesListComponent = React.lazy(() => import('@app/modules/issues/issuesList/issuesListModuleComponent'));
 const IssuesManagerListComponent = React.lazy(() => import('@app/modules/issuesManager/issuesManagerList/issuesManagerListModuleComponent'));
@@ -22,7 +23,7 @@ const routesDev = [
   { path: "/issues/issueUpdate", name: 'Issue update', element: () => <IssueUpdateComponent componentType={ComponentTypeEnum.MODULE} idIssue={2} /> },
   { path: "/issues/issuesAddMultiple", name: 'Issues add multiple', element: () => <IssuesAddMultipleComponent componentType={ComponentTypeEnum.MODULE} /> },
   { path: "/issuesManager/issueManagerUpdate", name: 'Manager Issue update', element: () => <IssuesManagerUpdateComponent componentType={ComponentTypeEnum.MODULE} idIssueManager={6} /> },
-  { path: "/issuesMovements/issueMovementAddEdit", name: 'Issue Movement Add Edit', element: () => <IssueMovementAddEditComponent componentType={ComponentTypeEnum.MODULE} idIssueMovement={30} /> },
+  { path: "/issuesMovements/issueMovementAddEdit", name: 'Issue Movement Add Edit', element: () => <IssueMovementAddEditComponent componentType={ComponentTypeEnum.MODULE} idIssueMovement={30} idTypeCurrency={CatalogTypeCurrencyEnum.USD} /> },
   { path: "/issuesHistorical/issueHistoricalData", name: 'Issue Historical Data', element: () => <IssueHistoricalDataComponent componentType={ComponentTypeEnum.MODULE} idIssue={111} initialsIssue='EON' /> },
 ]
 

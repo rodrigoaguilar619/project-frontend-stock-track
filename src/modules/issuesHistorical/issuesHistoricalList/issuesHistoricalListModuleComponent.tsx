@@ -77,10 +77,13 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
     });
   }
 
-  const executeGetissuesHistoricalList = (issuesHistoricalList: any[], formFilterData: any, currentPage: number, rowsPerPage: number) => {
+  const executeGetissuesHistoricalList = (issuesHistoricalList: any[], formFilterData: any, currentPage: number, rowsPerPage: number, isManageLoading: boolean) => {
 
     let debugClass = generateDebugClassModule("init get issues historical list");
     debug(debugClass, "start");
+
+    if (isManageLoading)
+      dispatch(setTemplateLoadingActiveMessageAction(true, "Loading issues historical list"));
 
     axios.all([getIssuesHistoricalListService(formFilterData, currentPage, rowsPerPage)])
       .then(axios.spread((issuesHistoricalListData) => {
@@ -90,20 +93,30 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
         setCurrentPage(currentPage + 1);
         setTotalGlobalIssuesRows(issuesHistoricalListData.data.totalIssues);
 
+        if (isManageLoading)
+          dispatch(setTemplateLoadingIsActiveAction(false));
+
       }))
       .catch((error) => {
         manageAlertModuleError(dispatch, props.componentType, debugClass, error);
+
+        if (isManageLoading)
+          dispatch(setTemplateLoadingIsActiveAction(false));
+      })
+      .finally(() => {
+        if (isManageLoading)
+          setLoading(false);
       });
   }
 
   const executeResetIssuesHistoricalList = () => {
 
-    executeGetissuesHistoricalList([], formFilterData, 1, rowsPerPage);
+    executeGetissuesHistoricalList([], formFilterData, 1, rowsPerPage, true);
   }
 
   const renderInfiniteScroll = () => {
     return <LoadingInfiniteScrollComponent itemsLength={issuesHistoricalList.length}
-      executeFunction={totalGlobalIssuesRows !== null ? (() => { executeGetissuesHistoricalList(issuesHistoricalList, formFilterData, currentPage, rowsPerPage) }) : null} totalItems={totalGlobalIssuesRows} />
+      executeFunction={totalGlobalIssuesRows !== null ? (() => { executeGetissuesHistoricalList(issuesHistoricalList, formFilterData, currentPage, rowsPerPage, false) }) : null} totalItems={totalGlobalIssuesRows} />
   }
 
   const handleYahooClick = (issueData: any) => {

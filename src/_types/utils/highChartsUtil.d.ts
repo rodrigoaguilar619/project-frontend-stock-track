@@ -1,6 +1,8 @@
 export interface FlagDataI {
-    date: number;
+    dateBuy: number;
+    dateSell: number;
     brokerDescription: string;
     totalShares: number;
-    price: number;
+    priceBuy: number;
+    priceSell: number;
   }

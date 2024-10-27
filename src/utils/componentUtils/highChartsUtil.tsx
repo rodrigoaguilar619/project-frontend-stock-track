@@ -23,13 +23,24 @@ export const buildFlagsChartFromTransaction = (transactionsList: FlagDataI[]) =>
 
         let textFlag = [];
 
-        textFlag.push("<b>------ TRANSACTION BUYS ------</b> ");
         textFlag.push("<b>Broker:</b> " + transaction.brokerDescription);
         textFlag.push("<b>Total shares:</b> " + transaction.totalShares);
-        textFlag.push("<b>Buy price:</b>&nbsp;" + maskData(transaction.price, { maskType: MaskDataTypeEnum.CURRENCY, maskDataProps: { decimalPlaces: 2, addSymbolCurrency: true, addSeparateComma: true } }));
-        textFlag.push("<b>Total buy:</b>&nbsp;&nbsp;" + maskData((transaction.price * transaction.totalShares), { maskType: MaskDataTypeEnum.CURRENCY, maskDataProps: { decimalPlaces: 2, addSymbolCurrency: true, addSeparateComma: true } }));
+        textFlag.push("");
 
-        flagsChart.push({ x: transaction.date, title: "B", text: textFlag.join("<br>") });
+        textFlag.push("<b>------ TRANSACTION BUYS ------</b> ");
+        textFlag.push("<b>Buy price:</b>&nbsp;&nbsp;" + maskData(transaction.priceBuy, { maskType: MaskDataTypeEnum.CURRENCY, maskDataProps: { decimalPlaces: 2, addSymbolCurrency: true, addSeparateComma: true } }));
+        textFlag.push("<b>Total buy:</b>&nbsp;&nbsp;" + maskData((transaction.priceBuy * transaction.totalShares), { maskType: MaskDataTypeEnum.CURRENCY, maskDataProps: { decimalPlaces: 2, addSymbolCurrency: true, addSeparateComma: true } }));
+
+        if (transaction.priceSell !== undefined && transaction.priceSell !== null) {
+            textFlag.push("");
+            textFlag.push("<b>------ TRANSACTION SELLS ------</b> ");
+            textFlag.push("<b>Sell date:</b>&nbsp;&nbsp;" + maskData(transaction.dateSell, { maskType: MaskDataTypeEnum.DATE, maskDataProps: { format: "YYYY-MM-DD" } }));
+            textFlag.push("<b>Sell price:</b>&nbsp;" + maskData(transaction.priceSell, { maskType: MaskDataTypeEnum.CURRENCY, maskDataProps: { decimalPlaces: 2, addSymbolCurrency: true, addSeparateComma: true } }));
+            textFlag.push("<b>Total Sell:</b>&nbsp;&nbsp;" + maskData((transaction.priceSell * transaction.totalShares), { maskType: MaskDataTypeEnum.CURRENCY, maskDataProps: { decimalPlaces: 2, addSymbolCurrency: true, addSeparateComma: true } }));
+        }
+
+
+        flagsChart.push({ x: transaction.dateBuy, title: "B", text: textFlag.join("<br>") });
     });
 
     return { type: 'flags', data: flagsChart, onSeries: 'dataseries', shape: 'squarepin', width: 16 };

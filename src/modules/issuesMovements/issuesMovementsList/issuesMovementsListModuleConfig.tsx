@@ -1,6 +1,7 @@
 import { DataTableCustomPropsI } from "@app/_types/utils/maskDataCustomUtil";
 import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
 import { FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
+import { CATALOG_DEFAULT_TRUE_FALSE } from "lib-components-react/lib/catalogs/defaultCatalog";
 import { InputElementEnum, MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
 export const columnFieldsIssuesMovementsNames = {
@@ -21,8 +22,34 @@ export const columnFieldsIssuesMovementsNames = {
 
 export const columnsIssuesMovementsTotalList: DataTableCustomPropsI[] = [
     {
-        field: "performanceTotal", header: "Performance Total", tableConfig: {
-            styleCss: { width: "5%", textAlign: "center" },
+        field: "totalBuyPrice", header: "Total Buy Price", tableConfig: {
+            styleCss: { width: "25%", textAlign: "center" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeEnum.CURRENCY,
+            maskDataProps: {
+                decimalPlaces: 2,
+                addSeparateComma: true,
+                addSymbolCurrency: true
+            }
+        }
+    },
+    {
+        field: "totalCurrentPrice", header: "Total Current Price", tableConfig: {
+            styleCss: { width: "25%", textAlign: "center" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeEnum.CURRENCY,
+            maskDataProps: {
+                decimalPlaces: 2,
+                addSeparateComma: true,
+                addSymbolCurrency: true
+            }
+        }
+    },
+    {
+        field: "performanceTotal", header: "Total Performance", tableConfig: {
+            styleCss: { width: "25%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -35,7 +62,7 @@ export const columnsIssuesMovementsTotalList: DataTableCustomPropsI[] = [
     },
     {
         field: "performancePercentage", header: "Performance Percentage", tableConfig: {
-            styleCss: { width: "5%", textAlign: "center" },
+            styleCss: { width: "25%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -180,7 +207,7 @@ export const columnsIssuesMovementsExpandedList: DataTableCustomPropsI[] = [
         }
     },
     {
-        field: 'issuePerformance', header: 'Yield', tableConfig: {
+        field: 'issuePerformance', header: 'Yield CP-FV', tableConfig: {
             styleCss: { width: "6%", textAlign: "center" },
         },
         maskProps: {
@@ -251,6 +278,8 @@ export const inputFitlerIssuesMovementsIds = {
     statusIssueMovement: "idStatusIssueMovement",
     sector: "idSector",
     broker: "idBroker",
+    filterYear: "year",
+    isSold: "isSold"
 }
 
 export const columnsFilterIssuesList: FormInputContainerPropsI = {
@@ -276,7 +305,21 @@ export const columnsFilterIssuesList: FormInputContainerPropsI = {
                 inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
             }
         },
+        {
+            label: "Year:",
+            inputProps: {
+                id: inputFitlerIssuesMovementsIds.filterYear,
+                inputType: InputElementEnum.SELECT, value: null, options: [], isOptionAll: true
+            }
+        },
+        {
+            label: "Is Sold:",
+            inputProps: {
+                id: inputFitlerIssuesMovementsIds.isSold,
+                inputType: InputElementEnum.SELECT, value: '', options: CATALOG_DEFAULT_TRUE_FALSE, isOptionAll: true
+            }
+        },
     ],
-    columnstotal: 5,
+    columnstotal: 6,
     containerWidth: "100%"
 }
