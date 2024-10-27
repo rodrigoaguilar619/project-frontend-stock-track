@@ -27,6 +27,7 @@ import { manageAlertModuleError } from "lib-components-react/lib/utils/webUtils/
 import { columnFieldsIssuesMovementsNames, columnsFilterIssuesList, columnsIssuesMovementsExpandedList, columnsIssuesMovementsList, columnsIssuesMovementsTotalList, inputFitlerIssuesMovementsIds } from "./issuesMovementsListModuleConfig";
 import LoadingModuleComponent from 'lib-components-react/lib/components/loadings/loadingModuleComponent';
 import useHookLoading from 'lib-components-react/lib/hookStates/loadingHookState';
+import { getYears } from "@app/utils/dateUtil";
 
 const currencyOptionsSelect: { name: string, value: number }[] = [
     { name: 'MXN', value: CatalogTypeCurrencyEnum.MXN },
@@ -248,10 +249,13 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
             .then(axios.spread((issuesMovementsListData, sectorsListData, typeStockListData, statusIssueMovementListData) => {
 
                 debug(debugClass, "result", issuesMovementsListData, sectorsListData, typeStockListData, statusIssueMovementListData);
+                
+                let yearCatalog = getYears();
                 setIssueMovementData(issuesMovementsListData.data);
                 setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, sectorsListData.data.catalogs, inputFitlerIssuesMovementsIds.sector);
                 setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, typeStockListData.data.catalogs, inputFitlerIssuesMovementsIds.broker);
                 setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, statusIssueMovementListData.data.catalogs, inputFitlerIssuesMovementsIds.statusIssueMovement);
+                setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, yearCatalog, inputFitlerIssuesMovementsIds.filterYear);
                 dispatch(setTemplateLoadingIsActiveAction(false));
                 setLoading(false);
 

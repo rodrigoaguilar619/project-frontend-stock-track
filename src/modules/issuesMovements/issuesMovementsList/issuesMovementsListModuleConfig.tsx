@@ -1,6 +1,7 @@
 import { DataTableCustomPropsI } from "@app/_types/utils/maskDataCustomUtil";
 import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
 import { FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
+import { CATALOG_DEFAULT_TRUE_FALSE } from "lib-components-react/lib/catalogs/defaultCatalog";
 import { InputElementEnum, MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
 export const columnFieldsIssuesMovementsNames = {
@@ -277,6 +278,8 @@ export const inputFitlerIssuesMovementsIds = {
     statusIssueMovement: "idStatusIssueMovement",
     sector: "idSector",
     broker: "idBroker",
+    filterYear: "year",
+    isSold: "isSold"
 }
 
 export const columnsFilterIssuesList: FormInputContainerPropsI = {
@@ -302,7 +305,21 @@ export const columnsFilterIssuesList: FormInputContainerPropsI = {
                 inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
             }
         },
+        {
+            label: "Year:",
+            inputProps: {
+                id: inputFitlerIssuesMovementsIds.filterYear,
+                inputType: InputElementEnum.SELECT, value: null, options: [], isOptionAll: true
+            }
+        },
+        {
+            label: "Is Sold:",
+            inputProps: {
+                id: inputFitlerIssuesMovementsIds.isSold,
+                inputType: InputElementEnum.SELECT, value: '', options: CATALOG_DEFAULT_TRUE_FALSE, isOptionAll: true
+            }
+        },
     ],
-    columnstotal: 5,
+    columnstotal: 6,
     containerWidth: "100%"
 }
