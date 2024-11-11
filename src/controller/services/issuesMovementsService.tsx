@@ -2,7 +2,7 @@ import { HttpMethodEnum, OptionAddEditEnum } from "lib-components-react/lib/cata
 import { generateDebugClassService } from "lib-components-react/lib/utils/webUtils/debugUtil";
 import { manageCallApiAuthPromise } from "lib-components-react/lib/utils/webUtils/httpManagerUtil";
 import { buildDataTableConfig } from "lib-components-react/lib/utils/dataUtils/jsonUtil";
-import { URL_ISSUES_MOVEMENTS_INDIVIDUAL_ADD, URL_ISSUES_MOVEMENTS_INDIVIDUAL_GET, URL_ISSUES_MOVEMENTS_INDIVIDUAL_UPDATE, URL_ISSUES_MOVEMENTS_LIST_GET } from "@app/catalogs/uriCatalog";
+import { URL_ISSUES_MOVEMENTS_INDIVIDUAL_ADD, URL_ISSUES_MOVEMENTS_INDIVIDUAL_DELETE, URL_ISSUES_MOVEMENTS_INDIVIDUAL_GET, URL_ISSUES_MOVEMENTS_INDIVIDUAL_UPDATE, URL_ISSUES_MOVEMENTS_LIST_GET } from "@app/catalogs/uriCatalog";
 
 export function getIssuesMovementsListService(filters: Record<string, any>, idTypeCurrency: number) {
 
@@ -30,6 +30,16 @@ export function addEditIssueMovementService(optionAddEdit: OptionAddEditEnum, is
 
     let url = optionAddEdit === OptionAddEditEnum.EDIT ? URL_ISSUES_MOVEMENTS_INDIVIDUAL_UPDATE : URL_ISSUES_MOVEMENTS_INDIVIDUAL_ADD;
     let params = {...issueMovementData, issueMovementBuysList: issueMovementBuysData, idTypeCurrency: idTypeCurrency};
+    
+    return manageCallApiAuthPromise(debugClass, url, params, {}, HttpMethodEnum.POST);
+}
+
+export function deleteIssueMovementService(idIssueMovement: number) {
+
+    let debugClass = generateDebugClassService("Delete issue movement");
+
+    let url = URL_ISSUES_MOVEMENTS_INDIVIDUAL_DELETE;
+    let params = {idIssueMovement: idIssueMovement};
     
     return manageCallApiAuthPromise(debugClass, url, params, {}, HttpMethodEnum.POST);
 }

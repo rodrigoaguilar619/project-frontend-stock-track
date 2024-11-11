@@ -18,6 +18,7 @@ export const URL_ISSUES_MOVEMENTS_LIST_GET = _URL_API_MAIN_ + "api/issuesMovemen
 export const URL_ISSUES_MOVEMENTS_INDIVIDUAL_GET = _URL_API_MAIN_ + "api/issuesMovements/getIssueMovement";
 export const URL_ISSUES_MOVEMENTS_INDIVIDUAL_ADD = _URL_API_MAIN_ + "api/issuesMovements/saveIssueMovement";
 export const URL_ISSUES_MOVEMENTS_INDIVIDUAL_UPDATE = _URL_API_MAIN_ + "api/issuesMovements/updateIssueMovement";
+export const URL_ISSUES_MOVEMENTS_INDIVIDUAL_DELETE = _URL_API_MAIN_ + "api/issuesMovements/deleteIssueMovement";
 export const URL_PORTFOLIO_LIST_GET = _URL_API_MAIN_ + "api/portfolio/getPortfolioList";
 export const URL_PORTFOLIO_DATA_GET = _URL_API_MAIN_ + "api/portfolio/getPortfolioData";
 export const URL_TRANSACTION_ISSUES_TRACK_LIST_GET = _URL_API_MAIN_ + "api/transactions/getTransactionIssuesTrack";
