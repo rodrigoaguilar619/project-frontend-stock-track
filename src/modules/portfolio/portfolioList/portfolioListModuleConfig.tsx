@@ -12,12 +12,12 @@ export const columnsPortfolioList: DataTableCustomPropsI[] = [
     },
     {
         field: 'typeCurrency', header: 'Currency', tableConfig: {
-            styleCss: { width: "10%", textAlign: "center" },
+            styleCss: { width: "7%", textAlign: "center" },
         }
     },
     {
         field: 'totalDeposits', header: 'Total Deposits', tableConfig: {
-            styleCss: { width: "15%", textAlign: "center" },
+            styleCss: { width: "12%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -29,28 +29,29 @@ export const columnsPortfolioList: DataTableCustomPropsI[] = [
         }
     },
     {
-        field: 'totalSecuritiesValue', header: 'Total Securities Value', tableConfig: {
-            styleCss: { width: "15%", textAlign: "center" },
+        field: 'totalCash', header: 'Total Cash', tableConfig: {
+            styleCss: { width: "12%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
             maskDataProps: {
-                addSeparateComma: true,
                 decimalPlaces: 2,
-                addSymbolCurrency: true
+                addSymbolCurrency: true,
+                addSeparateComma: true
             }
         }
     },
     {
-        field: 'totalSecuritiesValueMxn', header: 'Total Securities Value (MXN)', tableConfig: {
+        field: 'totalGainLoss', header: 'Total Gain/Loss', tableConfig: {
             styleCss: { width: "15%", textAlign: "center" },
         },
         maskProps: {
-            maskType: MaskDataTypeEnum.CURRENCY,
-            maskDataProps: {
+            maskType: MaskDataTypeCustomEnum.DOWN_UP,
+            maskDataCustomProps: {
                 addSeparateComma: true,
                 decimalPlaces: 2,
-                addSymbolCurrency: true
+                addSymbolCurrency: true,
+                addSymbolDownUp: true
             }
         }
     },
@@ -93,8 +94,8 @@ export const columnsPortfolioData: DataTableCustomPropsI[] = [
         }
     },
     {
-        field: 'costAvgBuyPerTitle', header: 'Cost Avg Buy Per Title (USD)', tableConfig: {
-            styleCss: { width: "15%", textAlign: "center" },
+        field: 'costAvgBuyPerTitle', header: 'Cost Avg Buy Per Title', tableConfig: {
+            styleCss: { width: "10%", textAlign: "right" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -106,8 +107,8 @@ export const columnsPortfolioData: DataTableCustomPropsI[] = [
         }
     },
     {
-        field: 'costAvgSellPerTitleMxn', header: 'Cost Avg Sell Per Title (MXN)', tableConfig: {
-            styleCss: { width: "15%", textAlign: "center" },
+        field: 'costAvgSellPerTitle', header: 'Cost Avg Sell Per Title', tableConfig: {
+            styleCss: { width: "10%", textAlign: "right" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -119,20 +120,8 @@ export const columnsPortfolioData: DataTableCustomPropsI[] = [
         }
     },
     {
-        field: 'costTotalSell', header: 'Cost Total Sell (USD)', tableConfig: {
-            styleCss: { width: "15%", textAlign: "center" },
-        },
-        maskProps: {
-            maskType: MaskDataTypeEnum.CURRENCY,
-            maskDataProps: {
-                addSeparateComma: true,
-                decimalPlaces: 2,
-                addSymbolCurrency: true
-            }
-        }
-    },{
-        field: 'costTotalSellMxn', header: 'Cost Total Sell (MXN)', tableConfig: {
-            styleCss: { width: "15%", textAlign: "center" },
+        field: 'costTotalBuy', header: 'Cost Total Buy', tableConfig: {
+            styleCss: { width: "9%", textAlign: "right" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -144,8 +133,35 @@ export const columnsPortfolioData: DataTableCustomPropsI[] = [
         }
     },
     {
-        field: 'yield', header: 'Yield', tableConfig: {
-            styleCss: { width: "15%", textAlign: "center" },
+        field: 'costTotalSell', header: 'Cost Total Sell', tableConfig: {
+            styleCss: { width: "9%", textAlign: "right" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeEnum.CURRENCY,
+            maskDataProps: {
+                addSeparateComma: true,
+                decimalPlaces: 2,
+                addSymbolCurrency: true
+            }
+        }
+    },
+    {
+        field: 'totalGainLoss', header: 'Total Gain/Loss', tableConfig: {
+            styleCss: { width: "9%", textAlign: "right" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeCustomEnum.DOWN_UP,
+            maskDataCustomProps: {
+                addSeparateComma: true,
+                decimalPlaces: 2,
+                addSymbolPercent: true,
+                addSymbolDownUp: true
+            }
+        }
+    },
+    {
+        field: 'totalYield', header: 'Yield', tableConfig: {
+            styleCss: { width: "10%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
