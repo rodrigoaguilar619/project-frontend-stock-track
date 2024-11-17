@@ -7,17 +7,17 @@ import { InputElementEnum, MaskDataTypeEnum } from "lib-components-react/lib/cat
 export const columnsPortfolioList: DataTableCustomPropsI[] = [
     {
         field: 'broker', header: 'Broker', tableConfig: {
-            styleCss: { width: "15%", textAlign: "center" },
+            styleCss: { width: "10%", textAlign: "center" },
         }
     },
     {
         field: 'typeCurrency', header: 'Currency', tableConfig: {
-            styleCss: { width: "7%", textAlign: "center" },
+            styleCss: { width: "5%", textAlign: "center" },
         }
     },
     {
         field: 'totalDeposits', header: 'Total Deposits', tableConfig: {
-            styleCss: { width: "12%", textAlign: "center" },
+            styleCss: { width: "9%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -30,7 +30,72 @@ export const columnsPortfolioList: DataTableCustomPropsI[] = [
     },
     {
         field: 'totalCash', header: 'Total Cash', tableConfig: {
-            styleCss: { width: "12%", textAlign: "center" },
+            styleCss: { width: "9%", textAlign: "center" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeEnum.CURRENCY,
+            maskDataProps: {
+                decimalPlaces: 2,
+                addSymbolCurrency: true,
+                addSeparateComma: true
+            }
+        }
+    },
+    {
+        field: 'totalDividends', header: 'Total Dividends', tableConfig: {
+            styleCss: { width: "9%", textAlign: "center" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeEnum.CURRENCY,
+            maskDataProps: {
+                decimalPlaces: 2,
+                addSymbolCurrency: true,
+                addSeparateComma: true
+            }
+        }
+    },
+    {
+        field: 'totalDividendTaxes', header: 'Total Dividends Taxes', tableConfig: {
+            styleCss: { width: "9%", textAlign: "center" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeEnum.CURRENCY,
+            maskDataProps: {
+                decimalPlaces: 2,
+                addSymbolCurrency: true,
+                addSeparateComma: true
+            }
+        }
+    },
+    {
+        field: 'totalCashInLieu', header: 'Total Cash In Lieu', tableConfig: {
+            styleCss: { width: "9%", textAlign: "center" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeEnum.CURRENCY,
+            maskDataProps: {
+                decimalPlaces: 2,
+                addSymbolCurrency: true,
+                addSeparateComma: true
+            }
+        }
+    },
+    {
+        field: 'totalFees', header: 'Total Fees', tableConfig: {
+            styleCss: { width: "7%", textAlign: "center" },
+        },
+        maskProps: {
+            maskType: MaskDataTypeEnum.CURRENCY,
+            maskDataProps: {
+                decimalPlaces: 2,
+                addSymbolCurrency: true,
+                addSeparateComma: true
+            }
+        }
+    },
+    {
+        field: 'totalBankInterests', header: 'Total Bank Interests', tableConfig: {
+            styleCss: { width: "9%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeEnum.CURRENCY,
@@ -43,7 +108,7 @@ export const columnsPortfolioList: DataTableCustomPropsI[] = [
     },
     {
         field: 'totalGainLoss', header: 'Total Gain/Loss', tableConfig: {
-            styleCss: { width: "15%", textAlign: "center" },
+            styleCss: { width: "9%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -57,7 +122,7 @@ export const columnsPortfolioList: DataTableCustomPropsI[] = [
     },
     {
         field: 'yield', header: 'Yield', tableConfig: {
-            styleCss: { width: "15%", textAlign: "center" },
+            styleCss: { width: "9%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -154,7 +219,7 @@ export const columnsPortfolioData: DataTableCustomPropsI[] = [
             maskDataCustomProps: {
                 addSeparateComma: true,
                 decimalPlaces: 2,
-                addSymbolPercent: true,
+                addSymbolCurrency: true,
                 addSymbolDownUp: true
             }
         }
