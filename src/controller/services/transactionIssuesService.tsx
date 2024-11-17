@@ -1,7 +1,7 @@
 import { HttpMethodEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 import { generateDebugClassService } from "lib-components-react/lib/utils/webUtils/debugUtil";
 import { manageCallApiAuthPromise } from "lib-components-react/lib/utils/webUtils/httpManagerUtil";
-import { URL_LOAD_TRANSACTION_ISSUES_FILE_GET, URL_TRANSACTION_ISSUES_TRACK_LIST_GET } from "@app/catalogs/uriCatalog";
+import { URL_LOAD_TRANSACTION_ISSUES_FILE_GET, URL_LOAD_TRANSACTION_MONEY_FILE_GET, URL_TRANSACTION_ISSUES_TRACK_LIST_GET } from "@app/catalogs/uriCatalog";
 
 export function getTransactionIssuesTrackListService() {
 
@@ -19,6 +19,16 @@ export function loadTransactionIssuesFileService(formData: Record<string, any>) 
 
     let params = {...formData};
     let url = URL_LOAD_TRANSACTION_ISSUES_FILE_GET;
+    
+    return manageCallApiAuthPromise(debugClass, url, params, { headers: { 'content-type': 'multipart/form-data'} }, HttpMethodEnum.POST);
+}
+
+export function loadTransactionMoneyFileService(formData: Record<string, any>) {
+
+    let debugClass = generateDebugClassService("Load Transaction Money list");
+
+    let params = {...formData};
+    let url = URL_LOAD_TRANSACTION_MONEY_FILE_GET;
     
     return manageCallApiAuthPromise(debugClass, url, params, { headers: { 'content-type': 'multipart/form-data'} }, HttpMethodEnum.POST);
 }

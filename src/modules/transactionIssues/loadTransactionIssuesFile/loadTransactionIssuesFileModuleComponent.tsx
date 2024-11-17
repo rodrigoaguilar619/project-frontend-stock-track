@@ -4,7 +4,7 @@ import axios from 'axios';
 import { LoadTransactionIssuesFileModulePropsI } from '@app/_types/modules/transactionIssues/loadTransactionIssuesFile';
 import { CatalogModuleEnum } from '@app/catalogs/enumCatalog';
 import { getCatalogDataService } from '@app/controller/services/catalogService';
-import { loadTransactionIssuesFileService } from '@app/controller/services/transactionIssuesService';
+import { loadTransactionIssuesFileService, loadTransactionMoneyFileService } from '@app/controller/services/transactionIssuesService';
 import { ComponentTypeEnum } from 'lib-components-react/lib/catalogs/enumCatalog';
 import { ButtonSubmitComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
 import FormInputContainersComponent from 'lib-components-react/lib/components/forms/formInputContainersComponent';
@@ -56,16 +56,18 @@ const LoadTransactionIssuesFileModuleComponent: React.FC<LoadTransactionIssuesFi
     }
 
     const showAlertSuccess = (componentType: ComponentTypeEnum) => {
-        buildAlertSuccessRedux(dispatch, componentType, "Transaction issues loaded successfully");
+        buildAlertSuccessRedux(dispatch, componentType, "Transactions loaded successfully");
     }
 
     const executeSubmitIssueMovementFormData = () => {
 
-        let debugClass = generateDebugClassModule("init submit transaction issues file form data");
+        let debugClass = generateDebugClassModule("init submit transaction file form data");
         debug(debugClass, "start");
 
-        dispatch(setTemplateLoadingActiveMessageAction(true, "Loading transaction issues file"));
-        axios.all([loadTransactionIssuesFileService(formTransactionIssueFileData)])
+        let transactionService = formTransactionIssueFileData[inputTransactionIssuesFileIds.idFileTransaction] == 1 ? loadTransactionIssuesFileService : loadTransactionMoneyFileService;
+
+        dispatch(setTemplateLoadingActiveMessageAction(true, "Loading transaction file"));
+        axios.all([transactionService(formTransactionIssueFileData)])
             .then(axios.spread((loadTransactionIssuesData) => {
 
                 debug(debugClass, "result", loadTransactionIssuesData);

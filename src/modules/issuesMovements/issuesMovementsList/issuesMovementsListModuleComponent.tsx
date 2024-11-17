@@ -8,9 +8,9 @@ import { SelectButton, SelectButtonChangeEvent } from 'primereact/selectbutton';
 import { IssuesListModulePropsI } from "@app/_types/modules/issues/issuesList";
 import { CatalogModuleEnum, CatalogTypeCurrencyEnum, MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
 import { getCatalogDataService } from "@app/controller/services/catalogService";
-import { getIssuesMovementsListService } from "@app/controller/services/issuesMovementsService";
+import { deleteIssueMovementService, getIssuesMovementsListService } from "@app/controller/services/issuesMovementsService";
 import { maskDataCustom } from "@app/utils/maskDataCustomUtil";
-import { faAdd, faDashboard, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faDashboard, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { DataTableColumnOptionsPropsI } from "lib-components-react/lib/@types/components/dataTable/dataTable";
 import { ComponentTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 import DataTableComponent from 'lib-components-react/lib/components/dataTable/dataTableComponent';
@@ -18,6 +18,7 @@ import { tableOptionsTemplateDefault } from "lib-components-react/lib/components
 import { ButtonCustomComponent, ButtonDataTableOptionNestedComponent, ButtonWithNestedOptionsComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
 import FilterAccoridionComponent from 'lib-components-react/lib/components/filterAccordion/filterAccordionComponent';
 import ModalComponent from "lib-components-react/lib/components/modals/modalComponent";
+import ModalConfirmComponent from 'lib-components-react/lib/components/modals/modalConfirmComponent';
 import { setTemplateHeaderSubTitleAction } from "lib-components-react/lib/controller/actions/templateHeaderAction";
 import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from "lib-components-react/lib/controller/actions/templateLoadingAction";
 import useHookModal from 'lib-components-react/lib/hookStates/modalHookState';
@@ -28,6 +29,8 @@ import { columnFieldsIssuesMovementsNames, columnsFilterIssuesList, columnsIssue
 import LoadingModuleComponent from 'lib-components-react/lib/components/loadings/loadingModuleComponent';
 import useHookLoading from 'lib-components-react/lib/hookStates/loadingHookState';
 import { getYears } from "@app/utils/dateUtil";
+import { TooltipConfigButtonNestedOptions, TooltipConfigCustom, TooltipConfigInputHelp } from "lib-components-react/lib/components/tooltip/tooltipConfigComponents";
+import { buildAlertSuccessRedux } from "lib-components-react/lib/utils/componentUtils/alertUtil";
 
 const currencyOptionsSelect: { name: string, value: number }[] = [
     { name: 'MXN', value: CatalogTypeCurrencyEnum.MXN },
@@ -81,16 +84,19 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
 
     const dispatch = useDispatch();
     const [idTypeCurrency, setIdTypeCurrency] = useState<number>(CatalogTypeCurrencyEnum.USD);
+    const [idRowDelete, setIdRowDelete] = useState<number>(0);
     const [issuesMovementsList, setIssuesMovementsList] = useState<[]>([]);
     const [issuesMovementsTotal, setIssuesMovementsTotal] = useState<any[]>([]);
     const [issueMovementTransactionTotalNotSold, setIssueMovementTransactionTotalNotSold] = useState<any>({});
     const [issueMovementTransactionTotalSold, setIssueMovementTransactionTotalSold] = useState<any>({});
     const [formFilterData, setFormFilterData] = useState<Record<string, any>>({});
     const [modalState, setOpenModal, setCloseModal, setBodyModal, setTitleModal, setSizeModal] = useHookModal();
+    const [modalConfirmState, setOpenModalConfirm, setCloseModalConfirm, setBodyModalConfirm, setTitleModalConfirm] = useHookModal();
     const [loadingState, setLoading] = useHookLoading();
     const optionsTemplate: DataTableColumnOptionsPropsI = tableOptionsTemplateDefault;
 
     const idTypeCurrencyRef = useRef(idTypeCurrency);
+    const executeGetIssuesMovementsListRef = useRef((idTypeCurrency: number) => { });
     
     const IssueMovementAddEditModuleComponent = React.lazy(() => import('@app/modules/issuesMovements/issueMovementAddEdit/issueMovementAddEditModuleComponent'))
     const IssuesHistoricalDataModuleComponent = React.lazy(() => import('@app/modules/issuesHistorical/issueHistoricalData/issueHistoricalDataModuleComponent'))
@@ -138,7 +144,7 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
                 componentType={ComponentTypeEnum.POPUP}
                 idIssueMovement={rowData.idIssueMovement}
                 idTypeCurrency={idTypeCurrencyRef.current}
-                executeParentFunction={() => { executeGetIssuesMovementsList(idTypeCurrency); setCloseModal(); }} />);
+                executeParentFunction={() => { executeGetIssuesMovementsListRef.current(idTypeCurrencyRef.current); setCloseModal(); }} />);
                 setOpenModal() }}
                 tooltip={"Edit issue movement id: " + rowData.idIssueMovement}
         />);
@@ -153,6 +159,18 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
                 }}
                 tooltip={"show issue historical: " + rowData.issue}
             />);
+            buttonNestedOptions.push(
+                <ButtonDataTableOptionNestedComponent
+                    icon={faTrash}
+                    onClick={() => {
+                        setIdRowDelete(rowData.idIssueMovement);
+                        setTitleModalConfirm("Delete issue movement id: " + rowData.idIssueMovement);
+                        setBodyModalConfirm("Are you sure you want to delete this issue movement?");
+                        setOpenModalConfirm();
+                    }}
+                    tooltip={"Delete issue movement id: " + rowData.idIssueMovement}
+                />
+            )
 
         buttonOptions.push(<ButtonWithNestedOptionsComponent idTooltip={rowData.idIssueMovement} buttonOptions={buttonNestedOptions} />);
         return (<ButtonsOrganizerComponent buttonOptions={buttonOptions} />);
@@ -289,6 +307,37 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
             });
     }
 
+    executeGetIssuesMovementsListRef.current = executeGetIssuesMovementsList;
+
+    const executeDeleteIssueMovement = (idIssueMovement: number) => {
+
+        let debugClass = generateDebugClassModule("init delete issue movement");
+        debug(debugClass, "start");
+
+        dispatch(setTemplateLoadingActiveMessageAction(true, "Deleting issue movement"));
+        axios.all([deleteIssueMovementService(idIssueMovement)])
+            .then(axios.spread((issuesMovementsListData) => {
+
+                debug(debugClass, "result", issuesMovementsListData);
+                
+                executeGetIssuesMovementsList(idTypeCurrency);
+            }))
+            .then(() => {
+                buildAlertSuccessRedux(dispatch, props.componentType, "Issue Movement id: " + idIssueMovement + " deleted successfully");
+                dispatch(setTemplateLoadingIsActiveAction(false));
+            })
+            .catch((error) => {
+                manageAlertModuleError(dispatch, props.componentType, debugClass, error);
+                dispatch(setTemplateLoadingIsActiveAction(false));
+            });
+    }
+
+    const executeModalConfirm = () => {
+        
+        executeDeleteIssueMovement(idRowDelete);
+        setCloseModalConfirm();    
+    }
+
     const changeTypeCurrency = (idTypeCurrency: number) => {
         
         setIdTypeCurrency(idTypeCurrency);
@@ -305,6 +354,8 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
     return (<div>
         <ModalComponent title={modalState.titleModal} visible={modalState.showModal} selectorCloseModal={setCloseModal}
             body={modalState.bodyModal} size={modalState.size} />
+        <ModalConfirmComponent title={modalConfirmState.titleModal} visible={modalConfirmState.showModal} selectorCloseModal={setCloseModalConfirm}
+            body={modalConfirmState.bodyModal} size='sm' executeOnConfirmFunction={executeModalConfirm} />
         <br></br>
         <FilterAccoridionComponent
             formContainer={columnsFilterIssuesList}
@@ -351,6 +402,9 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
                 headerColumnGroup: headerGroup, footerColumnGroup: footerGroup
             }}
         />
+        <TooltipConfigInputHelp />
+        <TooltipConfigCustom />
+        <TooltipConfigButtonNestedOptions />
     </div>
     );
 }

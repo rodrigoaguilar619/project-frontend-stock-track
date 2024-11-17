@@ -309,7 +309,7 @@ export const columnsFilterIssuesList: FormInputContainerPropsI = {
             label: "Year:",
             inputProps: {
                 id: inputFitlerIssuesMovementsIds.filterYear,
-                inputType: InputElementEnum.SELECT, value: null, options: [], isOptionAll: true
+                inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
             }
         },
         {

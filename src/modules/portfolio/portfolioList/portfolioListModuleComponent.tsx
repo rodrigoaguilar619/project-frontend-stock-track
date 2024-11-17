@@ -24,7 +24,8 @@ const PortfolioListModuleComponent: React.FC<PortfolioListModulePropsI> = (props
     const [portfolioList, setPortfolioList] = useState<[]>([]);
     const [portfolioResumeData, setPortfolioResumeData] = useState<Record<string, any> | null>(null);
     const [loadingState, setLoading] = useHookLoading();
-    const [portfolioSharesList, setPortfolioSharesList] = useState<any[]>([]);
+    const [portfolioSharesNotSoldList, setPortfolioSharesNotSoldList] = useState<any[]>([]);
+    const [portfolioSharesSoldList, setPortfolioSharesSoldList] = useState<any[]>([]);
     const optionsTemplate: DataTableColumnOptionsPropsI = tableOptionsTemplateDefault;
     
     useEffect(() => {
@@ -37,7 +38,7 @@ const PortfolioListModuleComponent: React.FC<PortfolioListModulePropsI> = (props
         };
     }, []);
 
-    const actionTemplate = (rowData: any, column: any) => {
+    const actionTemplate = (rowData: any, _column: any) => {
 
         let buttonOptions = [];
 
@@ -86,7 +87,8 @@ const PortfolioListModuleComponent: React.FC<PortfolioListModulePropsI> = (props
 
                 debug(debugClass, "result", portfolioData);
                 setPortfolioResumeData(portfolioData.data.portfolioResume);
-                setPortfolioSharesList(portfolioData.data.portfolioIssues);
+                setPortfolioSharesNotSoldList(portfolioData.data.portfolioIssuesNotSold);
+                setPortfolioSharesSoldList(portfolioData.data.portfolioIssuesSold);
                 dispatch(setTemplateLoadingIsActiveAction(false));
 
             }))
@@ -115,17 +117,26 @@ const PortfolioListModuleComponent: React.FC<PortfolioListModulePropsI> = (props
 
     const renderPortfolioSharesData = () => {
 
-        if (portfolioSharesList.length === 0) {
+        if (portfolioSharesNotSoldList.length === 0) {
             return;
         }
 
-        return (<DataTableComponent
-            title="Portfolio shares"
+        return (<div><DataTableComponent
+            title="Portfolio shares not sold"
             columnDefList={columnsPortfolioData}
-            columnDataList={portfolioSharesList}
-            totalRows={portfolioSharesList.length}
+            columnDataList={portfolioSharesNotSoldList}
+            totalRows={portfolioSharesNotSoldList.length}
             customMaskData={maskDataCustom}
-            />)
+            />
+            <br></br>
+            <DataTableComponent
+            title="Portfolio shares sold"
+            columnDefList={columnsPortfolioData}
+            columnDataList={portfolioSharesSoldList}
+            totalRows={portfolioSharesSoldList.length}
+            customMaskData={maskDataCustom}
+            />
+            </div>)
     }
 
     if(loadingState.isLoading)
