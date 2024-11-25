@@ -34,10 +34,16 @@ export function formatIssueAlertMovement(value: string) {
 
     if (value != null && value != undefined) {
 
-        let classWarning = value.includes("BUY:") ? "iconWarning" : "iconWarningGreen";
+        let classIcon = ""; 
+        if (value.includes("SELL:"))
+            classIcon = "iconWarningGreen";
+        else if (value.includes("BUY:"))
+            classIcon = "iconWarning";
+        else if (value.includes("SOLD:"))
+            classIcon = "iconSold";
 
         return <div style={{justifyContent: "center", display: "flex"}}>
-                <div data-tooltip-id={TooltipIdCustomEnum.TOOLTIP_CUSTOM} data-tooltip-html={value} className={classWarning}></div>
+                <div data-tooltip-id={TooltipIdCustomEnum.TOOLTIP_CUSTOM} data-tooltip-html={value} className={classIcon}></div>
             </div>;
     }
     else
