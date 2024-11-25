@@ -7,7 +7,7 @@ import { InputElementEnum, MaskDataTypeEnum } from "lib-components-react/lib/cat
 export const columnsPortfolioList: DataTableCustomPropsI[] = [
     {
         field: 'broker', header: 'Broker', tableConfig: {
-            styleCss: { width: "10%", textAlign: "center" },
+            styleCss: { width: "6%", textAlign: "center" },
         }
     },
     {
@@ -108,7 +108,7 @@ export const columnsPortfolioList: DataTableCustomPropsI[] = [
     },
     {
         field: 'totalGainLoss', header: 'Total Gain/Loss', tableConfig: {
-            styleCss: { width: "9%", textAlign: "center" },
+            styleCss: { width: "11%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
@@ -122,7 +122,7 @@ export const columnsPortfolioList: DataTableCustomPropsI[] = [
     },
     {
         field: 'yield', header: 'Yield', tableConfig: {
-            styleCss: { width: "9%", textAlign: "center" },
+            styleCss: { width: "11%", textAlign: "center" },
         },
         maskProps: {
             maskType: MaskDataTypeCustomEnum.DOWN_UP,
