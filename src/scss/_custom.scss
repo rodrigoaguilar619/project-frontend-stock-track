@@ -35,6 +35,12 @@
     width: 17px;  /*width of icon */
 }
 
+.iconSold{
+    content:url(../img/sold.png);
+    height: 21px;  /*height of icon */
+    width: 28px;  /*width of icon */
+}
+
 .custom-select-button .p-button:focus {
     box-shadow: none !important;
 }

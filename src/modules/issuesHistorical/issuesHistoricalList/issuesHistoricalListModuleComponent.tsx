@@ -35,6 +35,7 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
   const [issuesHistoricalList, setIssuesHistoricalList] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalGlobalIssuesRows, setTotalGlobalIssuesRows] = useState(0);
+  const [loadingInfiniteScroll, setLoadingInfiniteScroll] = useState(false);
   const [formFilterData, setFormFilterData] = useState<Record<string, any>>(buildFormDataContainers([columnsFilterIssuesHistoricalList]));
 
   const IssuesHistoricalDataModuleComponent = React.lazy(() => import('@app/modules/issuesHistorical/issueHistoricalData/issueHistoricalDataModuleComponent'))
@@ -85,6 +86,8 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
     if (isManageLoading)
       dispatch(setTemplateLoadingActiveMessageAction(true, "Loading issues historical list"));
 
+    setLoadingInfiniteScroll(true);
+
     axios.all([getIssuesHistoricalListService(formFilterData, currentPage, rowsPerPage)])
       .then(axios.spread((issuesHistoricalListData) => {
 
@@ -104,6 +107,7 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
           dispatch(setTemplateLoadingIsActiveAction(false));
       })
       .finally(() => {
+        setLoadingInfiniteScroll(false);
         if (isManageLoading)
           setLoading(false);
       });
@@ -115,8 +119,10 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
   }
 
   const renderInfiniteScroll = () => {
-    return <LoadingInfiniteScrollComponent itemsLength={issuesHistoricalList.length}
-      executeFunction={totalGlobalIssuesRows !== null ? (() => { executeGetissuesHistoricalList(issuesHistoricalList, formFilterData, currentPage, rowsPerPage, false) }) : null} totalItems={totalGlobalIssuesRows} />
+    return <div style={{ position: loadingInfiniteScroll ? "fixed" : "unset", bottom: '0', width: '10%', transform: 'translate(-50%, -40%)', left: 'calc(50% + var(--cui-sidebar-occupy-start, 0) / 2)' }}>
+        <LoadingInfiniteScrollComponent itemsLength={issuesHistoricalList.length}
+        executeFunction={totalGlobalIssuesRows !== null ? (() => { executeGetissuesHistoricalList(issuesHistoricalList, formFilterData, currentPage, rowsPerPage, false) }) : null} totalItems={totalGlobalIssuesRows} />
+    </div>
   }
 
   const handleYahooClick = (issueData: any) => {
