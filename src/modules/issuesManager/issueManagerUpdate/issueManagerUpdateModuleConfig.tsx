@@ -1,6 +1,7 @@
 import { FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
 import { InputElementEnum, InputMaskEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 import { CATALOG_DEFAULT_TRUE_FALSE } from "lib-components-react/lib/catalogs/defaultCatalog";
+import { ConstantCatalogEnum } from "@app/catalogs/enumCatalog";
 
 export const inputIssueManagerIds = {
     idIssue: "idIssue",
@@ -92,7 +93,7 @@ const inputsIssue: FormInputContainerPropsI = {
             label: "Historical Start Date:",
             inputProps: {
                 id: inputIssueManagerIds.historicalStartDate,
-                inputType: InputElementEnum.CALENDAR, value: null, isReadOnly: true,
+                inputType: InputElementEnum.CALENDAR, value: null, isReadOnly: true, dateFormat: ConstantCatalogEnum.DATE_FORMAT_INPUT
             },
             validations: {
                 idValidation: inputIssueManagerIds.historicalStartDate, validatorRules: ["required"]

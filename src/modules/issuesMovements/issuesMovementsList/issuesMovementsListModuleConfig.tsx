@@ -1,5 +1,5 @@
 import { DataTableCustomPropsI } from "@app/_types/utils/maskDataCustomUtil";
-import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
+import { ConstantCatalogEnum, MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
 import { FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
 import { CATALOG_DEFAULT_TRUE_FALSE } from "lib-components-react/lib/catalogs/defaultCatalog";
 import { InputElementEnum, MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
@@ -176,7 +176,7 @@ export const columnsIssuesMovementsExpandedList: DataTableCustomPropsI[] = [
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
             maskDataProps: {
-                format: "DD/MM/yyyy"
+                format: ConstantCatalogEnum.DATE_FORMAT_TABLE
             }
         }
     },

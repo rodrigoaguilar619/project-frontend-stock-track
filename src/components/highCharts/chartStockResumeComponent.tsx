@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from "react-bootstrap";
-import { MaskDataTypeCustomEnum } from '@app/catalogs/enumCatalog';
+import { ConstantCatalogEnum, MaskDataTypeCustomEnum } from '@app/catalogs/enumCatalog';
 import { calculateGainLossPercentage } from '@app/utils/calculatorUtil';
 import { maskDataCustom } from '@app/utils/maskDataCustomUtil';
 import { MaskDataTypeEnum } from 'lib-components-react/lib/catalogs/enumCatalog';
@@ -60,7 +60,7 @@ const ChartStockResumeComponent: React.FC<ChartStockResumeComponentPropsI> = (pr
     }
 
     let priceToShow = props.stockData.previousClosePrice;
-    let priceDayToShow = props.stockData.previousClosePrice;
+    let priceDayToShow = props.stockData.previousCloseDate;
     let isCurrentPrice = false;
     let priceDayDownUp = getPriceDayDownUp();
 
@@ -69,6 +69,8 @@ const ChartStockResumeComponent: React.FC<ChartStockResumeComponentPropsI> = (pr
         priceToShow = props.stockData.currentPrice;
         priceDayToShow = props.stockData.currentPriceDate;
     }
+
+    console.log("test priceDayToShow", props.stockData);
 
     let fairValueDownUp = getFairValueDayDownUp();
 
@@ -107,7 +109,7 @@ const ChartStockResumeComponent: React.FC<ChartStockResumeComponentPropsI> = (pr
                 </Col>
             </Row>
             <Row style={styleRow}>
-                <Col title={"Date of current price " + maskData(priceDayToShow, { maskType: MaskDataTypeEnum.DATE, maskDataProps: { format: "DD/MM/yyyy" } })} style={{ textAlign: "center", ...styleColumn }}>
+                <Col title={"Date of current price " + maskData(priceDayToShow, { maskType: MaskDataTypeEnum.DATE, maskDataProps: { format: ConstantCatalogEnum.DATE_FORMAT_TABLE } })} style={{ textAlign: "center", ...styleColumn }}>
                     <b style={{ fontSize: "12px" }}>{maskData(priceDayToShow, { maskType: MaskDataTypeEnum.DATE, maskDataProps: { format: "DD-MM hh:mm" } })}</b>
                 </Col>
                 <Col title="Difference of current price over fair value" style={{ textAlign: "center", ...styleColumn }}>

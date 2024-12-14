@@ -1,3 +1,4 @@
+import { ConstantCatalogEnum } from "@app/catalogs/enumCatalog";
 import { FormInputColumnPropsI, FormInputContainerPropsI } from "lib-components-react/lib/@types/components/formInputs/formInputs";
 import { InputElementEnum, InputMaskEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
@@ -83,7 +84,7 @@ export const inputsIssueMovementBuysAddMultiple: FormInputColumnPropsI[] = [
         label: "Buy Date:",
         inputProps: {
             id: inputIssueMovementBuyIds.buyDate,
-            inputType: InputElementEnum.CALENDAR, value: null
+            inputType: InputElementEnum.CALENDAR, value: null, dateFormat: ConstantCatalogEnum.DATE_FORMAT_INPUT
         },
         validations: {
             idValidation: inputIssueMovementBuyIds.buyDate, validatorRules: ["required"]
@@ -101,7 +102,7 @@ export const inputsIssueMovementBuysAddMultiple: FormInputColumnPropsI[] = [
         label: "Sell Date:",
         inputProps: {
             id: inputIssueMovementBuyIds.sellDate,
-            inputType: InputElementEnum.CALENDAR, value: null
+            inputType: InputElementEnum.CALENDAR, value: null, dateFormat: ConstantCatalogEnum.DATE_FORMAT_INPUT
         }
     },
     {
