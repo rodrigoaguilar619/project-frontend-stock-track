@@ -1,5 +1,5 @@
 import { DataTableCustomPropsI } from "@app/_types/utils/maskDataCustomUtil";
-import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
+import { ConstantCatalogEnum, MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
 import { DataTablePropsI } from "lib-components-react/lib/@types/components/dataTable/dataTable";
 import { MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
@@ -23,7 +23,7 @@ export const columnsIssueTransactionResumenList: DataTablePropsI[] = [
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
             maskDataProps: {
-                format: "DD/MM/yyyy"
+                format: ConstantCatalogEnum.DATE_FORMAT_TABLE
             }
         }
     },
@@ -45,7 +45,7 @@ export const columnsIssueTransactionResumenList: DataTablePropsI[] = [
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
             maskDataProps: {
-                format: "DD/MM/yyyy"
+                format: ConstantCatalogEnum.DATE_FORMAT_TABLE
             }
         }
     },
@@ -163,7 +163,7 @@ export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
             maskDataProps: {
-                format: "DD/MM/yyyy"
+                format: ConstantCatalogEnum.DATE_FORMAT_TABLE
             }
         }
     },
@@ -200,7 +200,7 @@ export const columnsIssueTransactionList: DataTableCustomPropsI[] = [
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
             maskDataProps: {
-                format: "DD/MM/yyyy"
+                format: ConstantCatalogEnum.DATE_FORMAT_TABLE
             }
         }
     },

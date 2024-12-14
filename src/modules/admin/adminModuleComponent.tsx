@@ -10,6 +10,7 @@ import { buildAlertSuccessRedux } from "lib-components-react/lib/utils/component
 import { maskData } from "lib-components-react/lib/utils/dataUtils/maskDataUtil";
 import { debug, generateDebugClassModule } from "lib-components-react/lib/utils/webUtils/debugUtil";
 import { manageAlertModuleError } from "lib-components-react/lib/utils/webUtils/httpManagerUtil";
+import { ConstantCatalogEnum } from "@app/catalogs/enumCatalog";
 
 const enum enumOptions {
     UPDATE_DOLLAR_PRICE = "update_dollar_price",
@@ -27,7 +28,7 @@ const AdminModuleComponent = () => {
         switch (option) {
             case enumOptions.UPDATE_DOLLAR_PRICE:
                 messageResume = "Dollar price updated successfully";
-                messageResult = "Date: " + maskData(genericData.date, { maskType: MaskDataTypeEnum.DATE, maskDataProps: { format: "DD/MM/yyyy" }}) 
+                messageResult = "Date: " + maskData(genericData.date, { maskType: MaskDataTypeEnum.DATE, maskDataProps: { format: ConstantCatalogEnum.DATE_FORMAT_TABLE }}) 
                             + " - Price: " + maskData(genericData.price, { maskType: MaskDataTypeEnum.CURRENCY, maskDataProps: { decimalPlaces: 2, addSeparateComma: true, addSymbolCurrency: true }});
                 break;
             case enumOptions.UPDATE_ISSUES_LAST_PRICE:

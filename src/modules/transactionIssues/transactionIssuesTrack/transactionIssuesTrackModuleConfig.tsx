@@ -1,5 +1,5 @@
 import { DataTableCustomPropsI } from "@app/_types/utils/maskDataCustomUtil";
-import { MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
+import { ConstantCatalogEnum, MaskDataTypeCustomEnum } from "@app/catalogs/enumCatalog";
 import { MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 
 export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
@@ -131,7 +131,7 @@ export const columnsTransactionIssuesList: DataTableCustomPropsI[] = [
         maskProps: {
             maskType: MaskDataTypeEnum.DATE,
             maskDataProps: {
-                format: "DD/MM/YYYY"
+                format: ConstantCatalogEnum.DATE_FORMAT_TABLE
             }
         }
     },

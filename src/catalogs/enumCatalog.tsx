@@ -18,3 +18,8 @@ export enum CatalogTypeCurrencyEnum {
     MXN = 1,
     USD = 2
 }
+
+export enum ConstantCatalogEnum {
+    DATE_FORMAT_INPUT = "dd/mm/yy",
+    DATE_FORMAT_TABLE = "DD/MM/yyyy"
+}
