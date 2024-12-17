@@ -5,7 +5,7 @@ import { InputElementEnum, InputMaskEnum } from "lib-components-react/lib/catalo
 export const inputFilterIssuesHistoricalIds = {
     sector: "idSector",
     typeStock: "idTypeStock",
-    isSp500: "isSp500",
+    index: "idIndex",
     isInvest: "isInvest",
     statusIssueQuick: "idStatusIssueQuick",
     statusIssueTrading: "idStatusIssueTrading",
@@ -29,10 +29,10 @@ export const columnsFilterIssuesHistoricalList: FormInputContainerPropsI = {
             }
         },
         {
-            label: "Is S&P 500:",
+            label: "Index:",
             inputProps: {
-                id: inputFilterIssuesHistoricalIds.isSp500,
-                inputType: InputElementEnum.SELECT, value: '', options: CATALOG_DEFAULT_TRUE_FALSE, isOptionAll: true
+                id: inputFilterIssuesHistoricalIds.index,
+                inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
             }
         },
         {

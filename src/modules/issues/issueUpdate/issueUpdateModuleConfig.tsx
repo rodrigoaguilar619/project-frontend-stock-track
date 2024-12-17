@@ -7,7 +7,7 @@ export const inputIssueIds = {
     idIssue: "idIssue",
     description: "description",
     initials: "initials",
-    isSp500: "isSp500",
+    idIndex: "idIndex",
     idSector: "idSector",
     idTypeStock: "idTypeStock",
     idStatusIssue: "idStatusIssue",
@@ -44,13 +44,13 @@ const inputsIssue: FormInputContainerPropsI = {
             }
         },
         {
-            label: "Is S&P 500:",
+            label: "Index:",
             inputProps: {
-                id: inputIssueIds.isSp500,
-                inputType: InputElementEnum.SELECT, value: '', options: CATALOG_DEFAULT_TRUE_FALSE
+                id: inputIssueIds.idIndex,
+                inputType: InputElementEnum.SELECT, value: '', options: []
             },
             validations: {
-                idValidation: inputIssueIds.isSp500, validatorRules: ["required"]
+                idValidation: inputIssueIds.idIndex, validatorRules: ["required"]
             }
         },
         {

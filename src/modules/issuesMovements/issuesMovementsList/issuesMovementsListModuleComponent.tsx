@@ -263,15 +263,16 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
 
         dispatch(setTemplateLoadingActiveMessageAction(true, "Loading issues movements list module"));
         axios.all([getIssuesMovementsListService(formFilterData, idTypeCurrency), getCatalogDataService(CatalogModuleEnum.SECTOR),
-        getCatalogDataService(CatalogModuleEnum.BROKER), getCatalogDataService(CatalogModuleEnum.STATUS_ISSUE_MOVEMENT)])
-            .then(axios.spread((issuesMovementsListData, sectorsListData, typeStockListData, statusIssueMovementListData) => {
+        getCatalogDataService(CatalogModuleEnum.BROKER), getCatalogDataService(CatalogModuleEnum.STATUS_ISSUE_MOVEMENT), getCatalogDataService(CatalogModuleEnum.INDEX)])
+            .then(axios.spread((issuesMovementsListData, sectorsListData, typeStockListData, statusIssueMovementListData, indexListData) => {
 
-                debug(debugClass, "result", issuesMovementsListData, sectorsListData, typeStockListData, statusIssueMovementListData);
+                debug(debugClass, "result", issuesMovementsListData, sectorsListData, typeStockListData, statusIssueMovementListData, indexListData);
                 
                 let yearCatalog = getYears();
                 setIssueMovementData(issuesMovementsListData.data);
                 setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, sectorsListData.data.catalogs, inputFitlerIssuesMovementsIds.sector);
                 setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, typeStockListData.data.catalogs, inputFitlerIssuesMovementsIds.broker);
+                setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, indexListData.data.catalogs, inputFitlerIssuesMovementsIds.index);
                 setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, statusIssueMovementListData.data.catalogs, inputFitlerIssuesMovementsIds.statusIssueMovement);
                 setOptionsToColumnsDefList(columnsFilterIssuesList.inputColumns, yearCatalog, inputFitlerIssuesMovementsIds.filterYear);
                 dispatch(setTemplateLoadingIsActiveAction(false));

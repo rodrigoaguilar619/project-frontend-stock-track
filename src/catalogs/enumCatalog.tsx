@@ -1,6 +1,7 @@
 export enum CatalogModuleEnum {
     SECTOR = "sector",
     BROKER = "broker",
+    INDEX = "index",
     TYPE_CURRENCY = "typeCurrency",
     TYPE_STOCK = "typeStock",
     TYPE_MOVEMENT = "typeMovement",

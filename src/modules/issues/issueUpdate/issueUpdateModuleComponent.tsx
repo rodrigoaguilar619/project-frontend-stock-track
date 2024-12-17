@@ -42,14 +42,15 @@ const IssueUpdateModuleComponent: React.FC<IssueUpdateModulePropsI> = (props) =>
 
         dispatch(setTemplateLoadingActiveMessageAction(true, "Loading issues list module"));
         axios.all([getIssueByIdService(props.idIssue), getCatalogDataService(CatalogModuleEnum.SECTOR),
-        getCatalogDataService(CatalogModuleEnum.TYPE_STOCK), getCatalogDataService(CatalogModuleEnum.STATUS_ISSUE)])
-            .then(axios.spread((issueData, sectorsListData, typeStockListData, statusIssueListData) => {
+        getCatalogDataService(CatalogModuleEnum.TYPE_STOCK), getCatalogDataService(CatalogModuleEnum.STATUS_ISSUE), getCatalogDataService(CatalogModuleEnum.INDEX)])
+            .then(axios.spread((issueData, sectorsListData, typeStockListData, statusIssueListData, indexListData) => {
 
-                debug(debugClass, "result", issueData, sectorsListData, typeStockListData, statusIssueListData);
+                debug(debugClass, "result", issueData, sectorsListData, typeStockListData, statusIssueListData, indexListData);
                 setFormIssueData(issueData.data.issue);
                 setOptionsToColumnsContainerDefList(formContainersIssues, sectorsListData.data.catalogs, inputIssueIds.idSector);
                 setOptionsToColumnsContainerDefList(formContainersIssues, typeStockListData.data.catalogs, inputIssueIds.idTypeStock);
                 setOptionsToColumnsContainerDefList(formContainersIssues, statusIssueListData.data.catalogs, inputIssueIds.idStatusIssue);
+                setOptionsToColumnsContainerDefList(formContainersIssues, indexListData.data.catalogs, inputIssueIds.idIndex);
                 dispatch(setTemplateLoadingIsActiveAction(false));
 
             }))

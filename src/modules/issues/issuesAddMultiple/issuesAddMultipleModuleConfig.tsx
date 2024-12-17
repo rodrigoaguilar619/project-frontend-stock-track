@@ -7,13 +7,14 @@ import { ConstantCatalogEnum } from "@app/catalogs/enumCatalog";
 export const inputIssuesAddMainIds = {
     idTypeStock: "idTypeStock",
     idStatusIssue: "idStatusIssue",
+    idIndex: "idIndex",
     historicalStartDate: "historicalStartDate",
 }
 
 export const inputIssuesAddMultipleIds = {
     initials: "initials",
     description: "description",
-    isSp500: "isSp500",
+    idIndex: "idIndex",
     idSector: "idSector"
 }
 
@@ -76,13 +77,13 @@ export const inputsIssuesAddMultiple: FormInputColumnPropsI[] = [
         }
     },
     {
-        label: "Is S&P 500:",
+        label: "Index:",
         inputProps: {
-            id: inputIssuesAddMultipleIds.isSp500,
-            inputType: InputElementEnum.SELECT, value: '', options: CATALOG_DEFAULT_TRUE_FALSE
+            id: inputIssuesAddMultipleIds.idIndex,
+            inputType: InputElementEnum.SELECT, value: '', options: []
         },
         validations: {
-            idValidation: inputIssuesAddMultipleIds.isSp500, validatorRules: ["required"]
+            idValidation: inputIssuesAddMultipleIds.idIndex, validatorRules: ["required"]
         }
     },
     {
