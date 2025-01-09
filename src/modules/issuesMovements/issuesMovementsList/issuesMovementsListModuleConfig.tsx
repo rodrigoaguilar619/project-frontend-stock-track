@@ -278,6 +278,7 @@ export const inputFitlerIssuesMovementsIds = {
     statusIssueMovement: "idStatusIssueMovement",
     sector: "idSector",
     broker: "idBroker",
+    index: "idIndex",
     filterYear: "year",
     isSold: "isSold"
 }
@@ -306,6 +307,13 @@ export const columnsFilterIssuesList: FormInputContainerPropsI = {
             }
         },
         {
+            label: "Index:",
+            inputProps: {
+                id: inputFitlerIssuesMovementsIds.index,
+                inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
+            }
+        },
+        {
             label: "Year:",
             inputProps: {
                 id: inputFitlerIssuesMovementsIds.filterYear,
@@ -320,6 +328,6 @@ export const columnsFilterIssuesList: FormInputContainerPropsI = {
             }
         },
     ],
-    columnstotal: 6,
+    columnstotal: 7,
     containerWidth: "100%"
 }

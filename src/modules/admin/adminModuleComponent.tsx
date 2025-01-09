@@ -107,10 +107,6 @@ const AdminModuleComponent = () => {
 
     return (<div>
         <ButtonsOrganizerComponent buttonOptions={buttonOptions} />
-        <br></br>
-        <div style={{ display: "ruby-text" }}>
-            <a href={PATH_API_DOCUMENTATION} target="_blank" rel="noopener noreferrer" className="button_hiperlink">API Documentation</a>
-        </div>
     </div>
     );
 }

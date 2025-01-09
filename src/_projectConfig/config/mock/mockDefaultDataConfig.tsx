@@ -9,7 +9,7 @@ export const setDevUpdateIssueDefaultData = (setFormData: Function, formData: Re
         [inputIssueIds.idIssue]: 2,
         [inputIssueIds.description]: "APPLE 2",
         [inputIssueIds.initials]: "AAPL",
-        [inputIssueIds.isSp500]: true,
+        [inputIssueIds.idIndex]: true,
         [inputIssueIds.idSector]: 1,
         [inputIssueIds.idTypeStock]: 1,
         [inputIssueIds.idStatusIssue]: 1,
@@ -29,13 +29,13 @@ export const setDevAddMultipleIssuesDefaultData = (setFormMainData: Function, se
         {
             [inputIssuesAddMultipleIds.description]: "APPLE 2",
             [inputIssuesAddMultipleIds.initials]: "AAPL",
-            [inputIssuesAddMultipleIds.isSp500]: true,
+            [inputIssuesAddMultipleIds.idIndex]: 1,
             [inputIssuesAddMultipleIds.idSector]: 1,
         },
         {
             [inputIssuesAddMultipleIds.description]: "Adobe Inc.",
             [inputIssuesAddMultipleIds.initials]: "ADBE",
-            [inputIssuesAddMultipleIds.isSp500]: false,
+            [inputIssuesAddMultipleIds.idIndex]: 2,
             [inputIssuesAddMultipleIds.idSector]: 2,
         }
     ]);

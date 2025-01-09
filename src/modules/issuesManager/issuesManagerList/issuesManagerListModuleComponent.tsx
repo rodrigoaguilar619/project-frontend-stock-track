@@ -83,16 +83,17 @@ const IssuesManagerListComponent: React.FC<IssuesManagerListModulePropsI> = (pro
 
         dispatch(setTemplateLoadingActiveMessageAction(true, "Loading manager issues list module"));
         axios.all([getIssuesManagerListService(formFilterData), getCatalogDataService(CatalogModuleEnum.SECTOR),
-        getCatalogDataService(CatalogModuleEnum.TYPE_STOCK), getCatalogDataService(CatalogModuleEnum.STATUS_ISSUE)])
-            .then(axios.spread((issuesManagerListData, sectorsListData, typeStockListData, statusIssueListData) => {
+        getCatalogDataService(CatalogModuleEnum.TYPE_STOCK), getCatalogDataService(CatalogModuleEnum.STATUS_ISSUE), getCatalogDataService(CatalogModuleEnum.INDEX)])
+            .then(axios.spread((issuesManagerListData, sectorsListData, typeStockListData, statusIssueListData, indexListData) => {
 
-                debug(debugClass, "result", issuesManagerListData, sectorsListData, typeStockListData, statusIssueListData);
+                debug(debugClass, "result", issuesManagerListData, sectorsListData, typeStockListData, statusIssueListData, indexListData);
                 setIssuesManagerList(issuesManagerListData.data.issuesManagerList);
                 setOptionsToColumnsDefList(columnsFilterIssuesManagerList.inputColumns, sectorsListData.data.catalogs, inputFilterIssuesManagerIds.sector);
                 setOptionsToColumnsDefList(columnsFilterIssuesManagerList.inputColumns, typeStockListData.data.catalogs, inputFilterIssuesManagerIds.typeStock);
                 setOptionsToColumnsDefList(columnsFilterIssuesManagerList.inputColumns, statusIssueListData.data.catalogs, inputFilterIssuesManagerIds.statusIssue);
                 setOptionsToColumnsDefList(columnsFilterIssuesManagerList.inputColumns, statusIssueListData.data.catalogs, inputFilterIssuesManagerIds.statusIssueQuick);
                 setOptionsToColumnsDefList(columnsFilterIssuesManagerList.inputColumns, statusIssueListData.data.catalogs, inputFilterIssuesManagerIds.statusIssueTrading);
+                setOptionsToColumnsDefList(columnsFilterIssuesManagerList.inputColumns, indexListData.data.catalogs, inputFilterIssuesManagerIds.index);
                 dispatch(setTemplateLoadingIsActiveAction(false));
 
             }))

@@ -55,10 +55,10 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
 
     dispatch(setTemplateLoadingActiveMessageAction(true, "Loading issues historical list module"));
     axios.all([getIssuesHistoricalListService(formFilterData, currentPage, rowsPerPage), getCatalogDataService(CatalogModuleEnum.SECTOR),
-    getCatalogDataService(CatalogModuleEnum.TYPE_STOCK), getCatalogDataService(CatalogModuleEnum.STATUS_ISSUE)])
-      .then(axios.spread((issuesHistoricalListData, sectorCatalogData, typeStockCatalogData, statusIssueCatalogData) => {
+    getCatalogDataService(CatalogModuleEnum.TYPE_STOCK), getCatalogDataService(CatalogModuleEnum.STATUS_ISSUE), getCatalogDataService(CatalogModuleEnum.INDEX)])
+      .then(axios.spread((issuesHistoricalListData, sectorCatalogData, typeStockCatalogData, statusIssueCatalogData, indexCatalogData) => {
 
-        debug(debugClass, "result", issuesHistoricalListData, sectorCatalogData, typeStockCatalogData, statusIssueCatalogData);
+        debug(debugClass, "result", issuesHistoricalListData, sectorCatalogData, typeStockCatalogData, statusIssueCatalogData, indexCatalogData);
         setIssuesHistoricalList(issuesHistoricalListData.data.issuesHistorical);
         setCurrentPage(currentPage + 1);
         setTotalGlobalIssuesRows(issuesHistoricalListData.data.totalIssues);
@@ -66,6 +66,7 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
         setOptionsToColumnsDefList(columnsFilterIssuesHistoricalList.inputColumns, typeStockCatalogData.data.catalogs, inputFilterIssuesHistoricalIds.typeStock);
         setOptionsToColumnsDefList(columnsFilterIssuesHistoricalList.inputColumns, statusIssueCatalogData.data.catalogs, inputFilterIssuesHistoricalIds.statusIssueQuick);
         setOptionsToColumnsDefList(columnsFilterIssuesHistoricalList.inputColumns, statusIssueCatalogData.data.catalogs, inputFilterIssuesHistoricalIds.statusIssueTrading);
+        setOptionsToColumnsDefList(columnsFilterIssuesHistoricalList.inputColumns, indexCatalogData.data.catalogs, inputFilterIssuesHistoricalIds.index);
         dispatch(setTemplateLoadingIsActiveAction(false));
 
       }))

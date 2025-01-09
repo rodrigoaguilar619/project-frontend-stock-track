@@ -15,7 +15,7 @@ export const columnsIssuesManagerList: DataTablePropsI[] = [
         }
     },
     {
-        field: 'isSp500', header: 'Is S&P 500', tableConfig: {
+        field: 'isInvest', header: 'Is Invest', tableConfig: {
             styleCss: { width: "5%", textAlign: "left" },
         },
         maskProps: {
@@ -23,11 +23,8 @@ export const columnsIssuesManagerList: DataTablePropsI[] = [
         }
     },
     {
-        field: 'isInvest', header: 'Is Invest', tableConfig: {
+        field: 'descriptionIndex', header: 'Index', tableConfig: {
             styleCss: { width: "5%", textAlign: "left" },
-        },
-        maskProps: {
-            maskType: MaskDataTypeEnum.ANSWER
         }
     },
     {
@@ -60,7 +57,7 @@ export const columnsIssuesManagerList: DataTablePropsI[] = [
 export const inputFilterIssuesManagerIds = {
     sector: "idSector",
     typeStock: "idTypeStock",
-    isSp500: "isSp500",
+    index: "idIndex",
     isInvest: "isInvest",
     statusIssue: "idStatusIssue",
     statusIssueQuick: "idStatusIssueQuick",
@@ -84,10 +81,10 @@ export const columnsFilterIssuesManagerList: FormInputContainerPropsI = {
             }
         },
         {
-            label: "Is S&P 500:",
+            label: "Index:",
             inputProps: {
-                id: inputFilterIssuesManagerIds.isSp500,
-                inputType: InputElementEnum.SELECT, value: '', options: CATALOG_DEFAULT_TRUE_FALSE, isOptionAll: true
+                id: inputFilterIssuesManagerIds.index,
+                inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
             }
         },
         {

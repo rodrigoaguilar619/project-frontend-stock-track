@@ -15,11 +15,8 @@ export const columnsIssuesList: DataTablePropsI[] = [
         }
     },
     {
-        field: 'isSp500', header: 'Is S&P 500', tableConfig: {
+        field: 'descriptionIndex', header: 'Index', tableConfig: {
             styleCss: { width: "10%", textAlign: "center" },
-        },
-        maskProps: {
-            maskType: MaskDataTypeEnum.ANSWER
         }
     },
     {
@@ -43,7 +40,7 @@ export const inputFitlerIssuesIds = {
     statusIssue: "idStatusIssue",
     sector: "idSector",
     typeStock: "idTypeStock",
-    isSp500: "isSp500",
+    index: "idIndex",
 }
 
 export const columnsFilterIssuesList: FormInputContainerPropsI = {
@@ -70,10 +67,10 @@ export const columnsFilterIssuesList: FormInputContainerPropsI = {
             }
         },
         {
-            label: "Is S&P 500:",
+            label: "Index:",
             inputProps: {
-                id: inputFitlerIssuesIds.isSp500,
-                inputType: InputElementEnum.SELECT, value: '', options: CATALOG_DEFAULT_TRUE_FALSE, isOptionAll: true
+                id: inputFitlerIssuesIds.index,
+                inputType: InputElementEnum.SELECT, value: '', options: [], isOptionAll: true
             }
         },
     ],

@@ -45,11 +45,12 @@ const IssueEditModuleComponent: React.FC<IssuesAddMultipleModulePropsI> = (props
 
         dispatch(setTemplateLoadingActiveMessageAction(true, "Loading issues list module"));
         axios.all([getCatalogDataService(CatalogModuleEnum.SECTOR),
-        getCatalogDataService(CatalogModuleEnum.TYPE_STOCK), getCatalogDataService(CatalogModuleEnum.STATUS_ISSUE)])
-            .then(axios.spread((sectorsListData, typeStockListData, statusIssueListData) => {
+        getCatalogDataService(CatalogModuleEnum.TYPE_STOCK), getCatalogDataService(CatalogModuleEnum.STATUS_ISSUE), getCatalogDataService(CatalogModuleEnum.INDEX)])
+            .then(axios.spread((sectorsListData, typeStockListData, statusIssueListData, indexListData) => {
 
-                debug(debugClass, "result", sectorsListData, typeStockListData, statusIssueListData);
+                debug(debugClass, "result", sectorsListData, typeStockListData, statusIssueListData, indexListData);
                 setOptionsToColumnsDefList(inputsIssuesAddMultiple, sectorsListData.data.catalogs, inputIssuesAddMultipleIds.idSector);
+                setOptionsToColumnsDefList(inputsIssuesAddMultiple, indexListData.data.catalogs, inputIssuesAddMainIds.idIndex);
                 setOptionsToColumnsContainerDefList(formContainersIssuesAddMain, typeStockListData.data.catalogs, inputIssuesAddMainIds.idTypeStock);
                 setOptionsToColumnsContainerDefList(formContainersIssuesAddMain, statusIssueListData.data.catalogs, inputIssuesAddMainIds.idStatusIssue);
                 
