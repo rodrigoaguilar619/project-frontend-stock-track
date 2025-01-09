@@ -1,6 +1,7 @@
 import { _APP_URL_CONTEXT_PATH_ } from "lib-components-react/lib/catalogs/constantCatalog";
 
 const _URL_API_MAIN_ = _APP_URL_CONTEXT_PATH_;
+const CURRRENT_CONTEXT_PATH = window.location.origin.replace("#", "") + window.location.pathname.replace("#/", "");
 export const URL_ADMIN_DOLLAR_PRICE_UPDATE = _URL_API_MAIN_ + "api/service/dollar/updateDollarPrice";
 export const URL_ADMIN_ISSUES_HISTORICAL_UPDATE = _URL_API_MAIN_ + "api/historical/updateIssuesHistorical";
 export const URL_ADMIN_ISSUES_LAST_PRICE_UPDATE = _URL_API_MAIN_ + "api/issuesLastPrices/updateIssuesLastPrice";
@@ -25,5 +26,5 @@ export const URL_TRANSACTION_ISSUES_TRACK_LIST_GET = _URL_API_MAIN_ + "api/trans
 export const URL_LOAD_TRANSACTION_ISSUES_FILE_GET = _URL_API_MAIN_ + "api/transactions/loadTransactionIssuesFile";
 export const URL_LOAD_TRANSACTION_MONEY_FILE_GET = _URL_API_MAIN_ + "api/transactions/loadTransactionMoneyFile";
 
-export const PATH_API_DOCUMENTATION = _URL_API_MAIN_ + "swagger-ui/index.html";
+export const PATH_API_DOCUMENTATION = (_URL_API_MAIN_ != "" ? _URL_API_MAIN_ : CURRRENT_CONTEXT_PATH) + "swagger-ui/index.html";
 export const URL_EXTERNAL_YAHOO = "https://finance.yahoo.com/quote/#ISSUE#/chart?p=#ISSUE#";
