@@ -11,6 +11,7 @@ interface StockDataI {
 
 interface ChartStockResumeComponentPropsI {
     stockChartData: number[][],
+    stockChartFairValueData: number[][],
     stockData: StockDataI,
     stockTransactionBuys: FlagDataI[]
 }

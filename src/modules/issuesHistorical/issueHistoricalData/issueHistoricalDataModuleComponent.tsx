@@ -5,7 +5,7 @@ import axios from 'axios';
 import { IssueHistoricalDataModulePropsI } from '@app/_types/modules/issuesHistorical/issueHistoricalData';
 import ChartStockResumeComponent from '@app/components/highCharts/chartStockResumeComponent';
 import { getIssueHistoricalDataService } from '@app/controller/services/issuesHistoricalService';
-import { buildChartSeries } from '@app/utils/componentUtils/highChartsUtil';
+import { buildChartSeriesDailyValue, buildChartSeriesFairValue } from '@app/utils/componentUtils/highChartsUtil';
 import { maskDataCustom } from '@app/utils/maskDataCustomUtil';
 import DataTableComponent from 'lib-components-react/lib/components/dataTable/dataTableComponent';
 import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-react/lib/controller/actions/templateLoadingAction';
@@ -65,9 +65,10 @@ const IssuesHistoricalDataModuleComponent: React.FC<IssueHistoricalDataModulePro
     }
 
     let chartIssueHistoricalData = issueHistoricalData.issueHistoricalData;
-
+    
     return <ChartStockResumeComponent
-      stockChartData={buildChartSeries(chartIssueHistoricalData.issueHistorical)}
+      stockChartData={buildChartSeriesDailyValue(chartIssueHistoricalData.issueHistorical)}
+      stockChartFairValueData={buildChartSeriesFairValue(chartIssueHistoricalData.issueHistoricalFairValues)}
       stockTransactionBuys={chartIssueHistoricalData.issueTransactionBuys}
       stockData={{
         issueName: chartIssueHistoricalData.issueData.initials,

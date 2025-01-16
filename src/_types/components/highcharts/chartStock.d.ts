@@ -1,6 +1,7 @@
 interface ChartStockComponentPropsI {
     chartTitle?: string
-    chartData: any
+    chartDailyValueData: any
+    chartFairValueData: any
     rangeSelector?: number
     chartFlags?: any
     extraOptions?: any,

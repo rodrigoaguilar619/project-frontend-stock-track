@@ -9,7 +9,7 @@ import ChartStockResumeComponent from '@app/components/highCharts/chartStockResu
 import LoadingInfiniteScrollComponent from '@app/components/infiniteScroll/loadingInfiniteScrollComponent';
 import { getCatalogDataService } from '@app/controller/services/catalogService';
 import { getIssuesHistoricalListService } from '@app/controller/services/issuesHistoricalService';
-import { buildChartSeries } from '@app/utils/componentUtils/highChartsUtil';
+import { buildChartSeriesDailyValue, buildChartSeriesFairValue } from '@app/utils/componentUtils/highChartsUtil';
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons';
 import { ComponentTypeEnum } from 'lib-components-react/lib/catalogs/enumCatalog';
 import { ButtonDataTableOptionComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
@@ -162,7 +162,8 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
           </button>
         </div>
         <ChartStockResumeComponent
-          stockChartData={buildChartSeries(issueData.issueHistorical)}
+          stockChartData={buildChartSeriesDailyValue(issueData.issueHistorical)}
+          stockChartFairValueData={buildChartSeriesFairValue(issueData.issueHistoricalFairValues)}
           stockTransactionBuys={issueData.issueTransactionBuys}
           stockData={{
             issueName: issueData.issueData.initials,

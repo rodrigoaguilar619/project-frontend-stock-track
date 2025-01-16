@@ -6,7 +6,7 @@ import { buildTrackBuySellPrice, createChart } from '@app/utils/componentUtils/h
 
 const ChartStockComponent: React.FC<ChartStockComponentPropsI> = (props) => {
 
-  let chartDataOptions = createChart(props.chartTitle, props.chartData, props.chartFlags, props.rangeSelector, props.extraOptions);
+  let chartDataOptions = createChart(props.chartTitle, props.chartDailyValueData, props.chartFairValueData, props.chartFlags, props.rangeSelector, props.extraOptions);
   const chartData = {...chartDataOptions, ...buildTrackBuySellPrice(props.trackBuyPrice, props.trackSellPrice, props.trackFairValue)};
   const refChart = useRef(null);
 
