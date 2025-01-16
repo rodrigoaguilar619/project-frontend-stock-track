@@ -136,7 +136,7 @@ const IssuesMovementsListModuleComponent: React.FC<IssuesListModulePropsI> = (pr
         buttonNestedOptions.push(
         <ButtonDataTableOptionNestedComponent
             icon={faEdit}
-            onClick={() => { console.log("test currency: ", idTypeCurrencyRef);
+            onClick={() => {
                 setTitleModal("EDIT ISSUE MOVEMENT - ISSUE: " + rowData.issue + " - CURRENCY: " + currencyOptionsSelect.find((x) => x.value === idTypeCurrencyRef.current)?.name);
                 setSizeModal("md");
                 setBodyModal(

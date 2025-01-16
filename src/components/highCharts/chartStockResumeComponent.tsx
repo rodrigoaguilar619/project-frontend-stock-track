@@ -70,20 +70,20 @@ const ChartStockResumeComponent: React.FC<ChartStockResumeComponentPropsI> = (pr
         priceDayToShow = props.stockData.currentPriceDate;
     }
 
-    console.log("test priceDayToShow", props.stockData);
-
     let fairValueDownUp = getFairValueDayDownUp();
 
     const renderChartStockComponent = () => {
 
         const stockData = props.stockChartData;
+        const stockFairValueData = props.stockChartFairValueData ?? [];
 
         if (stockData === undefined || stockData === null || stockData.length === 0) {
             return <div style={{ textAlign: "center" }}><h3>No data retreived</h3></div>;
         }
         else
             return <ChartStockComponent
-                chartData={stockData}
+                chartDailyValueData={stockData}
+                chartFairValueData={stockFairValueData}
                 chartFlags={props.stockTransactionBuys}
                 rangeSelector={4}
                 trackBuyPrice={props.stockData.trackBuyPrice}
