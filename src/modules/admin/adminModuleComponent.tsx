@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { PATH_API_DOCUMENTATION } from "@app/catalogs/uriCatalog";
-import { updateDollarPriceService, updateIssuesHistoricalService, updateIssuesLastPriceService } from "@app/controller/services/adminService";
+import { updateDollarPriceService, updateIssuesHistoricalFluxService, updateIssuesLastPriceService } from "@app/controller/services/adminService";
 import { faDollar } from '@fortawesome/free-solid-svg-icons';
 import { ComponentTypeEnum, MaskDataTypeEnum } from "lib-components-react/lib/catalogs/enumCatalog";
 import { ButtonCustomComponent, ButtonsOrganizerComponent } from 'lib-components-react/lib/components/elements/buttonComponents';
@@ -15,7 +14,6 @@ import { ConstantCatalogEnum } from "@app/catalogs/enumCatalog";
 const enum enumOptions {
     UPDATE_DOLLAR_PRICE = "update_dollar_price",
     UPDATE_ISSUES_LAST_PRICE = "update_issues_last_price",
-    UPDATE_ISSUES_HISTORICAL = "update_issues_historical",
 }
 
 const AdminModuleComponent = () => {
@@ -34,9 +32,6 @@ const AdminModuleComponent = () => {
             case enumOptions.UPDATE_ISSUES_LAST_PRICE:
                 messageResume = "Issues last price updated successfully";
                 messageResult = "Issues last price to date";
-                break;
-            case enumOptions.UPDATE_ISSUES_HISTORICAL:
-                messageResume = "Issues historical updated successfully";
                 break;
         }
 
@@ -59,10 +54,6 @@ const AdminModuleComponent = () => {
                 loadingMessage = "Update issues last price";
                 genericService = updateIssuesLastPriceService.bind(null);
                 break;
-            case enumOptions.UPDATE_ISSUES_HISTORICAL:
-                loadingMessage = "Update issues historical";
-                genericService = updateIssuesHistoricalService.bind(null);
-                break;
         }
 
         dispatch(setTemplateLoadingActiveMessageAction(true, "Loading " + loadingMessage + "..."));
@@ -79,6 +70,30 @@ const AdminModuleComponent = () => {
                 manageAlertModuleError(dispatch, ComponentTypeEnum.MODULE, debugClass, error);
                 dispatch(setTemplateLoadingIsActiveAction(false));
             });
+    }
+
+    const executeUpdaeIssuesHistorical = () => {
+
+        let debugClass = generateDebugClassModule("init update issues historical");
+        debug(debugClass, "start");
+
+        dispatch(setTemplateLoadingActiveMessageAction(true, "Loading..."));
+
+        updateIssuesHistoricalFluxService((chunks: any[]) => {
+    
+            if (chunks.length > 0) {
+                const resultData = chunks[chunks.length - 1].data;
+                dispatch(setTemplateLoadingActiveMessageAction(true, "(" + resultData.currentProgress + "/" + resultData.totalProgress + ") Updating issue: " +resultData.issue));
+            }
+        })
+        .then(() => {
+            buildAlertSuccessRedux(dispatch, ComponentTypeEnum.MODULE, "Issues historical updated successfully");
+            dispatch(setTemplateLoadingIsActiveAction(false));
+        })
+        .catch((error) => {
+            manageAlertModuleError(dispatch, ComponentTypeEnum.MODULE, debugClass, error);
+            dispatch(setTemplateLoadingIsActiveAction(false));
+        });
     }
 
     let buttonOptions = [];
@@ -101,7 +116,7 @@ const AdminModuleComponent = () => {
             icon={faDollar}
             label="Update issues historical"
             onClick={() => {
-                executeButtonAction(enumOptions.UPDATE_ISSUES_HISTORICAL);
+                executeUpdaeIssuesHistorical();
             }}
         />);
 

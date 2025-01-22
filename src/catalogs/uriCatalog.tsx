@@ -4,6 +4,7 @@ const _URL_API_MAIN_ = _APP_URL_CONTEXT_PATH_;
 const CURRRENT_CONTEXT_PATH = window.location.origin.replace("#", "") + window.location.pathname.replace("#/", "");
 export const URL_ADMIN_DOLLAR_PRICE_UPDATE = _URL_API_MAIN_ + "api/service/dollar/updateDollarPrice";
 export const URL_ADMIN_ISSUES_HISTORICAL_UPDATE = _URL_API_MAIN_ + "api/historical/updateIssuesHistorical";
+export const URL_ADMIN_ISSUES_HISTORICAL_UPDATE_FLUX = _URL_API_MAIN_ + "api/historical/updateIssuesHistoricalFlux";
 export const URL_ADMIN_ISSUES_LAST_PRICE_UPDATE = _URL_API_MAIN_ + "api/issuesLastPrices/updateIssuesLastPrice";
 export const URL_CATALOG_DATA_LIST_GET = _URL_API_MAIN_ + "api/admin/catalog/getCatalog";
 export const URL_ISSUES_LIST_GET = _URL_API_MAIN_ + "api/issues/getIssues";
