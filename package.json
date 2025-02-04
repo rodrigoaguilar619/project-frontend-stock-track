@@ -1,6 +1,6 @@
 {
   "name": "project-frontend-stock-track",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "dependencies": {
     "@coreui/chartjs": "^4.0.0",
     "@coreui/coreui": "^5.0.1",
@@ -100,16 +100,11 @@
     "webpack-dev-server": "^5.0.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start-dev": "webpack-dev-server --config ./config/webpack/webpack.dev.server.tsx --open",
-    "start-demo-dev": "webpack-dev-server --config ./config/webpack/webpack.demo.dev.server.tsx --open",
-    "build": "react-scripts build",
-    "build-demo-dev": "webpack --config ./config/webpack/webpack.demo.dev.tsx",
-    "build-dev": "webpack --config ./config/webpack/webpack.dev.tsx",
-    "build-prod": "webpack --config ./config/webpack/webpack.prod.tsx",
+    "start-dev-webpack": "webpack-dev-server --config ./config/bundlers/webpack/webpack.dev.server.tsx --open",
+    "build-dev-webpack": "webpack --config ./config/bundlers/webpack/webpack.dev.tsx",
+    "build-prod-webpack": "webpack --config ./config/bundlers/webpack/webpack.prod.tsx",
     "sonarqube": "sonar-scanner -Dsonar.cpd.exclusions=true -Dproject.settings=./sonar-project.properties",
-    "test": "jest --coverage",
-    "eject": "react-scripts eject"
+    "test": "jest --coverage"
   },
   "eslintConfig": {
     "extends": [
