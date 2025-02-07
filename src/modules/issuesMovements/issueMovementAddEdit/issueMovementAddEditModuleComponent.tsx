@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { setDevAddMultipleIssueMovementDefaultData } from '@app/_projectConfig/config/mock/mockDefaultDataConfig';
 import { IssueMovementAddEditModulePropsI } from '@app/_types/modules/issuesMovements/issueMovementAddEdit';
@@ -13,7 +12,7 @@ import FormInputContainersComponent from 'lib-components-react/lib/components/fo
 import FormInputsMultipleComponent from 'lib-components-react/lib/components/forms/formInputsMultipleComponent';
 import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-react/lib/controller/actions/templateLoadingAction';
 import { buildAlertSuccessRedux } from 'lib-components-react/lib/utils/componentUtils/alertUtil';
-import { buildFormDataContainers, buildFormDataMultiple, getParameterCall, setOptionsToColumnsContainerDefList } from 'lib-components-react/lib/utils/componentUtils/formUtil';
+import { buildFormDataContainers, buildFormDataMultiple, getParameterCall, getSafeLocation, setOptionsToColumnsContainerDefList } from 'lib-components-react/lib/utils/componentUtils/formUtil';
 import { dispatchTemplateHeaderSubTitleAction } from 'lib-components-react/lib/utils/componentUtils/templateUtil';
 import { deepClone } from 'lib-components-react/lib/utils/dataUtils/dataUtil';
 import { setDevButtonDefaultData } from 'lib-components-react/lib/utils/devUtil';
@@ -25,7 +24,7 @@ import { formContainersIssueMovement, inputIssueMovementBuyIds, inputIssueMoveme
 const IssueMovementAddEditModuleComponent: React.FC<IssueMovementAddEditModulePropsI> = (props) => {
 
     const dispatch = useDispatch();
-    const location = useLocation();
+    const location = getSafeLocation();
     const idIssueMovement = getParameterCall(location, props, "idIssueMovement");
     const optionAddEdit: OptionAddEditEnum = idIssueMovement ? OptionAddEditEnum.EDIT : OptionAddEditEnum.ADD;
     const [formIssueMovementData, setFormIssueMovementData] = useState<Record<string, any>>({});
