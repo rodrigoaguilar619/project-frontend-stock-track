@@ -9,19 +9,18 @@ import { buildChartSeriesDailyValue, buildChartSeriesFairValue } from '@app/util
 import { maskDataCustom } from '@app/utils/maskDataCustomUtil';
 import DataTableComponent from 'lib-components-react/lib/components/dataTable/dataTableComponent';
 import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-react/lib/controller/actions/templateLoadingAction';
-import { getParameterCall } from 'lib-components-react/lib/utils/componentUtils/formUtil';
+import { getParameterCall, getSafeLocation } from 'lib-components-react/lib/utils/componentUtils/formUtil';
 import { debug, generateDebugClassModule } from 'lib-components-react/lib/utils/webUtils/debugUtil';
 import { manageAlertModuleError } from 'lib-components-react/lib/utils/webUtils/httpManagerUtil';
 import LoadingModuleComponent from 'lib-components-react/lib/components/loadings/loadingModuleComponent';
 import useHookLoading from 'lib-components-react/lib/hookStates/loadingHookState';
 import { columnsIssueTransactionList, columnsIssueTransactionResumenList } from './issueHistoricalDataModuleConfig';
 import { dispatchTemplateHeaderSubTitleAction } from 'lib-components-react/lib/utils/componentUtils/templateUtil';
-import { useLocation } from 'react-router-dom';
 
 const IssuesHistoricalDataModuleComponent: React.FC<IssueHistoricalDataModulePropsI> = (props) => {
 
   const dispatch = useDispatch();
-  const location = useLocation(); 
+  const location = getSafeLocation(); 
   const idIssue = getParameterCall(location, props, "idIssue");
   const initialsIssue = getParameterCall(location, props, "initialsIssue");
   const [loadingState, setLoading] = useHookLoading();

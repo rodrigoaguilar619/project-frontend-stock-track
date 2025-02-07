@@ -1,4 +1,4 @@
-const configAppDev = require("lib-components-react/lib/webpack/webpack.config.build");
+const configAppDev = require("lib-components-react/lib/bundlers/webpack/webpack.config.build");
 
 module.exports = (arg: any, env: any) => {
 
