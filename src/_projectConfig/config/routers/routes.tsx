@@ -28,15 +28,15 @@ const routesDev = [
 ]
 
 const routes = [
-  { path: '/', exact: true, name: 'Home' },
-  { path: ROUTE_ADMIN_MODULE, name: 'Admin', element: () => <AdminComponent /> },
-  { path: ROUTE_ISSUES_LIST_GET, name: 'Issues List', element: () => <IssuesListComponent componentType={ComponentTypeEnum.MODULE} /> },
-  { path: ROUTE_ISSUES_MANAGER_LIST_GET, name: 'Manager Issues List', element: () => <IssuesManagerListComponent componentType={ComponentTypeEnum.MODULE} /> },
-  { path: ROUTE_ISSUES_HISTORICAL_DATA_GET, name: 'Historical Issues List', element: () => <IssuesHistoricalListComponent componentType={ComponentTypeEnum.MODULE} /> },
-  { path: ROUTE_ISSUES_MOVEMENTS_LIST_GET, name: 'Issues Movements List', element: () => <IssuesMovementsListComponent componentType={ComponentTypeEnum.MODULE} /> },
-  { path: ROUTE_PORTFOLIO_LIST_GET, name: 'Portfolio List', element: () => <PortfolioListComponent componentType={ComponentTypeEnum.MODULE} /> },
-  { path: ROUTE_TRANSACTION_ISSUES_TRACK_LIST_GET, name: 'Transaction Issues Track List', element: () => <TransactionIssuesTrackListComponent componentType={ComponentTypeEnum.MODULE} /> },
-  { path: ROUTE_LOAD_TRANSACTION_ISSUES_FILE_GET, name: 'Load Transaction Issues File', element: () => <LoadTransactionIssuesFileComponent componentType={ComponentTypeEnum.MODULE} /> },
+  // { path: '/', exact: true, name: 'Home', element: null },
+  { path: ROUTE_ADMIN_MODULE, name: 'Admin', element: <AdminComponent /> },
+  { path: ROUTE_ISSUES_LIST_GET, name: 'Issues List', element: <IssuesListComponent componentType={ComponentTypeEnum.MODULE} /> },
+  { path: ROUTE_ISSUES_MANAGER_LIST_GET, name: 'Manager Issues List', element: <IssuesManagerListComponent componentType={ComponentTypeEnum.MODULE} /> },
+  { path: ROUTE_ISSUES_HISTORICAL_DATA_GET, name: 'Historical Issues List', element: <IssuesHistoricalListComponent componentType={ComponentTypeEnum.MODULE} /> },
+  { path: ROUTE_ISSUES_MOVEMENTS_LIST_GET, name: 'Issues Movements List', element: <IssuesMovementsListComponent componentType={ComponentTypeEnum.MODULE} /> },
+  { path: ROUTE_PORTFOLIO_LIST_GET, name: 'Portfolio List', element: <PortfolioListComponent componentType={ComponentTypeEnum.MODULE} /> },
+  { path: ROUTE_TRANSACTION_ISSUES_TRACK_LIST_GET, name: 'Transaction Issues Track List', element: <TransactionIssuesTrackListComponent componentType={ComponentTypeEnum.MODULE} /> },
+  { path: ROUTE_LOAD_TRANSACTION_ISSUES_FILE_GET, name: 'Load Transaction Issues File', element: <LoadTransactionIssuesFileComponent componentType={ComponentTypeEnum.MODULE} /> },
 ]
 
 const finalRoutes = _APP_ENVIRONMENT_ === EnvironmentEnum.DEVELOPMENT ? [...routes, ...routesDev] : routes;

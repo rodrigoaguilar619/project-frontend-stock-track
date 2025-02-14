@@ -12,13 +12,14 @@ import FormInputContainersComponent from 'lib-components-react/lib/components/fo
 import FormInputsMultipleComponent from 'lib-components-react/lib/components/forms/formInputsMultipleComponent';
 import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction } from 'lib-components-react/lib/controller/actions/templateLoadingAction';
 import { buildAlertSuccessRedux } from 'lib-components-react/lib/utils/componentUtils/alertUtil';
-import { buildFormDataContainers, buildFormDataMultiple, getParameterCall, getSafeLocation, setOptionsToColumnsContainerDefList } from 'lib-components-react/lib/utils/componentUtils/formUtil';
+import { buildFormDataContainers, buildFormDataMultiple, getParameterCall, setOptionsToColumnsContainerDefList } from 'lib-components-react/lib/utils/componentUtils/formUtil';
 import { dispatchTemplateHeaderSubTitleAction } from 'lib-components-react/lib/utils/componentUtils/templateUtil';
 import { deepClone } from 'lib-components-react/lib/utils/dataUtils/dataUtil';
 import { setDevButtonDefaultData } from 'lib-components-react/lib/utils/devUtil';
 import { buildSimpleReactValidator } from 'lib-components-react/lib/utils/pluginUtils/simpleReactValidatorUtil';
 import { debug, generateDebugClassModule, showDataDevelopment } from 'lib-components-react/lib/utils/webUtils/debugUtil';
 import { manageAlertModuleError } from 'lib-components-react/lib/utils/webUtils/httpManagerUtil';
+import { getSafeLocation } from 'lib-components-react/lib/utils/webUtils/routeUtil';
 import { formContainersIssueMovement, inputIssueMovementBuyIds, inputIssueMovementIds, inputsIssueMovementBuysAddMultiple } from './issueMovementAddEditModuleConfig';
 
 const IssueMovementAddEditModuleComponent: React.FC<IssueMovementAddEditModulePropsI> = (props) => {
