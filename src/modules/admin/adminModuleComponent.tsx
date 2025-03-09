@@ -8,7 +8,7 @@ import { setTemplateLoadingActiveMessageAction, setTemplateLoadingIsActiveAction
 import { buildAlertSuccessRedux } from "lib-components-react/lib/utils/componentUtils/alertUtil";
 import { maskData } from "lib-components-react/lib/utils/dataUtils/maskDataUtil";
 import { debug, generateDebugClassModule } from "lib-components-react/lib/utils/webUtils/debugUtil";
-import { manageAlertModuleError } from "lib-components-react/lib/utils/webUtils/httpManagerUtil";
+import { manageAlertModuleError, manageAlertModuleErrorFlux } from "lib-components-react/lib/utils/webUtils/httpManagerUtil";
 import { ConstantCatalogEnum } from "@app/catalogs/enumCatalog";
 
 const enum enumOptions {
@@ -91,7 +91,7 @@ const AdminModuleComponent = () => {
             dispatch(setTemplateLoadingIsActiveAction(false));
         })
         .catch((error) => {
-            manageAlertModuleError(dispatch, ComponentTypeEnum.MODULE, debugClass, error);
+            manageAlertModuleErrorFlux(dispatch, ComponentTypeEnum.MODULE, debugClass, error);
             dispatch(setTemplateLoadingIsActiveAction(false));
         });
     }
