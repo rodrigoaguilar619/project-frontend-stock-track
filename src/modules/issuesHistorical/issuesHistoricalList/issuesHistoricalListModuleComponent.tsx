@@ -120,9 +120,11 @@ const IssuesHistoricalListModuleComponent: React.FC<IssuesHistoricalListModulePr
   }
 
   const renderInfiniteScroll = () => {
-    return <div style={{ position: loadingInfiniteScroll ? "fixed" : "unset", bottom: '0', width: '10%', transform: 'translate(-50%, -40%)', left: '50%' }}>
-        <LoadingInfiniteScrollComponent itemsLength={issuesHistoricalList.length}
-        executeFunction={totalGlobalIssuesRows !== null ? (() => { executeGetissuesHistoricalList(issuesHistoricalList, formFilterData, currentPage, rowsPerPage, false) }) : null} totalItems={totalGlobalIssuesRows} />
+    return <div style={{ position: loadingInfiniteScroll ? "fixed" : "unset", bottom: '0', width: '-webkit-fill-available', display: 'flex', justifyContent: 'center', paddingBottom: '10px' }}>
+        <div style={{ width: '125px' }}>
+          <LoadingInfiniteScrollComponent itemsLength={issuesHistoricalList.length}
+          executeFunction={totalGlobalIssuesRows !== null ? (() => { executeGetissuesHistoricalList(issuesHistoricalList, formFilterData, currentPage, rowsPerPage, false) }) : null} totalItems={totalGlobalIssuesRows} />
+        </div>
     </div>
   }
 
