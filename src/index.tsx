@@ -1,9 +1,9 @@
 /// <reference types="react-scripts" />
 
+import reportWebVitals from 'lib-components-react/lib/utils/webUtils/reportWebVitalUtil'
 import 'react-app-polyfill/stable'
 import 'core-js'
 import { createRoot } from 'react-dom/client'
-import reportWebVitals from './reportWebVitals'
 import App from './_projectConfig/App'
 
 createRoot(document.getElementById('root')!).render(

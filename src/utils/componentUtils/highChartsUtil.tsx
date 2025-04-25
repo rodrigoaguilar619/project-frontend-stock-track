@@ -84,7 +84,7 @@ export const createChart = (chartTitle: string | undefined, seriesDailyValue: [n
         tooltip: {
             hideDelay: 100,
             useHTML: true,
-            formatter: function (this: Highcharts.TooltipFormatterContextObject): string {
+            formatter: function (this: any): string {
 
                 let tooltipData: string[][] = [];
                 let textData: string [] = [];
@@ -99,7 +99,7 @@ export const createChart = (chartTitle: string | undefined, seriesDailyValue: [n
                     });
             
                     // For flag series, add specific point options text if available
-                    if (this.points.some(p => p.series.type === "flags")) {
+                    if (this.points.some((p: any) => p.series.type === "flags")) {
 
                         this.points.forEach((point: any) => {
                             if (point.series.type === "flags" && point.point.options?.text) {
